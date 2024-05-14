@@ -1,3 +1,5 @@
+[default]: https://github.com/Readme-Workflows/readme-replacer/blob/main/src/replacers.json
+
 <h1 align="center">🚧 Projeto em construção... 🚧</h1>
 
 <h1 align="center">DockerMicroservices</h1> 
