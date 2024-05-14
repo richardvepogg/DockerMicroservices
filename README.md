@@ -26,9 +26,15 @@ volumes: Cria um volume na pasta ./DockerMicroservices\volumes para que o que fo
 3- cadastroproduto: API que irá persistir o e obter dados salvos no banco de dados.
 <br>
 <br>
-<p>👉 Status 💻
+<p>👉 Status 💻</p>
 <br>
-Projeto Finalizado, fazendo pequenos ajustes.</p>
+<p>Fazendo as seguintes mudanças.</p>
+<p>1-Organizar solução por pastas 
+
+{octicons/issueClosed}
+
+</p>
+
 <br>
 
 <p>🛠 Tecnologias utilizadas
