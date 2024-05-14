@@ -1,12 +1,10 @@
-[default]: https://github.com/Readme-Workflows/readme-replacer/blob/main/src/replacers.json
-
 <h1 align="center">🚧 Projeto em construção... 🚧</h1>
 
 <h1 align="center">DockerMicroservices</h1> 
 
 <br>
 <p>Projeto foi construído para aprendizagem na construção de microsserviços com Docker e na configuração do Docker Compose, está utilizando .NET 8.
-Inseri bibliotecas como Refit para consumo de API,EntityFramework(ORM) e AutoMapper.</p>
+Inseri bibliotecas como Refit para consumo de API,EntityFramework(ORM), AutoMapper e mensageria pelo RabbitMQ.</p>
 <br>
 
 <p> 👉 No que se baseia:
@@ -31,12 +29,14 @@ volumes: Cria um volume na pasta ./DockerMicroservices\volumes para que o que fo
 <p>👉 Status 💻</p>
 <br>
 <p>Fazendo as seguintes mudanças.</p>
-<p>1-Organizar solução por pastas 
-
-{octicons/issueClosed}
-
-</p>
-
+<p>1-Organizar solução separando projetos e itens por pastas:OK</p>
+<p>2-C# .gitignore</p>
+<p>3-Trocar Dapper por Entity Framework</p>
+<p>4-Criar uma API para gerar token JWT, método para gerar token e outro para validar</p>
+<p>5-Remover serviço mssqltools, criação do banco deve ser por migrations</p>
+<p>6-Criar Bootstrapper.cs</p>
+<p>7-Implementar RabbitMQ</p>
+<p>8-Implementar AutoMapper</p>
 <br>
 
 <p>🛠 Tecnologias utilizadas
@@ -56,6 +56,8 @@ Entity Framework
 JWT
 <br>
 AutoMapper
+<br>
+RabbitMQ
 </p>
 
 <br>
