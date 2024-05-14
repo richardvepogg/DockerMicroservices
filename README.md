@@ -1,8 +1,10 @@
+<h1 align="center">🚧 Projeto em construção... 🚧</h1>
+
 <h1 align="center">DockerMicroservices</h1> 
 
 <br>
 <p>Projeto foi construído para aprendizagem na construção de microsserviços com Docker e na configuração do Docker Compose, está utilizando .NET 8.
-Inseri bibliotecas como Refit para consumo de API e Dapper(ORM).</p>
+Inseri bibliotecas como Refit para consumo de API,EntityFramework(ORM) e AutoMapper.</p>
 <br>
 
 <p> 👉 No que se baseia:
@@ -17,15 +19,11 @@ Crud simples no cadastro de produto, API de cadastro de produto pode ser consumi
 <br>
 volumes: Cria um volume na pasta ./DockerMicroservices\volumes para que o que foi salvado no BD não se perca.
 <br> 
-  
-2-mssqltools: O Utilitário sqlcmd permite inserir instruções Transact-SQL, procedimentos do sistema e arquivos de script no prompt de comando, no modo SQLCMD.
-<b>Será responsável por criar nosso banco de dados (Estoque) quando os containers são criados</b>.
-</p>
 
-3- apirefit: API com Refit configurado para consumir a API cadastroproduto.
+2- apirefit: API com Refit configurado para consumir a API cadastroproduto.
 <br>
 
-4- cadastroproduto: API que irá persistir o e obter dados salvos no banco de dados.
+3- cadastroproduto: API que irá persistir o e obter dados salvos no banco de dados.
 <br>
 <br>
 <p>👉 Status 💻
@@ -45,8 +43,11 @@ Swagger
 <br>
 Docker
 <br>
-Dapper
+Entity Framework
 <br>
+JWT
+<br>
+AutoMapper
 </p>
 
 <br>
@@ -101,4 +102,3 @@ Clicar em detalhes do container e depois na seção "Logs"
 ![DetalhesContainerEstoqueOK](https://github.com/richardvepogg/DockerMicroservices/assets/34971908/e8231b66-ee4c-48f1-b27d-124baae87098)
 
 <p>Caso o mensagem de erro de login persista, aumente o tempo.<p>
-
