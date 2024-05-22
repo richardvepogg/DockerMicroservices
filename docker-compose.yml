@@ -40,7 +40,7 @@ services:
        ports:
        - "5000:5000"
        depends_on:
-         - sqlserver
+       - cadastroproduto
        networks:
          rederefit:
           ipv4_address: 172.18.0.4

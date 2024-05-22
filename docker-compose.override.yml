@@ -10,7 +10,7 @@ services:
     ports:
     - "5010:5010"
     depends_on:
-      - sqlserver
+    - sqlserver
     networks:
         rederefit:
          ipv4_address: 172.18.0.5
