@@ -30,17 +30,6 @@ services:
                 ipv4_address: 172.18.0.6
 
 
-      mssqltools:
-            image: mcr.microsoft.com/mssql-tools
-            depends_on:
-             - sqlserver
-            volumes:
-             - ./CriarBancoEstoque.sql:/tmp/CriarBancoEstoque.sql  
-            command: /bin/bash -c "sleep 70 && /opt/mssql-tools/bin/sqlcmd -S sqlserver -U SA -P cadastroprodutos123! -d master -i /tmp/CriarBancoEstoque.sql"
-            networks:
-              rederefit:
-               ipv4_address: 172.18.0.7
-
 
       apirefit:
        image: api-refit

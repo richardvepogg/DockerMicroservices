@@ -1,5 +1,5 @@
-﻿using Dominio.Entidades;
-using Dominio.Interfaces;
+﻿using AcessoDados.AcessoBanco;
+using Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -23,11 +23,11 @@ namespace CadastroProduto.Controllers
         }
 
         [HttpGet]
-        private static async Task<IResult> ObterProdutos(IProdutoData data)
+        private static IResult ObterProdutos(IProdutoRepository data)
         {
             try
             {
-                return Results.Ok(await data.ObterListaProduto());
+                return Results.Ok(data.GetAll());
             }
             catch (Exception ex)
             {
@@ -37,11 +37,11 @@ namespace CadastroProduto.Controllers
         }
 
         [HttpGet("{id}")]
-        private static async Task<IResult> ObterProduto(int id, IProdutoData data)
+        private static IResult ObterProduto(int id, IProdutoRepository data)
         {
             try
             {
-                var produto = await data.ObterProduto(id);
+                var produto = data.Find(id);
                 if (produto == null) return Results.NotFound();
 
                 return Results.Ok(produto);
@@ -54,11 +54,11 @@ namespace CadastroProduto.Controllers
         }
 
         [HttpPost]
-        private static async Task<IResult> Inserirproduto(Produto produto, IProdutoData data)
+        private static IResult Inserirproduto(Produto produto, IProdutoRepository data)
         {
             try
             {
-                await data.InserirProduto(produto);
+                data.Add(produto);
                 return Results.Ok("O produto foi inserido com sucesso!");
             }
             catch (Exception ex)
@@ -69,11 +69,11 @@ namespace CadastroProduto.Controllers
         }
 
         [HttpPut]
-        private static async Task<IResult> AtualizarProduto(Produto produto, IProdutoData data)
+        private static IResult AtualizarProduto(Produto produto, IProdutoRepository data)
         {
             try
             {
-                await data.AtualizarProduto(produto);
+                data.Update(produto);
 
                 return Results.Ok("O produto foi atualizado com sucesso!");
             }
@@ -85,11 +85,11 @@ namespace CadastroProduto.Controllers
         }
 
         [HttpDelete]
-        private static async Task<IResult> DeletarProduto(int id, IProdutoData data)
+        private static IResult DeletarProduto(int id, IProdutoRepository data)
         {
             try
             {
-                await data.DeletarProduto(id);
+                data.Remove(id);
 
                 return Results.Ok("O produto foi deletado com sucesso!");
             }

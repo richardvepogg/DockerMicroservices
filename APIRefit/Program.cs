@@ -1,5 +1,5 @@
+using AcessoDados.AcessoBanco;
 using APIRefit.Controllers;
-using Dominio.Interfaces;
 using Microsoft.OpenApi.Models;
 using Negocio.Extensoes;
 using Negocio.Servicos;
@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "APIRefit", Version = "v1" });
 });
-builder.Services.AddSingleton<IProdutoData, ProdutoData>();
+builder.Services.AddSingleton<IProdutoRepository, ProdutoRepository>();
 
 var app = builder.Build();
 

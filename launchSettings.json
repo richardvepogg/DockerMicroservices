@@ -9,7 +9,6 @@
       "serviceActions": {
         "cadastroproduto": "StartDebugging",
         "apirefit": "StartDebugging",
-        "mssqltools": "StartWithoutDebugging",
         "sqlserver": "StartWithoutDebugging"
       }
     }

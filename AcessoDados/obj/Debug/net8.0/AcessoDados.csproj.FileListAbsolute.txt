@@ -1,4 +1,5 @@
 F:\Projetos\DockerMicroservices\AcessoDados\bin\Debug\net8.0\AcessoDados.deps.json
+F:\Projetos\DockerMicroservices\AcessoDados\bin\Debug\net8.0\AcessoDados.runtimeconfig.json
 F:\Projetos\DockerMicroservices\AcessoDados\bin\Debug\net8.0\AcessoDados.dll
 F:\Projetos\DockerMicroservices\AcessoDados\bin\Debug\net8.0\AcessoDados.pdb
 F:\Projetos\DockerMicroservices\AcessoDados\bin\Debug\net8.0\Dominio.dll
@@ -13,4 +14,5 @@ F:\Projetos\DockerMicroservices\AcessoDados\obj\Debug\net8.0\AcessoDados.csproj.
 F:\Projetos\DockerMicroservices\AcessoDados\obj\Debug\net8.0\AcessoDados.dll
 F:\Projetos\DockerMicroservices\AcessoDados\obj\Debug\net8.0\refint\AcessoDados.dll
 F:\Projetos\DockerMicroservices\AcessoDados\obj\Debug\net8.0\AcessoDados.pdb
+F:\Projetos\DockerMicroservices\AcessoDados\obj\Debug\net8.0\AcessoDados.genruntimeconfig.cache
 F:\Projetos\DockerMicroservices\AcessoDados\obj\Debug\net8.0\ref\AcessoDados.dll

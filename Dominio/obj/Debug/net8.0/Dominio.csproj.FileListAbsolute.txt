@@ -1,6 +1,7 @@
 F:\Projetos\DockerMicroservices\Dominio\bin\Debug\net8.0\Dominio.deps.json
 F:\Projetos\DockerMicroservices\Dominio\bin\Debug\net8.0\Dominio.dll
 F:\Projetos\DockerMicroservices\Dominio\bin\Debug\net8.0\Dominio.pdb
+F:\Projetos\DockerMicroservices\Dominio\obj\Debug\net8.0\Dominio.csproj.AssemblyReference.cache
 F:\Projetos\DockerMicroservices\Dominio\obj\Debug\net8.0\Dominio.GeneratedMSBuildEditorConfig.editorconfig
 F:\Projetos\DockerMicroservices\Dominio\obj\Debug\net8.0\Dominio.AssemblyInfoInputs.cache
 F:\Projetos\DockerMicroservices\Dominio\obj\Debug\net8.0\Dominio.AssemblyInfo.cs

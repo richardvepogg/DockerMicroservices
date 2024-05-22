@@ -1,15 +1,22 @@
 using AcessoDados.AcessoBanco;
+using AcessoDados.Contexto;
 using CadastroProduto.Controllers;
-using Dominio.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Negocio.Servicos;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
-builder.Services.AddSingleton<IProdutoData, ProdutoData>();
+
+builder.Services.AddDbContext<ProdutoDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("Default") ?? "",
+p => p.MigrationsHistoryTable("Default")), ServiceLifetime.Scoped
+);
+
+builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "CadastroProduto", Version = "v1" });
