@@ -83,10 +83,7 @@ $ git clone [https://github.com/richardvepogg/DockerMicroservices.git]
 <br>  
 3-Banco de dados "Estoque" será criado pelo Migrations
 <br>
-  
-![containermsqtoolsdesativado](https://github.com/richardvepogg/DockerMicroservices/assets/34971908/6689093b-d90a-480c-9034-aceae314d54f)
-<br>
-Encerramento do container pode ser observado no Docker Desktop
+
 </p>
 <br>
 <p>O servidor (CadastroProduto) inciará na porta:5010 - acesse http://localhost:5010/swagger
