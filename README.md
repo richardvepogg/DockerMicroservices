@@ -9,7 +9,7 @@ Inseri bibliotecas como Refit para consumo de API,EntityFramework(ORM), AutoMapp
 
 <p> 👉 No que se baseia:
 <br>
-Crud simples no cadastro de produto, API de cadastro de produto pode ser consumida por outra API chamada de APIRefit.</p>
+Crud simples no cadastro de produto, API de CadastroProduto pode ser consumida por outra API chamada de APIRefit.</p>
 <br>
 
 <p>👉 Serviços configurados no docker compose:
