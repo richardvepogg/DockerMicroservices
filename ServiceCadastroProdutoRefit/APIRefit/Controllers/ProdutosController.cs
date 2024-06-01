@@ -1,5 +1,5 @@
-﻿using AcessoDados.Interfaces;
-using Dominio.Entidades;
+﻿using APIRefit.AcessoDados.Interfaces;
+using CadastroProduto.Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIRefit.Controllers

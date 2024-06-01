@@ -1,5 +1,8 @@
 using APIRefit.Controllers;
+using CadastroProduto.AcessoDados.AcessoBanco;
+using CadastroProduto.Negocio.Services;
 using Microsoft.OpenApi.Models;
+using APIRefit.Negocio.Extensoes;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Autenticacao.Dominio": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

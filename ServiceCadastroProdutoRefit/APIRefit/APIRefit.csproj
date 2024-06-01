@@ -14,4 +14,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\ServiceCadastroProduto\CadastroProduto.Negocio\CadastroProduto.Negocio.csproj" />
+    <ProjectReference Include="..\APIRefit.AcessoDados\APIRefit.AcessoDados.csproj" />
+    <ProjectReference Include="..\APIRefit.Negocio\APIRefit.Negocio.csproj" />
+  </ItemGroup>
+
 </Project>

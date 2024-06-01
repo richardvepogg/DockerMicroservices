@@ -1,5 +1,5 @@
-﻿using AcessoDados.AcessoBanco;
-using Dominio.Entidades;
+﻿using CadastroProduto.AcessoDados.AcessoBanco;
+using CadastroProduto.Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
 

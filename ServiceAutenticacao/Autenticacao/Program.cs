@@ -1,10 +1,3 @@
-using AcessoDados.AcessoBanco;
-using AcessoDados.Contexto;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using Negocio.Servicos;
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();

@@ -1,9 +1,10 @@
-using AcessoDados.AcessoBanco;
-using AcessoDados.Contexto;
+using CadastroProduto.AcessoDados.AcessoBanco;
+using CadastroProduto.AcessoDados.Contexto;
 using CadastroProduto.Controllers;
+using CadastroProduto.Negocio.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Negocio.Servicos;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
