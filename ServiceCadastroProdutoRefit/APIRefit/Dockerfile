@@ -8,13 +8,15 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["APIRefit/APIRefit.csproj", "APIRefit/"]
-COPY ["Negocio/Negocio.csproj", "Negocio/"]
-COPY ["AcessoDados/AcessoDados.csproj", "AcessoDados/"]
-COPY ["Dominio/Dominio.csproj", "Dominio/"]
-RUN dotnet restore "./APIRefit/./APIRefit.csproj"
+COPY ["ServiceCadastroProdutoRefit/APIRefit/APIRefit.csproj", "ServiceCadastroProdutoRefit/APIRefit/"]
+COPY ["ServiceCadastroProduto/CadastroProduto.Negocio/CadastroProduto.Negocio.csproj", "ServiceCadastroProduto/CadastroProduto.Negocio/"]
+COPY ["ServiceCadastroProduto/CadastroProduto.AcessoDados/CadastroProduto.AcessoDados.csproj", "ServiceCadastroProduto/CadastroProduto.AcessoDados/"]
+COPY ["ServiceCadastroProduto/CadastroProduto.Dominio/CadastroProduto.Dominio.csproj", "ServiceCadastroProduto/CadastroProduto.Dominio/"]
+COPY ["ServiceCadastroProdutoRefit/APIRefit.AcessoDados/APIRefit.AcessoDados.csproj", "ServiceCadastroProdutoRefit/APIRefit.AcessoDados/"]
+COPY ["ServiceCadastroProdutoRefit/APIRefit.Negocio/APIRefit.Negocio.csproj", "ServiceCadastroProdutoRefit/APIRefit.Negocio/"]
+RUN dotnet restore "./ServiceCadastroProdutoRefit/APIRefit/./APIRefit.csproj"
 COPY . .
-WORKDIR "/src/APIRefit"
+WORKDIR "/src/ServiceCadastroProdutoRefit/APIRefit"
 RUN dotnet build "./APIRefit.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

@@ -8,16 +8,16 @@ namespace Usuarios.Negocio.Services
     public class UsuariosRepository : IUsuariosRepository
     {
 
-        private readonly UsuariosDbContext _contexto;
+        private readonly UsuarioDbContext _contexto;
 
-        public UsuariosRepository(UsuariosDbContext ctx)
+        public UsuariosRepository(UsuarioDbContext ctx)
         {
             _contexto = ctx;
         }
 
-        public void Add(Usuario produto)
+        public void Add(Usuario usuario)
         {
-            _contexto.Usuarios.Add(produto);
+            _contexto.Usuarios.Add(usuario);
             _contexto.SaveChanges();
         }
 
@@ -39,9 +39,9 @@ namespace Usuarios.Negocio.Services
             _contexto.SaveChanges();
         }
 
-        public void Update(Usuario produto)
+        public void Update(Usuario usuario)
         {
-            _contexto.Usuarios.Update(produto);
+            _contexto.Usuarios.Update(usuario);
             _contexto.SaveChanges();
         }
     }

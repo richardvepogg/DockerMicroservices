@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "APIRefit", Version = "v1" });
 });
-builder.Services.AddSingleton<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
 
 var app = builder.Build();
 

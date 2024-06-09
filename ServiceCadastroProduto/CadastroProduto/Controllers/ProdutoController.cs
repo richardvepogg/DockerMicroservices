@@ -1,5 +1,6 @@
 ﻿using CadastroProduto.AcessoDados.AcessoBanco;
 using CadastroProduto.Dominio.Entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -22,6 +23,7 @@ namespace CadastroProduto.Controllers
 
         }
 
+        [Authorize(Roles = "Employee")]
         [HttpGet]
         private static IResult ObterProdutos(IProdutoRepository data)
         {
@@ -36,6 +38,7 @@ namespace CadastroProduto.Controllers
             }
         }
 
+        [Authorize(Roles = "Employee")]
         [HttpGet("{id}")]
         private static IResult ObterProduto(int id, IProdutoRepository data)
         {
@@ -53,6 +56,7 @@ namespace CadastroProduto.Controllers
             }
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         private static IResult Inserirproduto(Produto produto, IProdutoRepository data)
         {
@@ -68,6 +72,7 @@ namespace CadastroProduto.Controllers
             }
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpPut]
         private static IResult AtualizarProduto(Produto produto, IProdutoRepository data)
         {
@@ -84,6 +89,7 @@ namespace CadastroProduto.Controllers
             }
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpDelete]
         private static IResult DeletarProduto(int id, IProdutoRepository data)
         {

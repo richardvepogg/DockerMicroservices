@@ -6,7 +6,7 @@ services:
     container_name: cadastroProduto
     build:
       context: .
-      dockerfile: CadastroProduto\Dockerfile
+      dockerfile: ServiceCadastroProduto\CadastroProduto\Dockerfile
     ports:
     - "5010:5010"
     depends_on:

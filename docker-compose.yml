@@ -30,19 +30,46 @@ services:
                 ipv4_address: 172.18.0.6
 
 
+      apiusuarios:
+            container_name: apiUsuarios
+            image: api-usuarios
+            build:
+              context: .
+              dockerfile: ServiceUsuarios\Usuarios\Dockerfile
+            ports:
+            - "5020:5020"
+            depends_on:
+            - sqlserver
+            networks:
+             rederefit:
+              ipv4_address: 172.18.0.7
+
+      apiautenticacao:
+            image: api-autenticacao
+            container_name: apiAutenticacao
+            build:
+              context: .
+              dockerfile: ServiceAutenticacao\Autenticacao\Dockerfile
+            ports:
+            - "5030:5030"
+            depends_on:
+            - apiusuarios
+            networks:
+             rederefit:
+              ipv4_address: 172.18.0.8
 
       apirefit:
-       image: api-refit
-       container_name: apiRefit
-       build:
-         context: .
-         dockerfile: APIRefit\Dockerfile
-       ports:
-       - "5000:5000"
-       depends_on:
-       - cadastroproduto
-       networks:
-         rederefit:
-          ipv4_address: 172.18.0.4
+            image: api-refit
+            container_name: apiRefit
+            build:
+              context: .
+              dockerfile: ServiceCadastroProdutoRefit\APIRefit\Dockerfile
+            ports:
+            - "5000:5000"
+            depends_on:
+            - cadastroproduto
+            networks:
+              rederefit:
+               ipv4_address: 172.18.0.4
 
     

@@ -8,13 +8,13 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["CadastroProduto/CadastroProduto.csproj", "CadastroProduto/"]
-COPY ["Negocio/Negocio.csproj", "Negocio/"]
-COPY ["AcessoDados/AcessoDados.csproj", "AcessoDados/"]
-COPY ["Dominio/Dominio.csproj", "Dominio/"]
-RUN dotnet restore "./CadastroProduto/./CadastroProduto.csproj"
+COPY ["ServiceCadastroProduto/CadastroProduto/CadastroProduto.csproj", "ServiceCadastroProduto/CadastroProduto/"]
+COPY ["ServiceCadastroProduto/CadastroProduto.AcessoDados/CadastroProduto.AcessoDados.csproj", "ServiceCadastroProduto/CadastroProduto.AcessoDados/"]
+COPY ["ServiceCadastroProduto/CadastroProduto.Dominio/CadastroProduto.Dominio.csproj", "ServiceCadastroProduto/CadastroProduto.Dominio/"]
+COPY ["ServiceCadastroProduto/CadastroProduto.Negocio/CadastroProduto.Negocio.csproj", "ServiceCadastroProduto/CadastroProduto.Negocio/"]
+RUN dotnet restore "./ServiceCadastroProduto/CadastroProduto/./CadastroProduto.csproj"
 COPY . .
-WORKDIR "/src/CadastroProduto"
+WORKDIR "/src/ServiceCadastroProduto/CadastroProduto"
 RUN dotnet build "./CadastroProduto.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

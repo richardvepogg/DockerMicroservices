@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Usuarios.AcessoDados.AcessoBanco;
 using Usuarios.Dominio.Entidades;
 using Usuarios.Negocio.Services;
@@ -21,6 +22,7 @@ namespace Usuarios.Controllers
 
         }
 
+        [Authorize(Roles = "Employee")]
         [HttpGet]
         private static IResult ObterUsuarios(UsuariosRepository data)
         {
@@ -35,6 +37,7 @@ namespace Usuarios.Controllers
             }
         }
 
+        [Authorize(Roles = "Employee")]
         [HttpGet("{id}")]
         private static IResult ObterUsuario(int id, IUsuariosRepository data)
         {
@@ -52,6 +55,7 @@ namespace Usuarios.Controllers
             }
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         private static IResult Inserirusuario(Usuario usuario, IUsuariosRepository data)
         {
@@ -67,6 +71,7 @@ namespace Usuarios.Controllers
             }
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpPut]
         private static IResult AtualizarUsuario(Usuario usuario, IUsuariosRepository data)
         {
@@ -83,6 +88,7 @@ namespace Usuarios.Controllers
             }
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpDelete]
         private static IResult DeletarUsuario(int id, IUsuariosRepository data)
         {

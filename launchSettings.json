@@ -9,6 +9,8 @@
       "serviceActions": {
         "cadastroproduto": "StartDebugging",
         "apirefit": "StartDebugging",
+        "apiusuarios": "StartDebugging",
+        "apiautenticacao": "StartDebugging",
         "sqlserver": "StartWithoutDebugging"
       }
     }
