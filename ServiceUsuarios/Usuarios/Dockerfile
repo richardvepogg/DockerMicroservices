@@ -3,7 +3,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -12,7 +12,7 @@ COPY ["ServiceUsuarios/Usuarios/Usuarios.csproj", "ServiceUsuarios/Usuarios/"]
 COPY ["ServiceUsuarios/Usuarios.AcessoDados/Usuarios.AcessoDados.csproj", "ServiceUsuarios/Usuarios.AcessoDados/"]
 COPY ["ServiceUsuarios/Usuarios.Dominio/Usuarios.Dominio.csproj", "ServiceUsuarios/Usuarios.Dominio/"]
 COPY ["ServiceUsuarios/Usuarios.Negocio/Usuarios.Negocio.csproj", "ServiceUsuarios/Usuarios.Negocio/"]
-RUN dotnet restore "./ServiceUsuarios/Usuarios/./Usuarios.csproj"
+RUN dotnet restore "./ServiceUsuarios/Usuarios/Usuarios.csproj"
 COPY . .
 WORKDIR "/src/ServiceUsuarios/Usuarios"
 RUN dotnet build "./Usuarios.csproj" -c $BUILD_CONFIGURATION -o /app/build

@@ -3,7 +3,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -12,7 +12,7 @@ COPY ["ServiceAutenticacao/Autenticacao/Autenticacao.csproj", "ServiceAutenticac
 COPY ["ServiceAutenticacao/Autenticacao.Negocio/Autenticacao.Negocio.csproj", "ServiceAutenticacao/Autenticacao.Negocio/"]
 COPY ["ServiceAutenticacao/Autenticacao.AcessoDados/Autenticacao.AcessoDados.csproj", "ServiceAutenticacao/Autenticacao.AcessoDados/"]
 COPY ["ServiceAutenticacao/Autenticacao.Dominio/Autenticacao.Dominio.csproj", "ServiceAutenticacao/Autenticacao.Dominio/"]
-RUN dotnet restore "./ServiceAutenticacao/Autenticacao/./Autenticacao.csproj"
+RUN dotnet restore "./ServiceAutenticacao/Autenticacao/Autenticacao.csproj"
 COPY . .
 WORKDIR "/src/ServiceAutenticacao/Autenticacao"
 RUN dotnet build "./Autenticacao.csproj" -c $BUILD_CONFIGURATION -o /app/build

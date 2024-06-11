@@ -3,14 +3,11 @@
     "Docker Compose": {
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
-      "composeLaunchAction": "LaunchBrowser",
-      "composeLaunchServiceName": "apirefit",
-      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/swagger",
       "serviceActions": {
         "cadastroproduto": "StartDebugging",
+        "apiautenticacao": "StartDebugging",
         "apirefit": "StartDebugging",
         "apiusuarios": "StartDebugging",
-        "apiautenticacao": "StartDebugging",
         "sqlserver": "StartWithoutDebugging"
       }
     }

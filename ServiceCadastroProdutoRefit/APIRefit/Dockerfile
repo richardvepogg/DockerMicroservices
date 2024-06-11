@@ -3,7 +3,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -14,7 +14,7 @@ COPY ["ServiceCadastroProduto/CadastroProduto.AcessoDados/CadastroProduto.Acesso
 COPY ["ServiceCadastroProduto/CadastroProduto.Dominio/CadastroProduto.Dominio.csproj", "ServiceCadastroProduto/CadastroProduto.Dominio/"]
 COPY ["ServiceCadastroProdutoRefit/APIRefit.AcessoDados/APIRefit.AcessoDados.csproj", "ServiceCadastroProdutoRefit/APIRefit.AcessoDados/"]
 COPY ["ServiceCadastroProdutoRefit/APIRefit.Negocio/APIRefit.Negocio.csproj", "ServiceCadastroProdutoRefit/APIRefit.Negocio/"]
-RUN dotnet restore "./ServiceCadastroProdutoRefit/APIRefit/./APIRefit.csproj"
+RUN dotnet restore "./ServiceCadastroProdutoRefit/APIRefit/APIRefit.csproj"
 COPY . .
 WORKDIR "/src/ServiceCadastroProdutoRefit/APIRefit"
 RUN dotnet build "./APIRefit.csproj" -c $BUILD_CONFIGURATION -o /app/build

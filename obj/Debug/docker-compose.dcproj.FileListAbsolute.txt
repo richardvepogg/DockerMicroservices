@@ -65,4 +65,4 @@ F:\Projetos\DockerMicroservices\bin\Debug\Usuarios.Negocio.pdb
 F:\Projetos\DockerMicroservices\bin\Debug\Usuarios.Dominio.pdb
 F:\Projetos\DockerMicroservices\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 F:\Projetos\DockerMicroservices\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
-F:\Projetos\DockerMicroservices\obj\Debug\docker-compose.dcproj.CopyComplete
+F:\Projetos\DockerMicroservices\obj\Debug\docker-c.35A3FFBA.Up2Date

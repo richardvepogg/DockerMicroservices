@@ -3,7 +3,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -12,7 +12,7 @@ COPY ["ServiceCadastroProduto/CadastroProduto/CadastroProduto.csproj", "ServiceC
 COPY ["ServiceCadastroProduto/CadastroProduto.AcessoDados/CadastroProduto.AcessoDados.csproj", "ServiceCadastroProduto/CadastroProduto.AcessoDados/"]
 COPY ["ServiceCadastroProduto/CadastroProduto.Dominio/CadastroProduto.Dominio.csproj", "ServiceCadastroProduto/CadastroProduto.Dominio/"]
 COPY ["ServiceCadastroProduto/CadastroProduto.Negocio/CadastroProduto.Negocio.csproj", "ServiceCadastroProduto/CadastroProduto.Negocio/"]
-RUN dotnet restore "./ServiceCadastroProduto/CadastroProduto/./CadastroProduto.csproj"
+RUN dotnet restore "./ServiceCadastroProduto/CadastroProduto/CadastroProduto.csproj"
 COPY . .
 WORKDIR "/src/ServiceCadastroProduto/CadastroProduto"
 RUN dotnet build "./CadastroProduto.csproj" -c $BUILD_CONFIGURATION -o /app/build
