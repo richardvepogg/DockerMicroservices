@@ -24,7 +24,7 @@ namespace Usuarios.Controllers
 
         [Authorize(Roles = "Employee")]
         [HttpGet]
-        private static IResult ObterUsuarios(UsuariosRepository data)
+        private static IResult ObterUsuarios(IUsuariosRepository data)
         {
             try
             {

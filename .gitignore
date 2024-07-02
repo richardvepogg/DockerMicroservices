@@ -422,3 +422,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/ServiceUsuarios/Usuarios/appsettings.Development.json
+/ServiceAutenticacao/Autenticacao/appsettings.Development.json

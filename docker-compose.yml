@@ -23,7 +23,7 @@ services:
               - 1433
             environment:
                ACCEPT_EULA: 'Y'
-               MSSQL_SA_PASSWORD : 'cadastroprodutos123!'
+               MSSQL_SA_PASSWORD : 'microservicos123!'
                MSSQL_PID : 'Developer'
             networks:
                rederefit:

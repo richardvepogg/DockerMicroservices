@@ -16,6 +16,7 @@ builder.Services.AddDbContext<UsuarioDbContext>(options =>
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<IUsuariosRepository, UsuariosRepository>();
 
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
