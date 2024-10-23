@@ -32,7 +32,7 @@ volumes: Cria um volume na pasta ./DockerMicroservices\volumes para que o que fo
 <p>1-Organizar solução separando projetos e itens por pastas: FEITO!</p>
 <p>2-C# .gitignore: FEITO!</p>
 <p>3-Trocar Dapper por Entity Framework: FEITO!</p>
-<p>4-Criar uma API para gerar token JWT, método para gerar token e outro para validar</p>
+<p>4-Criar uma API para gerar token JWT, método para gerar token e outro para validar: FEITO!</p>
 <p>5-Remover serviço mssqltools, criação do banco deve ser por migrations: FEITO!</p>
 <p>6-Criar Bootstrapper.cs</p>
 <p>7-Implementar RabbitMQ</p>
