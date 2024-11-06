@@ -1,4 +1,5 @@
 ﻿using Autenticacao.Dominio.Entidades;
+using Autenticacao.Dominio.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Autenticacao.Negocio.Interfaces
 {
     public interface ITokenService
     {
-        string GenerateToken(Usuario usuario);
+        string GenerateToken(UsuarioVO usuarioVO);
+
     }
 }

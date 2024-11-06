@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Usuarios.AcessoDados.AcessoBanco;
 using Usuarios.Dominio.Entidades;
-using Usuarios.Negocio.Services;
+using Usuarios.Dominio.ValueObjects;
 
 
 namespace Usuarios.Controllers
@@ -22,7 +22,7 @@ namespace Usuarios.Controllers
 
         }
 
-        [Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employe, Manager")]
         [HttpGet]
         private static IResult ObterUsuarios(IUsuariosRepository data)
         {
@@ -37,13 +37,13 @@ namespace Usuarios.Controllers
             }
         }
 
-        [Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employe, Manager")]
         [HttpGet("{id}")]
         private static IResult ObterUsuario(int id, IUsuariosRepository data)
         {
             try
             {
-                var usuario = data.Find(id);
+                UsuarioVO usuario = data.Find(id);
                 if (usuario == null) return Results.NotFound();
 
                 return Results.Ok(usuario);
@@ -57,11 +57,11 @@ namespace Usuarios.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpPost]
-        private static IResult Inserirusuario(Usuario usuario, IUsuariosRepository data)
+        private static IResult Inserirusuario(UsuarioVO usuarioVO, IUsuariosRepository data)
         {
             try
             {
-                data.Add(usuario);
+                data.Add(usuarioVO);
                 return Results.Ok("O usuário foi inserido com sucesso!");
             }
             catch (Exception ex)
@@ -73,11 +73,11 @@ namespace Usuarios.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpPut]
-        private static IResult AtualizarUsuario(Usuario usuario, IUsuariosRepository data)
+        private static IResult AtualizarUsuario(UsuarioVO usuarioVO, IUsuariosRepository data)
         {
             try
             {
-                data.Update(usuario);
+                data.Update(usuarioVO);
 
                 return Results.Ok("O usuário foi atualizado com sucesso!");
             }

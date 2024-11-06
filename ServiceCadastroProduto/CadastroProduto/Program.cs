@@ -1,6 +1,7 @@
 using CadastroProduto.AcessoDados.AcessoBanco;
 using CadastroProduto.AcessoDados.Contexto;
 using CadastroProduto.Controllers;
+using CadastroProduto.Negocio.Automapper;
 using CadastroProduto.Negocio.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,8 @@ p => p.MigrationsHistoryTable("__Migrations")), ServiceLifetime.Scoped
 );
 
 builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -65,7 +68,9 @@ builder.Services.AddAuthentication(x =>
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"])),
+            ValidIssuer = builder.Configuration["JWT:Issuer"],
+            ValidAudience = builder.Configuration["JWT:Audience"]
         };
     });
 

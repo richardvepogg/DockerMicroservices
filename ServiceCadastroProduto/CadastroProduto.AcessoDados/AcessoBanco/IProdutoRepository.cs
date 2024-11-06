@@ -1,20 +1,15 @@
-﻿using CadastroProduto.Dominio.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CadastroProduto.Dominio.ValueObjects;
 
 namespace CadastroProduto.AcessoDados.AcessoBanco
 {
     public interface IProdutoRepository
 
     {
-        void Add(Produto produto);
-        IEnumerable<Produto> GetAll();
-        Produto Find(long id);
+        void Add(ProdutoVO produtoVO);
+        IEnumerable<ProdutoVO> GetAll();
+        ProdutoVO Find(long id);
         void Remove(long id);
-        void Update(Produto produto);
+        void Update(ProdutoVO produtoVO);
 
     }
 }

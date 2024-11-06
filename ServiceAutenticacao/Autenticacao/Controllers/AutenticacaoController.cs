@@ -1,6 +1,5 @@
-using Autenticacao.Dominio.Entidades;
+using Autenticacao.Dominio.ValueObjects;
 using Autenticacao.Negocio.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Autenticacao.Controllers
@@ -15,11 +14,11 @@ namespace Autenticacao.Controllers
         }
 
         [HttpPost]
-        private static IResult Autenticar(Usuario usuario, ITokenService _tokenService)
+        private static IResult Autenticar(UsuarioVO usuarioVO, ITokenService _tokenService)
         {
             try
             {
-                string token = _tokenService.GenerateToken(usuario);
+                string token = _tokenService.GenerateToken(usuarioVO);
 
                 if (string.IsNullOrWhiteSpace(token))
                     return Results.Unauthorized();
@@ -34,4 +33,5 @@ namespace Autenticacao.Controllers
         }
 
     }
+
 }

@@ -1,6 +1,7 @@
 using Autenticacao.AcessoDados.AcessoBanco;
 using Autenticacao.AcessoDados.Contexto;
 using Autenticacao.Controllers;
+using Autenticacao.Negocio.Automapper;
 using Autenticacao.Negocio.Interfaces;
 using Autenticacao.Negocio.Services;
 using Microsoft.EntityFrameworkCore;
@@ -13,8 +14,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<UsuarioDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
+
+
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<IUsuariosRepository, UsuariosRepository>();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddSwaggerGen();
 

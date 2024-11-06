@@ -1,5 +1,6 @@
 ﻿using CadastroProduto.AcessoDados.AcessoBanco;
 using CadastroProduto.Dominio.Entidades;
+using CadastroProduto.Dominio.ValueObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,7 @@ namespace CadastroProduto.Controllers
 
         }
 
-        [Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employe, Manager")]
         [HttpGet]
         private static IResult ObterProdutos(IProdutoRepository data)
         {
@@ -36,16 +37,16 @@ namespace CadastroProduto.Controllers
             }
         }
 
-        [Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employe, Manager")]
         [HttpGet("{id}")]
         private static IResult ObterProduto(int id, IProdutoRepository data)
         {
             try
             {
-                var produto = data.Find(id);
-                if (produto == null) return Results.NotFound();
+                ProdutoVO produtoVO = data.Find(id);
+                if (produtoVO == null) return Results.NotFound();
 
-                return Results.Ok(produto);
+                return Results.Ok(produtoVO);
             }
             catch (Exception ex)
             {
@@ -56,11 +57,11 @@ namespace CadastroProduto.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpPost]
-        private static IResult Inserirproduto(Produto produto, IProdutoRepository data)
+        private static IResult Inserirproduto(ProdutoVO produtoVO, IProdutoRepository data)
         {
             try
             {
-                data.Add(produto);
+                data.Add(produtoVO);
                 return Results.Ok("O produto foi inserido com sucesso!");
             }
             catch (Exception ex)
@@ -72,11 +73,11 @@ namespace CadastroProduto.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpPut]
-        private static IResult AtualizarProduto(Produto produto, IProdutoRepository data)
+        private static IResult AtualizarProduto(ProdutoVO produtoVO, IProdutoRepository data)
         {
             try
             {
-                data.Update(produto);
+                data.Update(produtoVO);
 
                 return Results.Ok("O produto foi atualizado com sucesso!");
             }

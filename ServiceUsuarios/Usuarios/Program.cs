@@ -6,6 +6,7 @@ using System.Text;
 using Usuarios.AcessoDados.AcessoBanco;
 using Usuarios.AcessoDados.Contexto;
 using Usuarios.Controllers;
+using Usuarios.Negocio.Automapper;
 using Usuarios.Negocio.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,8 @@ p => p.MigrationsHistoryTable("__Migrations")), ServiceLifetime.Scoped
 );
 
 builder.Services.AddTransient<IUsuariosRepository, UsuariosRepository>();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -65,7 +68,9 @@ builder.Services.AddAuthentication(x =>
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"])),
+            ValidIssuer = builder.Configuration["JWT:Issuer"],
+            ValidAudience = builder.Configuration["JWT:Audience"]
         };
     });
 
