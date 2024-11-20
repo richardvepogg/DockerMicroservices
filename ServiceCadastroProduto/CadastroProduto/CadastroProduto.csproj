@@ -17,11 +17,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CadastroProduto.AcessoDados\CadastroProduto.AcessoDados.csproj" />
+    <ProjectReference Include="..\CadastroProduto.Infraestrutura\CadastroProduto.Infraestrutura.csproj" />
     <ProjectReference Include="..\CadastroProduto.Negocio\CadastroProduto.Negocio.csproj" />
   </ItemGroup>
 

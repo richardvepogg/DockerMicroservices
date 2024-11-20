@@ -1,6 +1,7 @@
 using CadastroProduto.AcessoDados.AcessoBanco;
 using CadastroProduto.AcessoDados.Contexto;
 using CadastroProduto.Controllers;
+using CadastroProduto.Infraestrutura.Services.RabbitMQSender;
 using CadastroProduto.Negocio.Automapper;
 using CadastroProduto.Negocio.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,6 +22,8 @@ p => p.MigrationsHistoryTable("__Migrations")), ServiceLifetime.Scoped
 
 builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
+
 
 
 builder.Services.AddSwaggerGen(c =>
@@ -81,7 +84,7 @@ using (var serviceScope = app.Services.CreateScope())
 {
     var context = serviceScope.ServiceProvider.GetRequiredService<ProdutoDbContext>();
 
-    await context.Database.EnsureCreatedAsync();
+   // await context.Database.EnsureCreatedAsync();
 
 }
 

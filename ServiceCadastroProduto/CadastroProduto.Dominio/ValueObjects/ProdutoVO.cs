@@ -14,5 +14,11 @@ namespace CadastroProduto.Dominio.ValueObjects
         public string nmProduto { get; set; }
 
         public decimal nuValor { get; set; }
+        public string? nmProdutoMercadoLivre { get; set; }
+
+        public decimal? nuValorMercadoLivre { get; set; }
+        public string? nmProdutoAmazon { get; set; }
+
+        public decimal? nuValorAmazon { get; set; }
     }
 }

@@ -8,7 +8,8 @@
         "apiautenticacao": "StartDebugging",
         "apirefit": "StartDebugging",
         "apiusuarios": "StartDebugging",
-        "sqlserver": "StartWithoutDebugging"
+        "sqlserver": "StartWithoutDebugging",
+        "rabbitmq": "StartWithoutDebugging"
       }
     }
   }

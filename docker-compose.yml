@@ -30,6 +30,19 @@ services:
                 ipv4_address: 172.18.0.6
 
 
+      rabbitmq: 
+            container_name: rabbitmq
+            image: "rabbitmq:3-management" 
+            ports: 
+               - "5672:5672" 
+               - "15672:15672"
+            environment: 
+              RABBITMQ_DEFAULT_USER: 'adm' 
+              RABBITMQ_DEFAULT_PASS: '123'
+            networks: 
+              rederefit: 
+                ipv4_address: 172.18.0.9
+
       apiusuarios:
             container_name: apiUsuarios
             image: api-usuarios

@@ -1,6 +1,8 @@
 ﻿using CadastroProduto.AcessoDados.AcessoBanco;
 using CadastroProduto.Dominio.Entidades;
+using CadastroProduto.Dominio.Messages;
 using CadastroProduto.Dominio.ValueObjects;
+using CadastroProduto.Infraestrutura.Services.RabbitMQSender;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -57,11 +59,16 @@ namespace CadastroProduto.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpPost]
-        private static IResult Inserirproduto(ProdutoVO produtoVO, IProdutoRepository data)
+        private static IResult Inserirproduto(ProdutoVO produtoVO, IProdutoRepository data, IRabbitMQMessageSender message)
         {
             try
             {
-                data.Add(produtoVO);
+                produtoVO.idProduto = data.Add(produtoVO);
+
+
+                message.SendMessage(new ProdutoMessage(produtoVO), "produtoqueue");
+
+
                 return Results.Ok("O produto foi inserido com sucesso!");
             }
             catch (Exception ex)

@@ -20,11 +20,14 @@ namespace CadastroProduto.Negocio.Services
             _mapper = mapper;
         }
 
-        public void Add(ProdutoVO produtoVO)
+        public int Add(ProdutoVO produtoVO)
         {
 
-            _contexto.Produtos.Add(_mapper.Map<Produto>(produtoVO));
+            Produto produto = _mapper.Map<Produto>(produtoVO);
+            _contexto.Produtos.Add(produto);
             _contexto.SaveChanges();
+
+            return produto.idproduto;        
         }
 
         public ProdutoVO Find(long id)
