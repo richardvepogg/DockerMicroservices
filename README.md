@@ -34,8 +34,9 @@ volumes: Cria um volume na pasta ./DockerMicroservices\volumes para que o que fo
 <p>3-Trocar Dapper por Entity Framework: FEITO!</p>
 <p>4-Criar uma API para gerar token JWT, método para gerar token e outro para validar: FEITO!</p>
 <p>5-Remover serviço mssqltools, criação do banco deve ser por migrations: FEITO!</p>
-<p>6-Implementar RabbitMQ</p>
+<p>6-Implementar RabbitMQ: FEITO! </p>
 <p>7-Implementar AutoMapper: FEITO!</p> 
+<p>8-Criar micro serviço para consumir loja Amazon</p> 
 <br>
 
 <p>🛠 Tecnologias utilizadas
