@@ -66,7 +66,7 @@ namespace CadastroProduto.Controllers
                 produtoVO.idProduto = data.Add(produtoVO);
 
 
-                message.SendMessage(new ProdutoMessage(produtoVO), "produtoqueue");
+                message.SendMessage(new ProdutoMessage(produtoVO));
 
 
                 return Results.Ok("O produto foi inserido com sucesso!");

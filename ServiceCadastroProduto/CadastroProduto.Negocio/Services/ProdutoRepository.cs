@@ -3,6 +3,8 @@ using AutoMapper.QueryableExtensions;
 using CadastroProduto.AcessoDados.AcessoBanco;
 using CadastroProduto.AcessoDados.Contexto;
 using CadastroProduto.Dominio.Entidades;
+using CadastroProduto.Dominio.Enums;
+using CadastroProduto.Dominio.Messages;
 using CadastroProduto.Dominio.ValueObjects;
 
 
@@ -72,5 +74,28 @@ namespace CadastroProduto.Negocio.Services
 
             return;
         }
+
+        public void UpdateProdutoRPA(ProdutoMessageUpdate produtoMessageUpdate)
+        {
+            Produto produto = _contexto.Produtos.FirstOrDefault(u => u.idproduto == produtoMessageUpdate.idProduto);
+
+            if (produto == null)
+                return;
+
+            switch (produtoMessageUpdate.RPAPlataforma)
+            {
+                case ERPAPlataforma.MercadoLivre:
+                    produto.nuValorMercadoLivre = produtoMessageUpdate.nuValorRPAProduto;
+                    _contexto.Entry(produto).Property(p => p.nuValorMercadoLivre).IsModified = true;
+                    break;
+                case ERPAPlataforma.Amazon:
+                    produto.nuValorAmazon = produtoMessageUpdate.nuValorRPAProduto;
+                    _contexto.Entry(produto).Property(p => p.nuValorAmazon).IsModified = true;
+                    break;
+            }
+
+            _contexto.SaveChanges();
+        }
+
     }
 }

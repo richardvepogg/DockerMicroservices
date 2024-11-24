@@ -23,16 +23,9 @@ namespace CadastroProduto.AcessoDados.Mapping
                     .IsRequired()
                     .HasPrecision(16, 2);
 
-            builder.Property(e => e.nmProdutoMercadoLivre).HasColumnName("nmprodutoMercadoLivre")
-                  .HasMaxLength(200);
-
 
             builder.Property(e => e.nuValorMercadoLivre).HasColumnName("nuvalorMercadoLivre")
                     .HasPrecision(16, 2);
-
-
-            builder.Property(e => e.nmProdutoAmazon).HasColumnName("nmprodutoAmazon")
-                  .HasMaxLength(200);
 
 
             builder.Property(e => e.nuValorAmazon).HasColumnName("nuvalorAmazon")

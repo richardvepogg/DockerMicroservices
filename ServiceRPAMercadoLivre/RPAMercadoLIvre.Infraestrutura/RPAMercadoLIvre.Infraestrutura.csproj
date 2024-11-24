@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ServiceCadastroProduto\CadastroProduto.Dominio\CadastroProduto.Dominio.csproj" />
+    <ProjectReference Include="..\RPAMercadoLivre.Dominio\RPAMercadoLivre.Dominio.csproj" />
+    <ProjectReference Include="..\RPAMercadoLivre.MessageBus\RPAMercadoLivre.MessageBus.csproj" />
     <ProjectReference Include="..\RPAMercadoLivre.Negocio\RPAMercadoLivre.Negocio.csproj" />
   </ItemGroup>
 

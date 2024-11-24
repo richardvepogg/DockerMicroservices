@@ -9,7 +9,8 @@
         "apirefit": "StartDebugging",
         "apiusuarios": "StartDebugging",
         "sqlserver": "StartWithoutDebugging",
-        "rabbitmq": "StartWithoutDebugging"
+        "rabbitmq": "StartWithoutDebugging",
+        "rpaMercadoLivre": "StartDebugging"
       }
     }
   }

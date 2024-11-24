@@ -31,10 +31,6 @@ namespace SeuRPAMercadoLivreProjeto.Negocio.Servicos
             }
         }
 
-        public string ExtractDataWithRegex(string responseBody, string pattern)
-        {
-            Match match = Regex.Match(responseBody, pattern);
-            return match.Success ? match.Value : null;
-        }
+
     }
 }

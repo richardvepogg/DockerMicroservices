@@ -14,6 +14,9 @@ namespace CadastroProduto.Infraestrutura.Services.RabbitMQSender
         private readonly string _password;
         private readonly string _userName;
         private IConnection _connection;
+        private const string ExchangeName = "DirectProdutoUpdateExchange";
+        private const string ProdutoMercadoLivreUpdateQueueName = "ProdutoMercadoLivreUpdateQueueName";
+        private const string ProdutoAmazonUpdateQueueName = "ProdutoAmazonUpdateQueueName";
 
         public RabbitMQMessageSender()
         {
@@ -22,15 +25,23 @@ namespace CadastroProduto.Infraestrutura.Services.RabbitMQSender
             _userName = "adm";
         }
 
-        public void SendMessage(BaseMessage message, string queueName)
+        public void SendMessage(BaseMessage message)
         {
             if (ConnectionExists())
             {
                 using IModel channel = _connection.CreateModel();
-                channel.QueueDeclare(queue: queueName, false, false, false, arguments: null);
+                channel.ExchangeDeclare(ExchangeName, ExchangeType.Direct, durable: false);
+                channel.QueueDeclare(ProdutoMercadoLivreUpdateQueueName, false, false, false, null);
+                channel.QueueDeclare(ProdutoAmazonUpdateQueueName, false, false, false, null);
+
+                channel.QueueBind(ProdutoMercadoLivreUpdateQueueName, ExchangeName, "ProdutoMercadoLivre");
+                channel.QueueBind(ProdutoAmazonUpdateQueueName, ExchangeName, "ProdutoAmazon");
+
                 byte[] body = GetMessageAsByteArray(message);
                 channel.BasicPublish(
-                    exchange: "", routingKey: queueName, basicProperties: null, body: body);
+                    exchange: ExchangeName, "ProdutoMercadoLivre", basicProperties: null, body: body);
+                channel.BasicPublish(
+                    exchange: ExchangeName, "ProdutoAmazon", basicProperties: null, body: body);
             }
         }
 
@@ -57,9 +68,8 @@ namespace CadastroProduto.Infraestrutura.Services.RabbitMQSender
                 };
                 _connection = factory.CreateConnection();
             }
-            catch (Exception exe)
+            catch
             {
-                //Log exception
                 throw;
             }
         }

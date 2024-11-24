@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.0" />
     <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CadastroProduto.Dominio\CadastroProduto.Dominio.csproj" />
     <ProjectReference Include="..\CadastroProduto.MessageBus\CadastroProduto.MessageBus.csproj" />
+    <ProjectReference Include="..\CadastroProduto.Negocio\CadastroProduto.Negocio.csproj" />
   </ItemGroup>
 
 </Project>

@@ -85,4 +85,16 @@ services:
               rederefit:
                ipv4_address: 172.18.0.4
 
+      consoleapp:
+            image: console-rpamercadolivre
+            container_name: rpaMercadoLivre
+            build:
+              context: .
+              dockerfile: ServiceRPAMercadoLivre\RPAMercadoLivre\Dockerfile
+            depends_on:
+            - rabbitmq
+            networks:
+              rederefit:
+               ipv4_address: 172.18.0.10
+
     

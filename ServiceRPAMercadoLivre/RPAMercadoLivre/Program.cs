@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using RPAMercadoLivre.Negocio.Services;
 using RPAMercadoLIvre.Infraestrutura.Services.MessageConsumer;
+using RPAMercadoLIvre.Infraestrutura.Services.RabbitMQSender;
 using SeuRPAMercadoLivreProjeto.Negocio.Servicos;
 
 namespace RPAMercadoLivre
@@ -14,9 +15,9 @@ namespace RPAMercadoLivre
             var host = Host.CreateDefaultBuilder(args)
                 .ConfigureServices((context, services) =>
                 {
-                    // Configuração dos serviços
                     services.AddTransient<IHttpService, HttpService>();
                     services.AddHostedService<RabbitMQRPAConsumer>();
+                    services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
                 })
                 .Build();
 

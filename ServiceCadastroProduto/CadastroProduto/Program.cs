@@ -1,6 +1,7 @@
 using CadastroProduto.AcessoDados.AcessoBanco;
 using CadastroProduto.AcessoDados.Contexto;
 using CadastroProduto.Controllers;
+using CadastroProduto.Infraestrutura.Services.MessageConsumer;
 using CadastroProduto.Infraestrutura.Services.RabbitMQSender;
 using CadastroProduto.Negocio.Automapper;
 using CadastroProduto.Negocio.Services;
@@ -23,6 +24,7 @@ p => p.MigrationsHistoryTable("__Migrations")), ServiceLifetime.Scoped
 builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
+builder.Services.AddHostedService<RabbitMQCheckoutConsumer>();
 
 
 

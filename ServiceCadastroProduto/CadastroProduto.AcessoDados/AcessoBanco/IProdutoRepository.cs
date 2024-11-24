@@ -1,4 +1,5 @@
-﻿using CadastroProduto.Dominio.ValueObjects;
+﻿using CadastroProduto.Dominio.Messages;
+using CadastroProduto.Dominio.ValueObjects;
 
 namespace CadastroProduto.AcessoDados.AcessoBanco
 {
@@ -10,6 +11,7 @@ namespace CadastroProduto.AcessoDados.AcessoBanco
         ProdutoVO Find(long id);
         void Remove(long id);
         void Update(ProdutoVO produtoVO);
+        void UpdateProdutoRPA(ProdutoMessageUpdate produtoMessage);
 
     }
 }
