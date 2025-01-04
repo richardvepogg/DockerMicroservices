@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace ProductService.Application.Products.Queries.GetUser
+namespace ProductService.Application.Products.Queries.GetProduct
 {
     public record GetProductQuerie : IRequest<GetProductResponse>
     {

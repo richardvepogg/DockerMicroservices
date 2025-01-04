@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductService.Application.Products.Queries.GetUser
+namespace ProductService.Application.Products.Queries.GetProduct
 {
     public class GetProductHandler : IRequestHandler<GetProductQuerie, GetProductResponse>
     {
