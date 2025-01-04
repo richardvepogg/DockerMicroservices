@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductService.Application.Products.Command.DeleteUser
+namespace ProductService.Application.Products.Command.DeleteProduct
 {
     public record DeleteProductCommand : IRequest<DeleteProductResponse>
     {

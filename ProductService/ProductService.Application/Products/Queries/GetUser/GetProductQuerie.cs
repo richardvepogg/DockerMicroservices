@@ -1,13 +1,12 @@
 ﻿using MediatR;
 
-
-namespace ProductService.Application.Products.Command.GetUser
+namespace ProductService.Application.Products.Queries.GetUser
 {
-    public record GetProductCommand : IRequest<GetProductResult>
+    public record GetProductQuerie : IRequest<GetProductResponse>
     {
         public int Id { get; }
 
-        public GetProductCommand(int id)
+        public GetProductQuerie(int id)
         {
             Id = id;
         }

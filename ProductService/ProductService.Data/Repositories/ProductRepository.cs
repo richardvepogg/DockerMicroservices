@@ -36,7 +36,7 @@ namespace ProductService.Application.Services
             return  await _contexto.Products.ToListAsync(cancellationToken);
         }
 
-        public async Task<bool> Remove(long id, CancellationToken cancellationToken = default)
+        public async Task<bool> RemoveAsync(long id, CancellationToken cancellationToken = default)
         {
             Product? Product = await FindAsyncById(id, cancellationToken);
             if (Product == null)
@@ -47,40 +47,35 @@ namespace ProductService.Application.Services
             return true;
         }
 
-        public Task<bool> RemoveAsync(long id, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task UpdateAsync(Product product, CancellationToken cancellationToken = default)
+        public async Task<Product> UpdateAsync(Product product, CancellationToken cancellationToken = default)
         {
             _contexto.Update(product);
             await _contexto.SaveChangesAsync(cancellationToken);
 
-            return;
+            return product;
         }
 
-        //public void UpdateProductRPA(ProductMessageUpdate ProductMessageUpdate)
-        //{
-        //    Product Product = _contexto.Products.FirstOrDefault(u => u.id == ProductMessageUpdate.id);
+        public void UpdateProductRPA(ProductMessageUpdate ProductMessageUpdate)
+        {
+            Product Product = _contexto.Products.FirstOrDefault(u => u.id == ProductMessageUpdate.id);
 
-        //    if (Product == null)
-        //        return;
+            if (Product == null)
+                return;
 
-        //    switch (ProductMessageUpdate.RPAMarketPlace)
-        //    {
-        //        case ERPAMarketPlace.MercadoLivre:
-        //            Product.priceMercadoLivre = ProductMessageUpdate.price;
-        //            _contexto.Entry(Product).Property(p => p.priceMercadoLivre).IsModified = true;
-        //            break;
-        //        case ERPAMarketPlace.Amazon:
-        //            Product.priceValorAmazon = ProductMessageUpdate.price;
-        //            _contexto.Entry(Product).Property(p => p.priceValorAmazon).IsModified = true;
-        //            break;
-        //    }
+            switch (ProductMessageUpdate.RPAMarketPlace)
+            {
+                case ERPAMarketPlace.MercadoLivre:
+                    Product.priceMercadoLivre = ProductMessageUpdate.price;
+                    _contexto.Entry(Product).Property(p => p.priceMercadoLivre).IsModified = true;
+                    break;
+                case ERPAMarketPlace.Amazon:
+                    Product.priceValorAmazon = ProductMessageUpdate.price;
+                    _contexto.Entry(Product).Property(p => p.priceValorAmazon).IsModified = true;
+                    break;
+            }
 
-        //    _contexto.SaveChanges();
-        //}
+            _contexto.SaveChanges();
+        }
 
     }
 }

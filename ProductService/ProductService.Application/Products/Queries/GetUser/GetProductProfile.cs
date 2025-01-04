@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductService.Application.Products.Command.GetUser
+namespace ProductService.Application.Products.Queries.GetUser
 {
     public class GetProductProfile : Profile
     {
-        public GetProductProfile() 
+        public GetProductProfile()
         {
-            CreateMap<Product, GetProductResult>();
+            CreateMap<Product, GetProductResponse>();
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductService.Application.Products.Queries.GetUser
 {
-    public class GetProductResult
+    public class GetProductResponse
     {
         public int id { get; set; }
 
