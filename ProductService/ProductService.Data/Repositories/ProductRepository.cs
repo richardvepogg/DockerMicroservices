@@ -1,11 +1,8 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using ProductService.Contracts.Enums;
-using ProductService.Contracts.Models.Messages;
-using ProductService.Contracts.ValueObjects;
+﻿using Microsoft.EntityFrameworkCore;
 using ProductService.Data.Context;
 using ProductService.Domain.Entities;
 using ProductService.Domain.Interfaces;
+using System.Threading.Tasks;
 
 
 namespace ProductService.Application.Services
@@ -14,53 +11,51 @@ namespace ProductService.Application.Services
     {
 
         private readonly ProductDbContext _contexto;
-        private readonly IMapper _mapper;
 
-        public ProductRepository(ProductDbContext ctx, IMapper mapper)
+
+        public ProductRepository(ProductDbContext ctx)
         {
             _contexto = ctx;
-            _mapper = mapper;
         }
 
-        public int Add(Product ProductVO)
+        public async Task<Product> AddAsync(Product Product,CancellationToken cancellationToken = default)
         {
+            await _contexto.Products.AddAsync(Product, cancellationToken);
+            await _contexto.SaveChangesAsync(cancellationToken);
 
-            Product Product = _mapper.Map<Product>(ProductVO);
-            _contexto.Products.Add(Product);
-            _contexto.SaveChanges();
-
-            return Product.id;        
+            return Product;        
         }
 
-        public Product Find(long id)
+        public async Task<Product?> FindAsyncById(long id, CancellationToken cancellationToken = default)
         {
-            Product Product = _contexto.Products.FirstOrDefault(u => u.id == id)!;
+            return await _contexto.Products.FirstOrDefaultAsync(u => u.id == id, cancellationToken);
+        }
 
+        public async Task<IEnumerable<Product>> GetAllAsync(CancellationToken cancellationToken = default)
+        {
+            return  await _contexto.Products.ToListAsync(cancellationToken);
+        }
+
+        public async Task<bool> Remove(long id, CancellationToken cancellationToken = default)
+        {
+            Product? Product = await FindAsyncById(id, cancellationToken);
             if (Product == null)
-                return null;
-
-            return _mapper.Map<ProductVO>(Product);
-        }
-
-        public IEnumerable<Product> GetAll()
-        {
-            return _contexto.Products.ToList();
-        }
-
-        public void Remove(long id)
-        {
-            Product Product = _contexto.Products.FirstOrDefault(u => u.id == id);
-
-            if (Product == null)
-                return;
+                return false;
 
             _contexto.Products.Remove(Product);
-            _contexto.SaveChanges();
+            await _contexto.SaveChangesAsync(cancellationToken);
+            return true;
         }
 
-        public void Update(Product product)
+        public Task<bool> RemoveAsync(long id, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task UpdateAsync(Product product, CancellationToken cancellationToken = default)
         {
             _contexto.Update(product);
+            await _contexto.SaveChangesAsync(cancellationToken);
 
             return;
         }

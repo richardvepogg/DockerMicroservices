@@ -1,15 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using ProductService.Application.Automapper;
-using ProductService.Application.Services;
 using ProductService.Controllers;
-using ProductService.Data.Context;
-using ProductService.Data.Repositories;
-using ProductService.Infra.Interfaces;
-using ProductService.Infra.Services.MessageConsumer;
-using ProductService.Infra.Services.RabbitMQSender;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);

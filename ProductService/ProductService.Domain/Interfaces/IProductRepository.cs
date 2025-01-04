@@ -6,11 +6,11 @@ namespace ProductService.Domain.Interfaces
     public interface IProductRepository
 
     {
-        int Add(Product product);
-        IEnumerable<Product> GetAll();
-        Product Find(long id);
-        void Remove(long id);
-        void Update(Product product);
+        Task<Product> AddAsync(Product product, CancellationToken cancellationToken = default);
+        Task <IEnumerable<Product>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<Product?> FindAsyncById(long id, CancellationToken cancellationToken = default);
+        Task<bool> RemoveAsync(long id, CancellationToken cancellationToken = default);
+        Task<Product> UpdateAsync(Product product, CancellationToken cancellationToken = default);
 
     }
 }
