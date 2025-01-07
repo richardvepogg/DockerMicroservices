@@ -12,7 +12,7 @@ namespace ProductService.Application.Products.Queries.GetProduct
     {
         public GetProductProfile()
         {
-            CreateMap<Product, GetProductResponse>();
+            CreateMap<Product, GetProductResult>();
         }
     }
 }

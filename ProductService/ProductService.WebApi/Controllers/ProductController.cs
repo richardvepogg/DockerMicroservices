@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Azure.Core;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProductService.Contracts.Models.Messages;
-using ProductService.Contracts.ValueObjects;
-using ProductService.Infra.Interfaces;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Threading;
+using ProductService.Application.Products.Queries.GetAllProducts;
+using ProductService.Application.Products.Queries.GetProduct;
+using ProductService.Application.Products.Command.CreateProduct;
 
 namespace ProductService.Controllers
 {
@@ -13,21 +18,23 @@ namespace ProductService.Controllers
 
         public static void ConfigureApi(this WebApplication app)
         {
-            app.MapGet("/Produtos", ObterProdutos);
-            app.MapGet("/Produto/{id}", ObterProduto);
-            app.MapPost("/Produto", Inserirproduto);
-            app.MapPut("/Produto", AtualizarProduto);
-            app.MapDelete("/Produto/{id}", DeletarProduto);
+            app.MapGet("/Products", GetAllProducts);
+            app.MapGet("/Product/{id}", GetProduct);
+            app.MapPost("/Product", CreateProduct);
+            app.MapPut("/Product", UpdateProduct);
+            app.MapDelete("/Product/{id}", DeleteProduct);
 
         }
 
         [Authorize(Roles = "Employe, Manager")]
         [HttpGet]
-        private static IResult ObterProdutos(IProductRepository data)
+        private static async Task<IResult> GetAllProducts(IMediator mediator, CancellationToken cancellationToken)
         {
             try
             {
-                return Results.Ok(data.GetAll());
+                GetAllProductsResult products = await mediator.Send(new GetAllProductsQuerie(), cancellationToken);
+
+                return Results.Ok(products);
             }
             catch (Exception ex)
             {
@@ -38,11 +45,15 @@ namespace ProductService.Controllers
 
         [Authorize(Roles = "Employe, Manager")]
         [HttpGet("{id}")]
-        private static IResult ObterProduto(int id, IProductRepository data)
+        private static async Task<IResult> GetProduct(int id,IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
         {
             try
             {
-                ProductVO produtoVO = data.Find(id);
+                GetProductQuerie querie = new GetProductQuerie(id);
+
+                var command = mapper.Map<CreateProductCommand>(id);
+                var response = await mediator.Send(command, cancellationToken);
+                
                 if (produtoVO == null) return Results.NotFound();
 
                 return Results.Ok(produtoVO);
@@ -56,7 +67,7 @@ namespace ProductService.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpPost]
-        private static IResult Inserirproduto(ProductVO produtoVO, IProductRepository data, IRabbitMQMessageSender message)
+        private static IResult CreateProduct(ProductVO produtoVO, IProductRepository data, IRabbitMQMessageSender message)
         {
             try
             {
@@ -77,7 +88,7 @@ namespace ProductService.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpPut]
-        private static IResult AtualizarProduto(ProductVO produtoVO, IProductRepository data)
+        private static IResult UpdateProduct(ProductVO produtoVO, IProductRepository data)
         {
             try
             {
@@ -94,7 +105,7 @@ namespace ProductService.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpDelete]
-        private static IResult DeletarProduto(int id, IProductRepository data)
+        private static IResult DeleteProduct(int id, IProductRepository data)
         {
             try
             {

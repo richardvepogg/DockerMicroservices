@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ProductService.Application.Products.Queries.GetProduct
 {
-    public class GetProductHandler : IRequestHandler<GetProductQuerie, GetProductResponse>
+    public class GetProductHandler : IRequestHandler<GetProductQuerie, GetProductResult>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
@@ -24,13 +24,13 @@ namespace ProductService.Application.Products.Queries.GetProduct
             _mapper = mapper;
         }
 
-        public async Task<GetProductResponse> Handle(GetProductQuerie request, CancellationToken cancellationToken)
+        public async Task<GetProductResult> Handle(GetProductQuerie request, CancellationToken cancellationToken)
         {
             Product? product = await _productRepository.FindAsyncById(request.Id, cancellationToken);
             if (product == null)
                 throw new KeyNotFoundException($"Product with ID {request.Id} not found");
 
-            return _mapper.Map<GetProductResponse>(product);
+            return _mapper.Map<GetProductResult>(product);
         }
 
     }

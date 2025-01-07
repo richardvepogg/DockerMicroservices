@@ -10,5 +10,10 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\ProductService.Application\ProductService.Application.csproj" />
+	  <ProjectReference Include="..\ProductService.Data\ProductService.Data.csproj" />
+	</ItemGroup>
+
 
 </Project>

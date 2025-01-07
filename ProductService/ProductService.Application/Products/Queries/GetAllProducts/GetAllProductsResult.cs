@@ -1,10 +1,10 @@
 ﻿
 namespace ProductService.Application.Products.Queries.GetAllProducts
 {
-    public class GetAllProductsResponse
+    public class GetAllProductsResult
     {
-        List<GetAllProductResponse>? getAllProductResults { get; set; }
-        private class GetAllProductResponse
+        IEnumerable<GetAllProductResult>? getAllProductResults { get; set; }
+        private class GetAllProductResult
         {
             public string name { get; set; }
 

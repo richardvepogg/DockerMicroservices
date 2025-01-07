@@ -1,6 +1,9 @@
-﻿
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ProductService.Application.Services;
+using ProductService.Data.Context;
+using ProductService.Domain.Interfaces;
 
 namespace ProductService.IoC.ModuleInitializers
 {
@@ -8,8 +11,8 @@ namespace ProductService.IoC.ModuleInitializers
     {
         public void Initialize(WebApplicationBuilder builder)
         {
-            builder.Services.AddScoped<DbContext>(provider => provider.GetRequiredService<DefaultContext>());
-            builder.Services.AddScoped<IProductRepository, UserRepository>();
+            builder.Services.AddScoped<DbContext>(provider => provider.GetRequiredService<ProductDbContext>());
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
         }
     }
 }

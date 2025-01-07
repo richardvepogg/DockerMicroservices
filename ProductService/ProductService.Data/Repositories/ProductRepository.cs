@@ -2,7 +2,6 @@
 using ProductService.Data.Context;
 using ProductService.Domain.Entities;
 using ProductService.Domain.Interfaces;
-using System.Threading.Tasks;
 
 
 namespace ProductService.Application.Services
@@ -53,28 +52,6 @@ namespace ProductService.Application.Services
             await _contexto.SaveChangesAsync(cancellationToken);
 
             return product;
-        }
-
-        public void UpdateProductRPA(ProductMessageUpdate ProductMessageUpdate)
-        {
-            Product Product = _contexto.Products.FirstOrDefault(u => u.id == ProductMessageUpdate.id);
-
-            if (Product == null)
-                return;
-
-            switch (ProductMessageUpdate.RPAMarketPlace)
-            {
-                case ERPAMarketPlace.MercadoLivre:
-                    Product.priceMercadoLivre = ProductMessageUpdate.price;
-                    _contexto.Entry(Product).Property(p => p.priceMercadoLivre).IsModified = true;
-                    break;
-                case ERPAMarketPlace.Amazon:
-                    Product.priceValorAmazon = ProductMessageUpdate.price;
-                    _contexto.Entry(Product).Property(p => p.priceValorAmazon).IsModified = true;
-                    break;
-            }
-
-            _contexto.SaveChanges();
         }
 
     }

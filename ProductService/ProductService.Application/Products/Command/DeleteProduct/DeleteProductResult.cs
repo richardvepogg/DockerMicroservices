@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProductService.Application.Products.Command.DeleteProduct
 {
-    public class DeleteProductResponse
+    public class DeleteProductResult
     {
         public bool Success { get; set; }
     }

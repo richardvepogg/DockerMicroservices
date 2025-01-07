@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductService.Application.Products.Command.DeleteProduct
 {
-    public record DeleteProductCommand : IRequest<DeleteProductResponse>
+    public record DeleteProductCommand : IRequest<DeleteProductResult>
     {
 
         public long Id { get; }
