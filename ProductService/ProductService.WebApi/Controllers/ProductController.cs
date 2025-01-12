@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.Threading;
 using ProductService.Application.Products.Queries.GetAllProducts;
 using ProductService.Application.Products.Queries.GetProduct;
 using ProductService.Application.Products.Command.CreateProduct;
+using ProductService.WebApi.Features.Products.GetProduct;
+using ProductService.WebApi.Features.Products.CreateProduct;
+using ProductService.WebApi.Features.Products.UpdateProduct;
+using ProductService.Application.Products.Command.UpdateProduct;
+using ProductService.WebApi.Features.Products.DeleteProduct;
+using ProductService.Application.Products.Command.DeleteProduct;
 
 namespace ProductService.Controllers
 {
@@ -49,14 +52,14 @@ namespace ProductService.Controllers
         {
             try
             {
-                GetProductQuerie querie = new GetProductQuerie(id);
+                GetProductRequest request = new GetProductRequest{Id = id };
 
-                var command = mapper.Map<CreateProductCommand>(id);
-                var response = await mediator.Send(command, cancellationToken);
+                GetProductQuerie querie = mapper.Map<GetProductQuerie>(request.Id);
+                GetProductResult result = await mediator.Send(querie, cancellationToken);
                 
-                if (produtoVO == null) return Results.NotFound();
+                if (result == null) return Results.NotFound();
 
-                return Results.Ok(produtoVO);
+                return Results.Ok(mapper.Map<GetProductResponse>(result));
             }
             catch (Exception ex)
             {
@@ -67,17 +70,19 @@ namespace ProductService.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpPost]
-        private static IResult CreateProduct(ProductVO produtoVO, IProductRepository data, IRabbitMQMessageSender message)
+        private static async Task<IResult> CreateProduct(CreateProductRequest product, IMediator mediator, IMapper mapper, CancellationToken cancellationToken, IRabbitMQMessageSender message)
         {
             try
             {
-                produtoVO.id = data.Add(produtoVO);
+                CreateProductCommand command = mapper.Map<CreateProductCommand>(product);
 
+                CreateProductResult result = await mediator.Send(command, cancellationToken);
+
+                if (result == null) return Results.BadRequest();
 
                 message.SendMessage(new ProductMessage(produtoVO));
 
-
-                return Results.Ok("O produto foi inserido com sucesso!");
+                return Results.Ok(mapper.Map<GetProductResponse>(result));
             }
             catch (Exception ex)
             {
@@ -88,13 +93,17 @@ namespace ProductService.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpPut]
-        private static IResult UpdateProduct(ProductVO produtoVO, IProductRepository data)
+        private static async Task<IResult> UpdateProduct(UpdateProductRequest product, IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
         {
             try
             {
-                data.Update(produtoVO);
+                UpdateProductCommand command = mapper.Map<UpdateProductCommand>(product);
 
-                return Results.Ok("O produto foi atualizado com sucesso!");
+                UpdateProductResult? result = await mediator.Send(command, cancellationToken);
+
+                if (result == null) return Results.BadRequest();
+
+                return Results.Ok(mapper.Map<UpdateProductResponse>(result));
             }
             catch (Exception ex)
             {
@@ -105,11 +114,14 @@ namespace ProductService.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpDelete]
-        private static IResult DeleteProduct(int id, IProductRepository data)
+        private static async Task<IResult> DeleteProduct(int id, IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
         {
             try
             {
-                data.Remove(id);
+                DeleteProductRequest request = new DeleteProductRequest {Id=id};
+                DeleteProductCommand command = mapper.Map<DeleteProductCommand>(request.Id);
+
+                await mediator.Send(command, cancellationToken);
 
                 return Results.Ok("O produto foi deletado com sucesso!");
             }

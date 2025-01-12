@@ -9,6 +9,7 @@ namespace ProductService.IoC
         public static void RegisterDependencies(this WebApplicationBuilder builder)
         {
             new InfrastructureModuleInitializer().Initialize(builder);
+            new WebApiModuleInitializer().Initialize(builder);
         }
     }
 }

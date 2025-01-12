@@ -1,9 +1,14 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProductService.Application.Services;
 using ProductService.Data.Context;
 using ProductService.Domain.Interfaces;
+using ProductService.Infra.Interfaces;
+using ProductService.Infra.Services.MessageConsumer;
+using ProductService.Infra.Services.RabbitMQSender;
 
 namespace ProductService.IoC.ModuleInitializers
 {
@@ -12,7 +17,17 @@ namespace ProductService.IoC.ModuleInitializers
         public void Initialize(WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<DbContext>(provider => provider.GetRequiredService<ProductDbContext>());
-            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+           
+            builder.Services.AddDbContext<ProductDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Default") ?? "",
+            p => p.MigrationsHistoryTable("__Migrations")), ServiceLifetime.Scoped
+            );
+
+            builder.Services.AddTransient<IProductRepository, ProductRepository>();
+            builder.Services.AddHostedService<RabbitMQCheckoutConsumer>();
+            builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
+            builder.Services.AddAutoMapper(typeof(Profile));
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.Load("ProductService.Application")));
         }
     }
 }

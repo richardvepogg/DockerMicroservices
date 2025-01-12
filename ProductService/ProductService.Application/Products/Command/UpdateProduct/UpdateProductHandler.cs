@@ -27,8 +27,8 @@ namespace ProductService.Application.Products.Command.UpdateProduct
         {
             Product product = _mapper.Map<Product>(command);
 
-            Product updateProduct =  await _productRepository.UpdateAsync(product);
-            UpdateProductResult result = _mapper.Map<UpdateProductResult>(updateProduct);
+            Product? updateProduct =  await _productRepository.UpdateAsync(product);
+            UpdateProductResult? result = _mapper.Map<UpdateProductResult>(updateProduct);
             return result;
         }
 

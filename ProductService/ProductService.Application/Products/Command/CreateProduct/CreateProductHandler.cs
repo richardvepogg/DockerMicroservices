@@ -21,8 +21,8 @@ namespace ProductService.Application.Products.Command.CreateProduct
         {
             Product product = _mapper.Map<Product>(command);
 
-            Product createdProduct = await _productRepository.AddAsync(product);
-            CreateProductResult result = _mapper.Map<CreateProductResult>(createdProduct);
+            Product? createdProduct = await _productRepository.AddAsync(product);
+            CreateProductResult? result = _mapper.Map<CreateProductResult>(createdProduct);
             return result;
         }
 
