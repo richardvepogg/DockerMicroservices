@@ -11,6 +11,8 @@ using ProductService.WebApi.Features.Products.UpdateProduct;
 using ProductService.Application.Products.Command.UpdateProduct;
 using ProductService.WebApi.Features.Products.DeleteProduct;
 using ProductService.Application.Products.Command.DeleteProduct;
+using ProductService.Contracts.Models.Messages;
+using ProductService.Infra.Interfaces;
 
 namespace ProductService.Controllers
 {
@@ -80,7 +82,7 @@ namespace ProductService.Controllers
 
                 if (result == null) return Results.BadRequest();
 
-                message.SendMessage(new ProductMessage(produtoVO));
+                message.SendMessage(mapper.Map<ProductMessage>(result));
 
                 return Results.Ok(mapper.Map<GetProductResponse>(result));
             }

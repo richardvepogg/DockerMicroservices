@@ -1,10 +1,7 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using ProductService.Controllers;
 using ProductService.IoC;
 using ProductService.WebApi.Extensions;
-using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,9 +13,6 @@ builder.Services.AddAutenticationJwt(builder.Configuration);
 //options.UseSqlServer(builder.Configuration.GetConnectionString("Default") ?? "",
 //p => p.MigrationsHistoryTable("__Migrations")), ServiceLifetime.Scoped
 //);
-
-
-
 
 
 var app = builder.Build();

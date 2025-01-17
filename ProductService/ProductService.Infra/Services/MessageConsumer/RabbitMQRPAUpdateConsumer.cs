@@ -5,21 +5,23 @@ using Microsoft.Extensions.Hosting;
 using System.Text.Json;
 using ProductService.Infra.Interfaces;
 using ProductService.Contracts.Models.Messages;
+using MediatR;
 
 namespace ProductService.Infra.Services.MessageConsumer
 {
     public class RabbitMQCheckoutConsumer : BackgroundService
     {
-        private readonly IProductRepository _repositoryProduto;
         private IConnection _connection;
         private IModel _channel;
         private IRabbitMQMessageSender _rabbitMQMessageSender;
+        private IMediator _mediator;
 
-        public RabbitMQCheckoutConsumer(IProductRepository repositoryProduto,
+
+        public RabbitMQCheckoutConsumer(IMediator mediator,
             IRabbitMQMessageSender rabbitMQMessageSender)
         {
-            _repositoryProduto = repositoryProduto;
             _rabbitMQMessageSender = rabbitMQMessageSender;
+            _mediator = mediator;
             var factory = new ConnectionFactory
             {
                 HostName = "172.18.0.9",
@@ -48,8 +50,7 @@ namespace ProductService.Infra.Services.MessageConsumer
 
         private void AtualizarProduto(ProductMessageUpdate produtoMessageUpdate)
         {
-           
-             _repositoryProduto.UpdateProductRPA(produtoMessageUpdate);
+               _mediator.Send(produtoMessageUpdate);
         }
     }
 }
