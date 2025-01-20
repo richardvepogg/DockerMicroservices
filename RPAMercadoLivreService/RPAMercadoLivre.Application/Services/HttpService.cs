@@ -1,10 +1,7 @@
-﻿using RPAMercadoLivre.Negocio.Services;
-using System;
-using System.Net.Http;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿
+using RPAMercadoLivre.Domain.Interfaces;
 
-namespace SeuRPAMercadoLivreProjeto.Negocio.Servicos
+namespace RPAMercadoLivreProjeto.Application.Services
 {
     public class HttpService : IHttpService
     {

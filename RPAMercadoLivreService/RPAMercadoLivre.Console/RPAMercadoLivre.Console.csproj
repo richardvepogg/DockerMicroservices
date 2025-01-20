@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RPAMercadoLIvre.Infraestrutura\RPAMercadoLIvre.Infraestrutura.csproj" />
-    <ProjectReference Include="..\RPAMercadoLivre.Negocio\RPAMercadoLivre.Negocio.csproj" />
+    <ProjectReference Include="..\RPAMercadoLivre.IoC\RPAMercadoLivre.IoC.csproj" />
   </ItemGroup>
+
 
 </Project>

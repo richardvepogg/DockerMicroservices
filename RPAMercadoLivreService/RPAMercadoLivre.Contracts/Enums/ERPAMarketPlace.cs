@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPAMercadoLivre.Dominio.Enums
+namespace RPAMercadoLivre.Contracts.Enums
 {
-    public enum ERPAPlataforma
+    public enum ERPAMarketPlace
     {
         MercadoLivre = 1,
         Amazon = 2

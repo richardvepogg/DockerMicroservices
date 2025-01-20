@@ -1,16 +1,14 @@
 ﻿using Microsoft.Extensions.Hosting;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using RPAMercadoLivre.Dominio.Messages;
-using RPAMercadoLivre.Dominio.ValueObjects;
-using RPAMercadoLivre.Negocio.Services;
-using RPAMercadoLIvre.Infraestrutura.Services.RabbitMQSender;
-using SeuRPAMercadoLivreProjeto.Negocio.Servicos;
+using RPAMercadoLivre.Contracts.Models.Messages;
+using RPAMercadoLivre.Domain.Interfaces;
+using RPAMercadoLIvre.Infra.Services.RabbitMQSender;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-namespace RPAMercadoLIvre.Infraestrutura.Services.MessageConsumer
+namespace RPAMercadoLIvre.Infra.Services.MessageConsumer
 {
     public class RabbitMQRPAConsumer : BackgroundService
     {
@@ -51,7 +49,7 @@ namespace RPAMercadoLIvre.Infraestrutura.Services.MessageConsumer
             consumer.Received += (chanel, evt) =>
             {
                 var content = Encoding.UTF8.GetString(evt.Body.ToArray());
-                ProdutoMessage produtoMessage = JsonSerializer.Deserialize<ProdutoMessage>(content);
+                ProductMessage produtoMessage = JsonSerializer.Deserialize<ProductMessage>(content);
                 BuscarProduto(produtoMessage).GetAwaiter().GetResult();
                 _channel.BasicAck(evt.DeliveryTag, false);
             };
@@ -59,9 +57,9 @@ namespace RPAMercadoLIvre.Infraestrutura.Services.MessageConsumer
             return Task.CompletedTask;
         }
 
-        private async Task BuscarProduto(ProdutoMessage produtoMessage)
+        private async Task BuscarProduto(ProductMessage productMessage)
         {
-            string responseBody = await _httpService.GetHttpResponseBodyAsync($"https://lista.mercadolivre.com.br/{produtoMessage.nmProduto}");
+            string responseBody = await _httpService.GetHttpResponseBodyAsync($"https://lista.mercadolivre.com.br/{productMessage.name}");
 
             MatchCollection matchCollection = precos.Matches(responseBody);
 
@@ -80,14 +78,14 @@ namespace RPAMercadoLIvre.Infraestrutura.Services.MessageConsumer
                 }
             }
 
-            ProdutoMessageUpdate produtoMessageUpdate = new ProdutoMessageUpdate()
+            ProductMessageUpdate productMessageUpdate = new ProductMessageUpdate()
             {
-                idProduto = produtoMessage.idProduto,
-                nuValorRPAProduto = valorFinal,
+                id = productMessage.id,
+                value = valorFinal,
             };
 
 
-            _messageSender.SendMessage(produtoMessageUpdate, "updateProdutoRPAqueue");
+            _messageSender.SendMessage(productMessageUpdate, "updateProdutoRPAqueue");
         }
 
 

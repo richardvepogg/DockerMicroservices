@@ -1,15 +1,11 @@
 ﻿using RabbitMQ.Client;
-using RPAMercadoLivre.Dominio.Messages;
-using RPAMercadoLivre.Dominio.ValueObjects;
-using RPAMercadoLivre.MessageBus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using RPAMercadoLivre.Contracts.Models.Messages;
+using RPAMercadoLIvre.Infra.Services.RabbitMQSender;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
-namespace RPAMercadoLIvre.Infraestrutura.Services.RabbitMQSender
+
+namespace RPAMercadoLivre.Infraestrutura.Services.RabbitMQSender
 {
     public class RabbitMQMessageSender : IRabbitMQMessageSender
     {
@@ -45,7 +41,7 @@ namespace RPAMercadoLIvre.Infraestrutura.Services.RabbitMQSender
             };
 
 
-            string json = JsonSerializer.Serialize((ProdutoMessageUpdate)message, options);
+            string json = JsonSerializer.Serialize((ProductMessageUpdate)message, options);
             var body = Encoding.UTF8.GetBytes(json);
             return body;
         }

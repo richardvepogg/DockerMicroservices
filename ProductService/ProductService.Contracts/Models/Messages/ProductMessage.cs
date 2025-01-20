@@ -1,6 +1,4 @@
 ﻿
-using ProductService.Contracts.ValueObjects;
-
 namespace ProductService.Contracts.Models.Messages
 {
     public class ProductMessage : BaseMessage
