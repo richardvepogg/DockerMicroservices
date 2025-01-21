@@ -10,7 +10,7 @@ using Usuarios.AcessoDados.Contexto;
 
 namespace Usuarios.AcessoDados.Migrations
 {
-    [DbContext(typeof(UsuarioDbContext))]
+    [DbContext(typeof(UserDbContext))]
     [Migration("20240609012738_Inicial")]
     partial class Inicial
     {

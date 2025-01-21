@@ -9,7 +9,7 @@ using Usuarios.AcessoDados.Contexto;
 
 namespace Usuarios.AcessoDados.Migrations
 {
-    [DbContext(typeof(UsuarioDbContext))]
+    [DbContext(typeof(UserDbContext))]
     partial class UsuarioDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

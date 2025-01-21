@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
-using Usuarios.Dominio.Entidades;
-using Usuarios.Dominio.ValueObjects;
 
-
-namespace Usuarios.Negocio.Automapper
+namespace UserService.Application.Automapper
 {
     public class MappingProfile : Profile
     {

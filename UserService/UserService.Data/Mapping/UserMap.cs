@@ -1,17 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Usuarios.Dominio.Entidades;
 
-namespace Usuarios.AcessoDados.Mapping
+namespace UserService.Data.Mapping
 {
-    public class UsuariosMap : IEntityTypeConfiguration<Usuario>
+    public class UserMap : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<Usuario> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.Property(e => e.idusuario).HasColumnName("idusuario")
                  .IsRequired()

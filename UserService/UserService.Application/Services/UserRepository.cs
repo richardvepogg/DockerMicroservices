@@ -1,14 +1,10 @@
 ﻿
-using Usuarios.AcessoDados.Contexto;
-using Usuarios.AcessoDados.AcessoBanco;
-using Usuarios.Dominio.Entidades;
-using Usuarios.Dominio.ValueObjects;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 
-namespace Usuarios.Negocio.Services
+namespace UserService.Application.Services
 {
-    public class UsuariosRepository : IUsuariosRepository
+    public class UserRepository : IUserRepository
     {
 
         private readonly UsuarioDbContext _contexto;

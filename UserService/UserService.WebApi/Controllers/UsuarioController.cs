@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Usuarios.AcessoDados.AcessoBanco;
-using Usuarios.Dominio.Entidades;
-using Usuarios.Dominio.ValueObjects;
 
 
-namespace Usuarios.Controllers
+namespace UserService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
