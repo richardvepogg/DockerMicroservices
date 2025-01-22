@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ProductService.Domain.Entities;
 
 namespace ProductService.WebApi.Features.Products.GetProduct
 {

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ProductService.WebApi.Features.Products.GetProduct
+﻿namespace ProductService.WebApi.Features.Products.GetProduct
 {
     public class GetProductResponse
     {
