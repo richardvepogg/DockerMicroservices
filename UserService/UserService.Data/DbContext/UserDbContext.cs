@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using UserService.Domain.Entities;
 
 
 namespace UserService.Data.Context
@@ -14,10 +15,10 @@ namespace UserService.Data.Context
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
-                    idusuario = 1,
-                    nmusuario = "admin",
-                    nmcargo = "Manager",
-                    senha = "123"
+                    id = 1,
+                    name = "admin",
+                    role = "Manager",
+                    password = "123"
                 }
                 );
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserDbContext).Assembly);
