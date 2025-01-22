@@ -2,7 +2,6 @@ using ProductService.Controllers;
 using ProductService.IoC;
 using ProductService.WebApi.Extensions;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.RegisterDependencies();
@@ -13,7 +12,6 @@ builder.Services.AddAutenticationJwt(builder.Configuration);
 //options.UseSqlServer(builder.Configuration.GetConnectionString("Default") ?? "",
 //p => p.MigrationsHistoryTable("__Migrations")), ServiceLifetime.Scoped
 //);
-
 
 var app = builder.Build();
 

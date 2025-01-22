@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 
-namespace ProductService.WebApi.Extensions
+namespace UserService.WebApi.Extensions
 {
     public static class SwaggerExtension
     {
@@ -9,7 +8,7 @@ namespace ProductService.WebApi.Extensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Product Service", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "User Service", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",
