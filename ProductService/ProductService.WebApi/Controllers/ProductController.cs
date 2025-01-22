@@ -125,7 +125,7 @@ namespace ProductService.Controllers
 
                 await mediator.Send(command, cancellationToken);
 
-                return Results.Ok("O produto foi deletado com sucesso!");
+                return Results.Ok("The product was successfully deleted!");
             }
             catch (Exception ex)
             {

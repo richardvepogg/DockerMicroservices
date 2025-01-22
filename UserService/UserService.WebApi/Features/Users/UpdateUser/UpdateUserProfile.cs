@@ -1,4 +1,7 @@
 ﻿
+using AutoMapper;
+using UserService.Application.Users.Command.UpdateUser;
+
 namespace UserService.WebApi.Features.Users.UpdateUser
 {
     public class UpdateUserProfile : Profile

@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-using Usuarios.AcessoDados.AcessoBanco;
-using Usuarios.AcessoDados.Contexto;
-using Usuarios.Controllers;
-using Usuarios.Negocio.Automapper;
-using Usuarios.Negocio.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

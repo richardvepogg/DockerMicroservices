@@ -1,4 +1,7 @@
-﻿namespace UserService.WebApi.Features.Users.DeleteUser
+﻿using AutoMapper;
+using UserService.Application.Users.Command.DeleteUser;
+
+namespace UserService.WebApi.Features.Users.DeleteUser
 {
     public class DeleteUserProfile : Profile
     {

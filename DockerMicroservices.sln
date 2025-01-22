@@ -58,6 +58,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserService.Application", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserService.WebApi", "UserService\UserService.WebApi\UserService.WebApi.csproj", "{2D8FF5CC-62EF-4771-BC98-8DC481449F9F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserCrosscutting", "UserCrosscutting", "{BE10B520-D509-4FE3-8B2E-CAA411D628DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.IoC", "UserService\UserService.IoC\UserService.IoC.csproj", "{B4EA2A43-0369-4C86-82BD-8E684E4EC5B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +139,10 @@ Global
 		{2D8FF5CC-62EF-4771-BC98-8DC481449F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D8FF5CC-62EF-4771-BC98-8DC481449F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D8FF5CC-62EF-4771-BC98-8DC481449F9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4EA2A43-0369-4C86-82BD-8E684E4EC5B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4EA2A43-0369-4C86-82BD-8E684E4EC5B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4EA2A43-0369-4C86-82BD-8E684E4EC5B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4EA2A43-0369-4C86-82BD-8E684E4EC5B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,6 +167,8 @@ Global
 		{3940F915-9EA3-4A1D-BAB1-F30EF790AD1B} = {EC93905C-730E-4F0B-B15D-113C40BDA1D9}
 		{95362184-3714-4EE7-AC49-10F2A751BD48} = {EC93905C-730E-4F0B-B15D-113C40BDA1D9}
 		{2D8FF5CC-62EF-4771-BC98-8DC481449F9F} = {EC93905C-730E-4F0B-B15D-113C40BDA1D9}
+		{BE10B520-D509-4FE3-8B2E-CAA411D628DF} = {EC93905C-730E-4F0B-B15D-113C40BDA1D9}
+		{B4EA2A43-0369-4C86-82BD-8E684E4EC5B4} = {BE10B520-D509-4FE3-8B2E-CAA411D628DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {879B1995-CC64-4E36-A2B5-5A146CF7109D}

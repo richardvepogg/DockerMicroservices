@@ -1,4 +1,6 @@
 ﻿
+using AutoMapper;
+
 namespace UserService.WebApi.Features.Users.GetUser
 {
     public class GetUserProfile : Profile

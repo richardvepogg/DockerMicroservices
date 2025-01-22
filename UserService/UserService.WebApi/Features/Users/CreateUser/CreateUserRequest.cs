@@ -1,6 +1,6 @@
 ﻿namespace UserService.WebApi.Features.Users.CreateUser
 {
-    public class CreateProductRequest
+    public class CreateUserRequest
     {
         public string name { get; set; }
 

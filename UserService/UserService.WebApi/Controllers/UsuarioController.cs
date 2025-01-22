@@ -1,5 +1,16 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using UserService.Application.Users.Command.CreateUser;
+using UserService.Application.Users.Command.DeleteUser;
+using UserService.Application.Users.Command.UpdateUser;
+using UserService.Application.Users.Queries.GetAllUsers;
+using UserService.Application.Users.Queries.GetUser;
+using UserService.WebApi.Features.Users.CreateUser;
+using UserService.WebApi.Features.Users.DeleteUser;
+using UserService.WebApi.Features.Users.GetUser;
+using UserService.WebApi.Features.Users.UpdateUser;
 
 
 namespace UserService.Controllers
@@ -11,21 +22,23 @@ namespace UserService.Controllers
 
         public static void ConfigureApi(this WebApplication app)
         {
-            app.MapGet("/Usuario", ObterUsuarios);
-            app.MapGet("/Usuario/{id}", ObterUsuario);
-            app.MapPost("/Usuario", Inserirusuario);
-            app.MapPut("/Usuario", AtualizarUsuario);
-            app.MapDelete("/Usuario/{id}", DeletarUsuario);
+            app.MapGet("/User", GetAllUsers);
+            app.MapGet("/User/{id}", GetUser);
+            app.MapPost("/User", CreateUser);
+            app.MapPut("/User", UpdateUser);
+            app.MapDelete("/User/{id}", DeleteUser);
 
         }
 
         [Authorize(Roles = "Employe, Manager")]
         [HttpGet]
-        private static IResult ObterUsuarios(IUsuariosRepository data)
+        private static async Task<IResult> GetAllUsers(IMediator mediator, CancellationToken cancellationToken)
         {
             try
             {
-                return Results.Ok(data.GetAll());
+                GetAllUsersResult products = await mediator.Send(new GetAllUsersQuerie(), cancellationToken);
+
+                return Results.Ok(products);
             }
             catch (Exception ex)
             {
@@ -36,14 +49,18 @@ namespace UserService.Controllers
 
         [Authorize(Roles = "Employe, Manager")]
         [HttpGet("{id}")]
-        private static IResult ObterUsuario(int id, IUsuariosRepository data)
+        private static async Task<IResult> GetUser(int id, IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
         {
             try
             {
-                UsuarioVO usuario = data.Find(id);
-                if (usuario == null) return Results.NotFound();
+                GetUserRequest request = new GetUserRequest { Id = id };
 
-                return Results.Ok(usuario);
+                GetUserQuerie querie = mapper.Map<GetUserQuerie>(request.Id);
+                GetUserResult result = await mediator.Send(querie, cancellationToken);
+
+                if (result == null) return Results.NotFound();
+
+                return Results.Ok(mapper.Map<GetUserResponse>(result));
             }
             catch (Exception ex)
             {
@@ -54,12 +71,17 @@ namespace UserService.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpPost]
-        private static IResult Inserirusuario(UsuarioVO usuarioVO, IUsuariosRepository data)
+        private static async Task<IResult> CreateUser(CreateUserRequest user, IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
         {
             try
             {
-                data.Add(usuarioVO);
-                return Results.Ok("O usuário foi inserido com sucesso!");
+                CreateUserCommand command = mapper.Map<CreateUserCommand>(user);
+
+                CreateUserResult result = await mediator.Send(command, cancellationToken);
+
+                if (result == null) return Results.BadRequest();
+
+                return Results.Ok(mapper.Map<GetUserResponse>(result));
             }
             catch (Exception ex)
             {
@@ -70,13 +92,17 @@ namespace UserService.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpPut]
-        private static IResult AtualizarUsuario(UsuarioVO usuarioVO, IUsuariosRepository data)
+        private static async Task<IResult> UpdateUser(UpdateUserRequest user, IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
         {
             try
             {
-                data.Update(usuarioVO);
+                UpdateUserCommand command = mapper.Map<UpdateUserCommand>(user);
 
-                return Results.Ok("O usuário foi atualizado com sucesso!");
+                UpdateUserResult? result = await mediator.Send(command, cancellationToken);
+
+                if (result == null) return Results.BadRequest();
+
+                return Results.Ok(mapper.Map<UpdateUserResponse>(result));
             }
             catch (Exception ex)
             {
@@ -87,13 +113,16 @@ namespace UserService.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpDelete]
-        private static IResult DeletarUsuario(int id, IUsuariosRepository data)
+        private static async Task<IResult> DeleteUser(int id, IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
         {
             try
             {
-                data.Remove(id);
+                DeleteUserRequest request = new DeleteUserRequest { Id = id };
+                DeleteUserCommand command = mapper.Map<DeleteUserCommand>(request.Id);
 
-                return Results.Ok("O usuário foi deletado com sucesso!");
+                await mediator.Send(command, cancellationToken);
+
+                return Results.Ok("The user was successfully deleted!");
             }
             catch (Exception ex)
             {
@@ -101,5 +130,6 @@ namespace UserService.Controllers
                 return Results.Problem(ex.Message);
             }
         }
+
     }
 }

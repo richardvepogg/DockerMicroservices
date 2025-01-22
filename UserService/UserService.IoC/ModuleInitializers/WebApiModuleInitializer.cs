@@ -1,4 +1,7 @@
-﻿namespace UserService.IoC.ModuleInitializers
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace UserService.IoC.ModuleInitializers
 {
     public class WebApiModuleInitializer : IModuleInitializer
     {
