@@ -1,6 +1,6 @@
-﻿namespace UserService.Application.Users.Queries.GetUser
+﻿namespace AuthenticationService.WebApi.Features.Users.GetUser
 {
-    public class GetUserResult
+    public class GetUserResponse
     {
         public int id { get; set; }
 
