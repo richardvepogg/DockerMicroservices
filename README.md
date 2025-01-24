@@ -8,7 +8,14 @@
 <br><br>
 
 📚 Sobre o Projeto
-<p>Este projeto foi desenvolvido com o objetivo de aprender a construção e aperfeiçoar meu conhecimento na implementação de microsserviços utilizando Docker e Docker Compose, com a tecnologia .NET 8. O projeto integra diversas bibliotecas como Entity Framework (ORM), AutoMapper e RabbitMQ para mensageria.</p>
+<p>Este projeto foi desenvolvido com o objetivo de aprender a construção e aperfeiçoar meu conhecimento na implementação de microsserviços utilizando Docker e Docker Compose, com a tecnologia .NET 8. O projeto integra diversas bibliotecas como Entity Framework (ORM), AutoMapper, RabbitMQ para mensageria, além de CQRS, Clean Architecture e Domain-Driven Design (DDD).</p>
+
+<ul>
+  <li><strong>CQRS (Command Query Responsibility Segregation)</strong>: Esta é uma abordagem de design de software que separa a lógica de leitura da lógica de escrita, permitindo que as consultas sejam otimizadas para leitura e os comandos para escrita. Isso pode melhorar a escalabilidade e a performance do sistema.</li>
+  <li><strong>Clean Architecture</strong>: Este é um modelo arquitetural que promove a separação de preocupações e a organização do código em camadas, garantindo que a lógica de negócio fique independente de detalhes de implementação, como frameworks e interfaces de usuário. Isso facilita a manutenção e a escalabilidade do projeto.</li>
+  <li><strong>Domain-Driven Design (DDD)</strong>: Este é um conjunto de princípios e padrões que ajudam a criar sistemas de software que refletem com precisão as regras e processos do domínio de negócios. Utiliza conceitos como Entidades, Agregados e Repositórios para modelar a lógica de negócio de forma coesa e compreensível.</li>
+</ul>
+
 
 <br><br>
 
@@ -46,7 +53,7 @@ Serviços Configurados no Docker Compose
 
 [X] Padrão CQRS <br>
 
-[] Implementar Clean Architecture </p>
+[] Implementar Clean Architecture</p>
 <br>
 <br>
 
@@ -110,4 +117,4 @@ O banco de dados "Estoque" será criado pelo Migrations. </p>
 
 
 🌐 Endpoints
-<p> O servidor <b>(SQL Server)</b> iniciará na porta: <code>1433</code><br> O servidor <b>(RabbitMQ)</b> iniciará nas portas: <code>5672</code> e <code>15672</code><br> O servidor <b>(UserService)</b> iniciará na porta: <code>5020</code> - <code>http://localhost:5020/swagger</code><br> O servidor <b>(AuthenticationService)</b> iniciará na porta: <code>5030</code> - <code>http://localhost:5030/swagger</code> <br>O servidor <b>(ProductService)</b> iniciará na porta: <code>5010</code> - <code>http://localhost:5010/swagger</code><br> O servidor <b>(RPAMercadoLivreService)</b> não possui porta exposta<br></p>
+<p><b>(SQL Server)</b> iniciará na porta: <code>1433</code><br><b>(RabbitMQ)</b> iniciará nas portas: <code>5672</code> e <code>15672</code><br><b>(UserService)</b> iniciará na porta: <code>5020</code> - <code>http://localhost:5020/swagger</code><br><b>(AuthenticationService)</b> iniciará na porta: <code>5030</code> - <code>http://localhost:5030/swagger</code> <br><b>(ProductService)</b> iniciará na porta: <code>5010</code> - <code>http://localhost:5010/swagger</code><br><b>(RPAMercadoLivreService)</b> não possui porta exposta<br></p>
