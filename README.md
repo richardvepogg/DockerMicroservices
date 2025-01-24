@@ -8,7 +8,7 @@
 <br><br>
 
 📚 Sobre o Projeto
-<p>Este projeto foi desenvolvido com o objetivo de aprender a construção e aperfeiçoar meu conhecimento na implementação de microsserviços utilizando Docker e Docker Compose, com a tecnologia .NET 8. O projeto integra diversas bibliotecas como Entity Framework (ORM), AutoMapper, RabbitMQ para mensageria, além de CQRS, Clean Architecture e Domain-Driven Design (DDD).</p>
+<p>Este projeto foi desenvolvido com o objetivo de aprender a construção e aperfeiçoar meu conhecimento na implementação de microsserviços utilizando Docker e Docker Compose, com a tecnologia .NET 8. O projeto integra diversas bibliotecas como Entity Framework (ORM), AutoMapper, RabbitMQ para mensageria. Além disso, o projeto também foi criado para compreender melhor e demonstrar conceitos como CQRS, Clean Architecture e Domain-Driven Design (DDD).</p>
 
 <ul>
   <li><strong>CQRS (Command Query Responsibility Segregation)</strong>: Esta é uma abordagem de design de software que separa a lógica de leitura da lógica de escrita, permitindo que as consultas sejam otimizadas para leitura e os comandos para escrita. Isso pode melhorar a escalabilidade e a performance do sistema.</li>
@@ -20,7 +20,7 @@
 <br><br>
 
 🚀 Funcionalidades
-<p> <b>CRUD de Produtos</b>: API para cadastro e gerenciamento de produtos.<br> <b>Consumo de API</b>: API de CadastroProduto consumida por outra API chamada APIRefit.<br> <b>Mensageria</b>: Orquestração de mensagens entre microsserviços utilizando RabbitMQ.<br> <b>Autenticação JWT</b>: API para autenticação de usuários utilizando JWT.<br> <b>Gerenciamento de Usuários</b>: API para gerenciamento de usuários.<br> <b>Comparativo de Preços</b>: RPA para pesquisar produtos no Mercado Livre e Amazon, gravando o menor preço na tabela de estoque. </p>
+<p> <b>CRUD de Produtos</b>: API para cadastro e gerenciamento de produtos.<br> <b>Mensageria</b>: Orquestração de mensagens entre microsserviços utilizando RabbitMQ.<br> <b>Autenticação JWT</b>: API para autenticação de usuários utilizando JWT.<br> <b>Gerenciamento de Usuários</b>: API para gerenciamento de usuários.<br> <b>Comparativo de Preços</b>: RPA para pesquisar produtos no Mercado Livre, gravando o menor preço na tabela de estoque. </p>
 <br><br>
 
 🗂️ Estrutura do Projeto
