@@ -3,12 +3,12 @@
 <h1 align="center">DockerMicroservices</h1>
 
 🛠 Tecnologias Utilizadas
-<p align="left"> <img src="https://img.shields.io/badge/.NET-8.0-blue" alt=".NET 8.0"> <img src="https://img.shields.io/badge/Refit-5.0.0-blue" alt="Refit"> <img src="https://img.shields.io/badge/Swagger-3.0.0-green" alt="Swagger"> <img src="https://img.shields.io/badge/Docker-Compose-blue" alt="Docker Compose"> <img src="https://img.shields.io/badge/Entity%20Framework-6.0.0-green" alt="Entity Framework"> <img src="https://img.shields.io/badge/JWT-5.0.0-red" alt="JWT"> <img src="https://img.shields.io/badge/AutoMapper-10.0.0-yellow" alt="AutoMapper"> <img src="https://img.shields.io/badge/RabbitMQ-3.8.9-orange" alt="RabbitMQ"> </p>
+<p align="left"> <img src="https://img.shields.io/badge/.NET-8.0-blue" alt=".NET 8.0"> <img src="https://img.shields.io/badge/Swagger-3.0.0-green" alt="Swagger"> <img src="https://img.shields.io/badge/Docker-Compose-blue" alt="Docker Compose"> <img src="https://img.shields.io/badge/Entity%20Framework-6.0.0-green" alt="Entity Framework"> <img src="https://img.shields.io/badge/JWT-5.0.0-red" alt="JWT"> <img src="https://img.shields.io/badge/AutoMapper-10.0.0-yellow" alt="AutoMapper"> <img src="https://img.shields.io/badge/RabbitMQ-3.8.9-orange" alt="RabbitMQ"> <img src="https://img.shields.io/badge/MediatR-9.0.0-blue" alt="MediatR"> </p>
 
 <br><br>
 
 📚 Sobre o Projeto
-<p>Este projeto foi desenvolvido com o objetivo de aprender a construção e aperfeiçoar meu conhecimento na implementação de microsserviços utilizando Docker e Docker Compose, com a tecnologia .NET 8. O projeto integra diversas bibliotecas como Entity Framework (ORM), AutoMapper, RabbitMQ para mensageria. Além disso, o projeto também foi criado para compreender melhor e demonstrar conceitos como CQRS, Clean Architecture e Domain-Driven Design (DDD).</p>
+<p>Este projeto foi desenvolvido com o objetivo de aprender a construção e aperfeiçoar meu conhecimento na implementação de microsserviços utilizando Docker e Docker Compose, com a tecnologia .NET 8. O projeto integra diversas bibliotecas como Entity Framework (ORM), AutoMapper, RabbitMQ para mensageria e MediatR(CQRS). Além disso, o projeto também foi criado para compreender melhor e demonstrar conceitos como CQRS, Clean Architecture e Domain-Driven Design (DDD).</p>
 
 <ul>
   <li><strong>CQRS (Command Query Responsibility Segregation)</strong>: Esta é uma abordagem de design de software que separa a lógica de leitura da lógica de escrita, permitindo que as consultas sejam otimizadas para leitura e os comandos para escrita. Isso pode melhorar a escalabilidade e a performance do sistema.</li>
@@ -51,9 +51,9 @@ Serviços Configurados no Docker Compose
 
 [x] Implementar AutoMapper<br>
 
-[X] Padrão CQRS <br>
+[x] Padrão CQRS <br>
 
-[] Implementar Clean Architecture</p>
+[x] Implementar Clean Architecture</p>
 <br>
 <br>
 
