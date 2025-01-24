@@ -8,7 +8,7 @@
 <br><br>
 
 📚 Sobre o Projeto
-<p>Este projeto foi desenvolvido com o objetivo de aprender a construção e aperfeiçoar meu conhecimento na implementação de microsserviços utilizando Docker e Docker Compose, com a tecnologia .NET 8. O projeto integra diversas bibliotecas como Refit para consumo de APIs, Entity Framework (ORM), AutoMapper e RabbitMQ para mensageria.</p>
+<p>Este projeto foi desenvolvido com o objetivo de aprender a construção e aperfeiçoar meu conhecimento na implementação de microsserviços utilizando Docker e Docker Compose, com a tecnologia .NET 8. O projeto integra diversas bibliotecas como Entity Framework (ORM), AutoMapper e RabbitMQ para mensageria.</p>
 
 <br><br>
 
@@ -19,13 +19,11 @@
 🗂️ Estrutura do Projeto
 Serviços Configurados no Docker Compose
 <p> <b>SQL Server</b>: Sistema gerenciador de banco de dados relacional. O banco de dados será criado para persistência de dados.<br> <b>Volumes</b>: Cria um volume na pasta <code>./DockerMicroservices/volumes</code> para garantir que os dados do banco não sejam perdidos. </p>
-<p> <b>API Autenticação</b>: API para fazer login com usuário para fazer autenticação JWT</p>
-<p> <b>API Usuário</b>: API para fazer gerencimento de usuários</p>
-<p> <b>API CadastroProduto</b>: API responsável por persistir e obter dados salvos no banco de dados. </p>
-<p> <b>API Refit</b> API configurada com Refit para consumir a API de CadastroProduto, implementada apenas para testar a biblioteca</p>
+<p> <b>API AuthenticationService</b>: API para fazer login com usuário para fazer autenticação JWT</p>
+<p> <b>API UserService</b>: API para fazer gerencimento de usuários</p>
+<p> <b>API ProductService</b>: API responsável por persistir e obter dados salvos no banco de dados. </p>
 <p> <b>RabbitMQ</b>: Container configurado com RabbitMQ para orquestração de mensagens entre os microsserviços. </p>
-<p> <b>RPA MercadoLivre</b>: RPA responsável por pesquisar produto no site do Mercado Livre e gravar o menos preço na tabela de estoque, usada para fazer comparativo de preço</p>
-<p> <b>RPA Amazon</b>: RPA responsável por pesquisar produto no site da Amazon e gravar o menos preço na tabela de estoque, usada para fazer comparativo de preço</p>
+<p> <b>RPAMercadoLivreService</b>: RPA responsável por pesquisar produto no site do Mercado Livre e gravar o menos preço na tabela de estoque, usada para fazer comparativo de preço</p>
 <br>
 <br>
 
@@ -46,7 +44,9 @@ Serviços Configurados no Docker Compose
 
 [x] Implementar AutoMapper<br>
 
-[ ] Criar microsserviço para consumir loja Amazon </p>
+[] Padrão CQRS <br>
+
+[] Implementar Clean Architecture </p>
 <br>
 <br>
 
@@ -106,8 +106,6 @@ O banco de dados "Estoque" será criado pelo Migrations. </p>
 <p> <b>API Refit</b><br> <b>Imagem</b>: <code>api-refit</code><br> <b>Container Name</b>: <code>apiRefit</code><br> <b>Dockerfile</b>: <code>ServiceCadastroProdutoRefit\APIRefit\Dockerfile</code><br> <b>Portas</b>: <code>5000:5000</code><br> <b>Endereço IP</b>: <code>172.18.0.4</code><br> <b>Depende de</b>: <code>cadastroproduto</code> </p>
 
 <p> <b>RPA MercadoLivre</b><br> <b>Imagem</b>: <code>console-rpamercadolivre</code><br> <b>Container Name</b>: <code>rpaMercadoLivre</code><br> <b>Dockerfile</b>: <code>ServiceRPAMercadoLivre\RPAMercadoLivre\Dockerfile</code><br> <b>Endereço IP</b>: <code>172.18.0.10</code><br> <b>Depende de</b>: <code>rabbitmq</code> </p>
-
-<p> <b>RPA Amazon</b><br> <b>Imagem</b>: <code>console-rpaamazon</code><br> <b>Container Name</b>: <code>rpaAmazon</code><br> <b>Dockerfile</b>: <code>ServiceRPAAmazon\RPAAmazon\Dockerfile</code><br> <b>Endereço IP</b>: <code>172.18.0.11</code><br> <b>Depende de</b>: <code>rabbitmq</code> </p>
 
 <p> <b>API CadastroProduto</b><br> <b>Imagem</b>: <code>api-cadastroproduto</code><br> <b>Container Name</b>: <code>cadastroProduto</code><br> <b>Dockerfile</b>: <code>ServiceCadastroProduto\CadastroProduto\Dockerfile</code><br> <b>Portas</b>: <code>5010:5010</code><br> <b>Endereço IP</b>: <code>172.18.0.5</code><br> <b>Depende de</b>: <code>sqlserver</code>, <code>rabbitmq</code> </p>
 <br><br>
