@@ -1,7 +1,7 @@
 version: '3.4'
 
 networks:
-  rederefit:
+  redemicrosservices:
       driver: bridge
       ipam:
           driver: default
@@ -26,7 +26,7 @@ services:
                MSSQL_SA_PASSWORD : 'microservicos123!'
                MSSQL_PID : 'Developer'
             networks:
-               rederefit:
+               redemicrosservices:
                 ipv4_address: 172.18.0.6
 
 
@@ -40,7 +40,7 @@ services:
               RABBITMQ_DEFAULT_USER: 'adm' 
               RABBITMQ_DEFAULT_PASS: '123'
             networks: 
-              rederefit: 
+              redemicrosservices: 
                 ipv4_address: 172.18.0.9
 
       apiusuarios:
@@ -54,7 +54,7 @@ services:
             depends_on:
             - sqlserver
             networks:
-             rederefit:
+             redemicrosservices:
               ipv4_address: 172.18.0.7
 
       apiautenticacao:
@@ -68,22 +68,9 @@ services:
             depends_on:
             - apiusuarios
             networks:
-             rederefit:
+             redemicrosservices:
               ipv4_address: 172.18.0.8
 
-      apirefit:
-            image: api-refit
-            container_name: apiRefit
-            build:
-              context: .
-              dockerfile: ServiceCadastroProdutoRefit\APIRefit\Dockerfile
-            ports:
-            - "5000:5000"
-            depends_on:
-            - cadastroproduto
-            networks:
-              rederefit:
-               ipv4_address: 172.18.0.4
 
       consoleapp:
             image: console-rpamercadolivre
@@ -94,7 +81,7 @@ services:
             depends_on:
             - rabbitmq
             networks:
-              rederefit:
+              redemicrosservices:
                ipv4_address: 172.18.0.10
 
     
