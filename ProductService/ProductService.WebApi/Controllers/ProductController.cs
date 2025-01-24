@@ -13,6 +13,9 @@ using ProductService.WebApi.Features.Products.DeleteProduct;
 using ProductService.Application.Products.Command.DeleteProduct;
 using ProductService.Contracts.Models.Messages;
 using ProductService.Infra.Interfaces;
+using Azure.Core;
+using ProductService.WebApi.Features.Products.GetAllProducts;
+using ProductService.Domain.Entities;
 
 namespace ProductService.Controllers
 {
@@ -33,13 +36,15 @@ namespace ProductService.Controllers
 
         [Authorize(Roles = "Employe, Manager")]
         [HttpGet]
-        private static async Task<IResult> GetAllProducts(IMediator mediator, CancellationToken cancellationToken)
+        private static async Task<IResult> GetAllProducts(IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
         {
             try
             {
-                GetAllProductsResult products = await mediator.Send(new GetAllProductsQuerie(), cancellationToken);
+                GetAllProductsResult result = await mediator.Send(new GetAllProductsQuerie(), cancellationToken);
 
-                return Results.Ok(products);
+                GetAllProductsResponse response = mapper.Map<GetAllProductsResponse>(result);
+ 
+                return Results.Ok(response);
             }
             catch (Exception ex)
             {
@@ -123,9 +128,12 @@ namespace ProductService.Controllers
                 DeleteProductRequest request = new DeleteProductRequest {Id=id};
                 DeleteProductCommand command = mapper.Map<DeleteProductCommand>(request.Id);
 
-                await mediator.Send(command, cancellationToken);
+                DeleteProductResult result = await mediator.Send(command, cancellationToken);
 
-                return Results.Ok("The product was successfully deleted!");
+                if (result.Success)
+                    return Results.Ok("The product was successfully deleted!");
+
+                    return Results.NotFound();
             }
             catch (Exception ex)
             {

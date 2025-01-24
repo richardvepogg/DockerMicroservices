@@ -8,8 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductRefitService", "ProductRefitService", "{5EC8B641-A413-4AB5-9195-3CCFFE3E9B21}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductService", "ProductService", "{909B09E4-3FF2-4518-8924-C3B19A8CE042}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthenticationService", "AuthenticationService", "{C376D3E5-BC1F-45B8-A671-8E4212A08DCE}"
@@ -70,7 +68,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationService.Data"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthenticationCrosscutting", "AuthenticationCrosscutting", "{FAFD9098-65A0-461B-8F0D-442026C4F6F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationService.IoC", "AuthenticationService\AuthenticationService.IoC\AuthenticationService.IoC.csproj", "{6A1A5E0E-3ABB-47AF-870B-B57370FC348D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationService.IoC", "AuthenticationService\AuthenticationService.IoC\AuthenticationService.IoC.csproj", "{6A1A5E0E-3ABB-47AF-870B-B57370FC348D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationService.WebApi", "AuthenticationService\AuthenticationService.WebApi\AuthenticationService.WebApi.csproj", "{C4F3215D-F687-40EC-AF4C-064A10D298CE}"
 EndProject

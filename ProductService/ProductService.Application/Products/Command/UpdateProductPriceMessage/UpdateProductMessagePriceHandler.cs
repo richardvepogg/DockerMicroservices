@@ -40,10 +40,6 @@ namespace ProductService.Application.Products.Command.UpdateProductPriceMessage
                 case ERPAMarketPlace.MercadoLivre:
                     product.priceMercadoLivre = command.Price;
                     break;
-                case ERPAMarketPlace.Amazon:
-                    product.priceValorAmazon = command.Price;
-                    product.priceValorAmazon = command.Price;
-                    break;
             }
 
             await _productRepository.UpdateAsync(product);

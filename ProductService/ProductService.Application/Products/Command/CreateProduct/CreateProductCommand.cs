@@ -10,7 +10,5 @@ namespace ProductService.Application.Products.Command.CreateProduct
         public decimal price { get; set; } 
 
         public decimal? priceMercadoLivre { get; set; }
-
-        public decimal? priceValorAmazon { get; set; }
     }
 }

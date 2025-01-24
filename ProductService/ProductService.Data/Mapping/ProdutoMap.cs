@@ -28,10 +28,6 @@ namespace ProductService.Data.Mapping
                     .HasPrecision(16, 2);
 
 
-            builder.Property(e => e.priceValorAmazon).HasColumnName("priceValorAmazon")
-                    .HasPrecision(16, 2);
-
-
             builder.ToTable("Products");
         }
     }
