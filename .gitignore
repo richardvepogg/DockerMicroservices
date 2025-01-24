@@ -424,3 +424,5 @@ FodyWeavers.xsd
 *.sln.iml
 /ServiceUsuarios/Usuarios/appsettings.Development.json
 /ServiceAutenticacao/Autenticacao/appsettings.Development.json
+.vs/DockerMicroservices/v17/.suo
+/.vs
