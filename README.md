@@ -44,7 +44,7 @@ Serviços Configurados no Docker Compose
 
 [x] Implementar AutoMapper<br>
 
-[] Padrão CQRS <br>
+[X] Padrão CQRS <br>
 
 [] Implementar Clean Architecture </p>
 <br>
@@ -82,7 +82,7 @@ O banco de dados "Estoque" será criado pelo Migrations. </p>
 <br>
 <b>Redes:<b>
 <br>
-<p> <b>rederefit</b>: Rede bridge com a sub-rede <code>172.18.0.0/16</code>. </p>
+<p> <b>redemicrosservices</b>: Rede bridge com a sub-rede <code>172.18.0.0/16</code>. </p>
 <br>
 <b><p>Containers e Endpoints:</p></b>
 <p> <b>SQL Server</b><br> <b>Imagem</b>: <code>mcr.microsoft.com/mssql/server:2022-latest</code><br> <b>Container Name</b>: <code>sqlserver</code><br> <b>Hostname</b>: <code>hostsqlserver</code><br> <b>Volumes</b>: <code>./volumes:/var/opt/mssql/data</code><br> <b>Portas</b>: <code>1433:1433</code><br> <b>Endereço IP</b>: <code>172.18.0.6</code><br> <b>Ambiente</b>:<br>
