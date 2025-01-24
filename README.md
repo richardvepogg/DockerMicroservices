@@ -20,7 +20,7 @@
 <br><br>
 
 🚀 Funcionalidades
-<p> <b>CRUD de Produtos</b>: API para cadastro e gerenciamento de produtos.<br> <b>Mensageria</b>: Orquestração de mensagens entre microsserviços utilizando RabbitMQ.<br> <b>Autenticação JWT</b>: API para autenticação de usuários utilizando JWT.<br> <b>Gerenciamento de Usuários</b>: API para gerenciamento de usuários.<br> <b>Comparativo de Preços</b>: RPA para pesquisar produtos no Mercado Livre, gravando o menor preço na tabela de estoque. </p>
+<p> <b>CRUD de Produtos</b>: API para cadastro e gerenciamento de produtos.<br> <b>Mensageria</b>: Orquestração de mensagens entre microsserviços utilizando RabbitMQ.<br> <b>Autenticação JWT</b>: API para autenticação de usuários utilizando JWT.<br> <b>Gerenciamento de Usuários</b>: API para gerenciamento de usuários.<br> <b>Comparativo de Preços</b>: RPA para pesquisar produtos no Mercado Livre, gravando o menor preço na tabela de products. </p>
 <br><br>
 
 🗂️ Estrutura do Projeto
@@ -30,7 +30,7 @@ Serviços Configurados no Docker Compose
 <p> <b>API UserService</b>: API para fazer gerencimento de usuários</p>
 <p> <b>API ProductService</b>: API responsável por persistir e obter dados salvos no banco de dados. </p>
 <p> <b>RabbitMQ</b>: Container configurado com RabbitMQ para orquestração de mensagens entre os microsserviços. </p>
-<p> <b>RPAMercadoLivreService</b>: RPA responsável por pesquisar produto no site do Mercado Livre e gravar o menos preço na tabela de estoque, usada para fazer comparativo de preço</p>
+<p> <b>RPAMercadoLivreService</b>: RPA responsável por pesquisar produto no site do Mercado Livre e gravar o menos preço na tabela de products, usada para fazer comparativo de preço</p>
 <br>
 <br>
 
@@ -81,7 +81,7 @@ Executar Docker Desktop.<br>
 
 No Visual Studio, selecione o Docker Compose no depurador e execute.<br>
 
-O banco de dados "Estoque" será criado pelo Migrations. </p>
+O banco de dados "products" será criado pelo Migrations. </p>
 
 <br>
 <br>
