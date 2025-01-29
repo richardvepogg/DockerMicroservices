@@ -1,16 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AuthenticationService.Domain.Enums;
+using AuthenticationService.Domain.ValueObjects;
+using System.ComponentModel.DataAnnotations;
 
 namespace AuthenticationService.Domain.Entities
 {
     public class User
     {
         [Key]
-        public int id { get; set; }
-
-        public string name { get; set; }
-
-        public string password { get; set; }
-
-        public UserRole role { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public ContactInfo Contact { get; set; }
+        public string Password { get; set; }
+        public UserRole Role { get; set; }
     }
 }

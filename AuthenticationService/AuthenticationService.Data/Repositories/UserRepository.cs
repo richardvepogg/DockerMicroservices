@@ -18,7 +18,7 @@ namespace AuthenticationService.Data.Repositories
 
         public async Task<User?> FindAsync(User user, CancellationToken cancellationToken = default)
         {
-            return await  _context.Users.FirstOrDefaultAsync(u => u.name == user.name && u.password == user.password);
+            return await  _context.Users.FirstOrDefaultAsync(u => u.Name == user.Name && u.Password == user.Password);
         }
     }
 }

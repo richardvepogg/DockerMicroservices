@@ -29,8 +29,8 @@ namespace AuthenticationService.Application.Services
 
             Claim[] claims = new[]
             {
-                 new Claim(ClaimTypes.Name, user.name),
-                 new Claim(ClaimTypes.Role, user.role)
+                 new Claim(ClaimTypes.Name, user.Name),
+                 new Claim(ClaimTypes.Role, user.Role.ToString())
              };
 
 
