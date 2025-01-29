@@ -16,12 +16,11 @@ namespace UserService.Data.Context
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
-                    id = 1,
-                    name = "admin",
-                    role = UserRole.Manager,
-                    email = "usuario@gmail.com",
-                    phone = "(48) 99142-2442",
-                    password = "123"
+                    Id = 1,
+                    Name = "admin",
+                    Role = UserRole.Manager,
+                    Contact = new Domain.ValueObjects.ContactInfo("usuario@gmail.com", "(48) 99142-2442"),
+                    Password = "123"
                 }
                 );
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserDbContext).Assembly);

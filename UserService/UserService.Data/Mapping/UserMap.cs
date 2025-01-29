@@ -7,29 +7,35 @@ namespace UserService.Domain.Entities
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.Property(e => e.id).HasColumnName("id")
+            builder.Property(e => e.Id).HasColumnName("id")
                 .IsRequired()
                 .HasPrecision(1, 1);
 
-            builder.HasKey(e => e.id);
+            builder.HasKey(e => e.Id);
 
-            builder.Property(e => e.name).HasColumnName("name")
+            builder.Property(e => e.Name).HasColumnName("name")
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(e => e.email).HasColumnName("email")
-                .IsRequired()
-                .HasMaxLength(100);
+            builder.OwnsOne(e => e.Contact, contact =>
+            {
+                contact.Property(c => c.Email)
+                       .HasColumnName("email")
+                       .IsRequired()
+                       .HasMaxLength(100);
 
-            builder.Property(e => e.phone).HasColumnName("phone")
-                .IsRequired()
-                .HasMaxLength(15);
+                contact.Property(c => c.Phone)
+                       .HasColumnName("phone")
+                       .IsRequired()
+                       .HasMaxLength(15);
+            });
 
-            builder.Property(e => e.password).HasColumnName("password")
+
+            builder.Property(e => e.Password).HasColumnName("password")
                 .IsRequired()
                 .HasMaxLength(20);
 
-            builder.Property(e => e.role)
+            builder.Property(e => e.Role)
                 .HasColumnName("role")
                 .IsRequired()
                 .HasConversion<int>();

@@ -26,7 +26,7 @@ namespace UserService.Data.Repositories
 
         public async Task<User?> FindAsyncById(long id, CancellationToken cancellationToken = default)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.id == id, cancellationToken);
+            return await _context.Users.FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
         }
 
         public async Task<IEnumerable<User>> GetAllAsync(CancellationToken cancellationToken = default)
