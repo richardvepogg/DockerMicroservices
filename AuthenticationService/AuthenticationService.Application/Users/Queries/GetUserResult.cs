@@ -14,7 +14,7 @@ namespace AuthenticationService.Application.Users.Queries
 
         public string password { get; set; }
 
-        public string role { get; set; }
+              public UserRole role { get; set; }
         public string token { get; set; }
     }
 }

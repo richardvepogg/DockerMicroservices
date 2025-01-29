@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UserService.Domain.Entities;
+using UserService.Domain.Enums;
 
 
 namespace UserService.Data.Context
@@ -17,7 +18,9 @@ namespace UserService.Data.Context
                 {
                     id = 1,
                     name = "admin",
-                    role = "Manager",
+                    role = UserRole.Manager,
+                    email = "usuario@gmail.com",
+                    phone = "(48) 99142-2442",
                     password = "123"
                 }
                 );

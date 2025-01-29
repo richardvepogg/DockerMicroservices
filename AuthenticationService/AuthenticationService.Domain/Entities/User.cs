@@ -11,6 +11,6 @@ namespace AuthenticationService.Domain.Entities
 
         public string password { get; set; }
 
-        public string role { get; set; }
+              public UserRole role { get; set; }
     }
 }
