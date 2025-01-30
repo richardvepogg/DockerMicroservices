@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Data;
 using UserService.Domain.Entities;
 using UserService.Domain.Enums;
 
@@ -13,16 +14,7 @@ namespace UserService.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(
-                new User
-                {
-                    Id = 1,
-                    Name = "admin",
-                    Role = UserRole.Manager,
-                    Contact = new Domain.ValueObjects.ContactInfo("usuario@gmail.com", "(48) 99142-2442"),
-                    Password = "123"
-                }
-                );
+            modelBuilder.Entity<User>().HasData(new User(1,"admin",new Domain.ValueObjects.ContactInfo("usuario@gmail.com", "(48) 99142-2442"),"123",UserRole.Manager));
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserDbContext).Assembly);
         }
     }

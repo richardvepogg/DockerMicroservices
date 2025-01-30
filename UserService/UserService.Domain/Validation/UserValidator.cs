@@ -4,9 +4,9 @@ using UserService.Domain.Entities;
 
 namespace UserService.Domain.Validators
 {
-    public class UserValidation : AbstractValidator<User>
+    public class UserValidator : AbstractValidator<User>
     {
-        public UserValidation()
+        public UserValidator()
         {
             RuleFor(user => user.Id)
                 .NotNull()
@@ -20,7 +20,7 @@ namespace UserService.Domain.Validators
              .NotNull().WithMessage("UserRole cannot be null.")
              .IsInEnum().WithMessage("UserRole must be a valid value.");
 
-            RuleFor(user => user.Contact.Phone)
+            RuleFor(user => user.contactInfo.Phone)
             .NotEmpty().WithMessage("Phone number is required.")
             .Matches(new Regex(@"^\(\d{2}\) \d{4,5}-\d{4}$")).WithMessage("Phone format is not valid. Use (XX) XXXXX-XXXX or (XX) XXXX-XXXX.");
 

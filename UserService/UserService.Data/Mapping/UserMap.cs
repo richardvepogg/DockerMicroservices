@@ -17,7 +17,7 @@ namespace UserService.Domain.Entities
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.OwnsOne(e => e.Contact, contact =>
+            builder.OwnsOne(e => e.contactInfo, contact =>
             {
                 contact.Property(c => c.Email)
                        .HasColumnName("email")
