@@ -16,7 +16,6 @@ namespace ProductService.Domain.Entities
 
         public string Description { get; set; }
 
-        // Construtor para inicialização
         public Category(string name, string description)
         {
             Name = name;

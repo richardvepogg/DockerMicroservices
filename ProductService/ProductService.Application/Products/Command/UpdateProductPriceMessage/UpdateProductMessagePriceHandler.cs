@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using ProductService.Application.Products.Command.UpdateProduct;
 using ProductService.Contracts.Enums;
 using ProductService.Domain.Entities;
 using ProductService.Domain.Interfaces;
@@ -38,7 +37,7 @@ namespace ProductService.Application.Products.Command.UpdateProductPriceMessage
             switch (command.RPAMarketPlace)
             {
                 case ERPAMarketPlace.MercadoLivre:
-                    product.priceMercadoLivre = command.Price;
+                    product.UpdatePriceMercadoLivre(command.Price);
                     break;
             }
 

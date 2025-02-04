@@ -3,9 +3,9 @@ using RabbitMQ.Client;
 using System.Text;
 using Microsoft.Extensions.Hosting;
 using System.Text.Json;
-using ProductService.Infra.Interfaces;
 using ProductService.Contracts.Models.Messages;
 using MediatR;
+using ProductService.Contracts.Interfaces;
 
 namespace ProductService.Infra.Services.MessageConsumer
 {

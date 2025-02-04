@@ -4,9 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProductService.Application.Services;
-using ProductService.Data.Context;
+using ProductService.Contracts.Interfaces;
 using ProductService.Domain.Interfaces;
-using ProductService.Infra.Interfaces;
 using ProductService.Infra.Services.MessageConsumer;
 using ProductService.Infra.Services.RabbitMQSender;
 

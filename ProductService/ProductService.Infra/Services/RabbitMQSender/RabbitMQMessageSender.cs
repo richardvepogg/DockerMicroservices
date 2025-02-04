@@ -1,5 +1,5 @@
-﻿using ProductService.Contracts.Models.Messages;
-using ProductService.Infra.Interfaces;
+﻿using ProductService.Contracts.Interfaces;
+using ProductService.Contracts.Models.Messages;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;

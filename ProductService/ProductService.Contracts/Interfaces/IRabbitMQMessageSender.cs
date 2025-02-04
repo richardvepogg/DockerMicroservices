@@ -1,7 +1,7 @@
 ﻿
 using ProductService.Contracts.Models.Messages;
 
-namespace ProductService.Infra.Interfaces
+namespace ProductService.Contracts.Interfaces
 {
     public interface IRabbitMQMessageSender
     {

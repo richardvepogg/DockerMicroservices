@@ -1,4 +1,6 @@
-﻿using ProductService.Domain.ValueObjects;
+﻿using ProductService.Domain.Common;
+using ProductService.Domain.Validation;
+using ProductService.Domain.ValueObjects;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProductService.Domain.Entities
@@ -30,6 +32,27 @@ namespace ProductService.Domain.Entities
             CategoryId = category.Id;
             CategoryName = category.Name;
             Category = category;
+        }
+
+        public ValidationResultDetail Validate()
+        {
+            var validator = new ProductValidator();
+            var result = validator.Validate(this);
+            return new ValidationResultDetail
+            {
+                IsValid = result.IsValid,
+                Errors = result.Errors.Select(o => (ValidationErrorDetail)o)
+            };
+        }
+
+        public void UpdatePrice(Price price)
+        {
+            ProductPrice = price;
+        }
+
+        public void UpdatePriceMercadoLivre(Price price)
+        {
+            PriceMercadoLivre = price;
         }
     }
 

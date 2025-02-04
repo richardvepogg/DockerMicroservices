@@ -12,7 +12,6 @@ using ProductService.Application.Products.Command.UpdateProduct;
 using ProductService.WebApi.Features.Products.DeleteProduct;
 using ProductService.Application.Products.Command.DeleteProduct;
 using ProductService.Contracts.Models.Messages;
-using ProductService.Infra.Interfaces;
 using Azure.Core;
 using ProductService.WebApi.Features.Products.GetAllProducts;
 using ProductService.Domain.Entities;
@@ -77,7 +76,7 @@ namespace ProductService.Controllers
 
         [Authorize(Roles = "Manager")]
         [HttpPost]
-        private static async Task<IResult> CreateProduct(CreateProductRequest product, IMediator mediator, IMapper mapper, CancellationToken cancellationToken, IRabbitMQMessageSender message)
+        private static async Task<IResult> CreateProduct(CreateProductRequest product, IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
         {
             try
             {
@@ -87,7 +86,6 @@ namespace ProductService.Controllers
 
                 if (result == null) return Results.BadRequest();
 
-                message.SendMessage(mapper.Map<ProductMessage>(result));
 
                 return Results.Ok(mapper.Map<GetProductResponse>(result));
             }

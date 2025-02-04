@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProductService.Data.Context;
 using ProductService.Domain.Entities;
 using ProductService.Domain.Interfaces;
 
@@ -27,7 +26,7 @@ namespace ProductService.Application.Services
 
         public async Task<Product?> FindAsyncById(long id, CancellationToken cancellationToken = default)
         {
-            return await _contexto.Products.FirstOrDefaultAsync(u => u.id == id, cancellationToken);
+            return await _contexto.Products.FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
         }
 
         public async Task<IEnumerable<Product>> GetAllAsync(CancellationToken cancellationToken = default)
