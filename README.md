@@ -56,9 +56,11 @@ Serviços Configurados no Docker Compose
 
 [x] Implementar Clean Architecture <br>
 
-[] Adicionar conceitos DDD (Event, ValueObject, Enum, Repository, Service e etc)<br>
+[x] Adicionar conceitos DDD (Event, ValueObject, Enum, Repository, Service e etc)<br>
 
-[] Criar Validações com FluentValidation
+[x] Criar Validações com FluentValidation
+
+[] Testes unitários
 </p>
 <br>
 <br>
