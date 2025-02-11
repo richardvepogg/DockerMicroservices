@@ -11,10 +11,9 @@ using ProductService.WebApi.Features.Products.UpdateProduct;
 using ProductService.Application.Products.Command.UpdateProduct;
 using ProductService.WebApi.Features.Products.DeleteProduct;
 using ProductService.Application.Products.Command.DeleteProduct;
-using ProductService.Contracts.Models.Messages;
-using Azure.Core;
 using ProductService.WebApi.Features.Products.GetAllProducts;
-using ProductService.Domain.Entities;
+using ProductService.WebApi.Features.Products.GetPriceDifference;
+using ProductService.Application.Products.Queries.PriceDifference;
 
 namespace ProductService.Controllers
 {
@@ -27,6 +26,7 @@ namespace ProductService.Controllers
         {
             app.MapGet("/Products", GetAllProducts);
             app.MapGet("/Product/{id}", GetProduct);
+            app.MapGet("/Product/PriceDifference{id}", GetPriceDifference);
             app.MapPost("/Product", CreateProduct);
             app.MapPut("/Product", UpdateProduct);
             app.MapDelete("/Product/{id}", DeleteProduct);
@@ -51,6 +51,30 @@ namespace ProductService.Controllers
                 return Results.Problem(ex.Message);
             }
         }
+
+
+        [Authorize(Roles = "Employe, Manager")]
+        [HttpGet]
+        public static async Task<IResult> GetPriceDifference(PriceDifferenceRequest product,IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
+        {
+            try
+            {
+                PriceDifferenceQuerie querie = mapper.Map<PriceDifferenceQuerie>(product);
+
+                PriceDifferenceResult result = await mediator.Send(querie, cancellationToken);
+
+                if (result == null) return Results.BadRequest();
+
+
+                return Results.Ok(mapper.Map<PriceDifferenceResponse>(result));
+            }
+            catch (Exception ex)
+            {
+
+                return Results.Problem(ex.Message);
+            }
+        }
+
 
         [Authorize(Roles = "Employe, Manager")]
         [HttpGet("{id}")]

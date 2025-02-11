@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ProductService.Application.Services;
 using ProductService.Contracts.Interfaces;
 using ProductService.Domain.Interfaces;
+using ProductService.Domain.Services;
 using ProductService.Infra.Services.MessageConsumer;
 using ProductService.Infra.Services.RabbitMQSender;
 
@@ -26,6 +27,8 @@ namespace ProductService.IoC.ModuleInitializers
             builder.Services.AddHostedService<RabbitMQCheckoutConsumer>();
             builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
             builder.Services.AddAutoMapper(typeof(Profile));
+            builder.Services.AddScoped<IProductService, ProductServices>();
+
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.Load("ProductService.Application")));
         }
     }
