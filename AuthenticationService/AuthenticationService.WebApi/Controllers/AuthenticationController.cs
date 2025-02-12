@@ -4,39 +4,44 @@ using AuthenticationService.WebApi.Features.Users.GetUser;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using AuthenticationService.Controllers.Common;
 
 namespace AuthenticationService.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public static class AuthenticationController
+    public class AuthenticationController : BaseController
     {
-        public static void ConfigureApi(this WebApplication app)
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
+        private readonly ITokenService _tokenService;
+
+        public AuthenticationController(IMediator mediator, IMapper mapper, ITokenService tokenService)
         {
-            app.MapPost("/Authenticate", AuthenticateAsync);
+            _mediator = mediator;
+            _mapper = mapper;
+            _tokenService = tokenService;
         }
 
         [HttpPost]
-        private static async Task<IResult> AuthenticateAsync(GetUserRequest request, IMediator mediator, IMapper mapper, CancellationToken cancellationToken, ITokenService tokenService)
+        public async Task<IActionResult> AuthenticateAsync(GetUserRequest request, CancellationToken cancellationToken)
         {
             try
             {
-                GetUserQuerie querie = mapper.Map<GetUserQuerie>(request);
+                GetUserQuerie querie = _mapper.Map<GetUserQuerie>(request);
 
-                GetUserResult result = await mediator.Send(querie, cancellationToken);
+                GetUserResult result = await _mediator.Send(querie, cancellationToken);
 
                 if (result == null)
-                    return Results.Unauthorized();
+                    return Unauthorized("Invalid credentials");
 
-                return Results.Ok(mapper.Map<GetUserResponse>(request));
+                var response = _mapper.Map<GetUserResponse>(result);
+                return Ok(response);
             }
             catch (Exception ex)
             {
-
-                return Results.Problem(ex.Message);
+                return Problem(ex.Message);
             }
         }
-
     }
-
 }

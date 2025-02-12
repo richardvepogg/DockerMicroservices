@@ -24,7 +24,6 @@ app.UseSwaggerUI(c =>
 app.UseAuthorization();
 
 app.MapControllers();
-app.ConfigureApi();
 
 
 app.Run();

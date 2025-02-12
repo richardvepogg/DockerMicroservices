@@ -9,158 +9,150 @@ using ProductService.WebApi.Features.Products.GetProduct;
 using ProductService.WebApi.Features.Products.CreateProduct;
 using ProductService.WebApi.Features.Products.UpdateProduct;
 using ProductService.Application.Products.Command.UpdateProduct;
-using ProductService.WebApi.Features.Products.DeleteProduct;
 using ProductService.Application.Products.Command.DeleteProduct;
 using ProductService.WebApi.Features.Products.GetAllProducts;
 using ProductService.WebApi.Features.Products.GetPriceDifference;
 using ProductService.Application.Products.Queries.PriceDifference;
+using ProductService.Controllers.Common;
+using ProductService.WebApi.Features.Products.DeleteProduct;
 
 namespace ProductService.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public static class ProductController
+    public class ProductController : BaseController
     {
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public static void ConfigureApi(this WebApplication app)
+        public ProductController(IMediator mediator, IMapper mapper)
         {
-            app.MapGet("/Products", GetAllProducts);
-            app.MapGet("/Product/{id}", GetProduct);
-            app.MapGet("/Product/PriceDifference{id}", GetPriceDifference);
-            app.MapPost("/Product", CreateProduct);
-            app.MapPut("/Product", UpdateProduct);
-            app.MapDelete("/Product/{id}", DeleteProduct);
-
-        }
-
-        [Authorize(Roles = "Employe, Manager")]
-        [HttpGet]
-        private static async Task<IResult> GetAllProducts(IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
-        {
-            try
-            {
-                GetAllProductsResult result = await mediator.Send(new GetAllProductsQuerie(), cancellationToken);
-
-                GetAllProductsResponse response = mapper.Map<GetAllProductsResponse>(result);
- 
-                return Results.Ok(response);
-            }
-            catch (Exception ex)
-            {
-
-                return Results.Problem(ex.Message);
-            }
+            _mediator = mediator;
+            _mapper = mapper;
         }
 
 
         [Authorize(Roles = "Employe, Manager")]
         [HttpGet]
-        public static async Task<IResult> GetPriceDifference(PriceDifferenceRequest product,IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAllProducts(CancellationToken cancellationToken)
         {
             try
             {
-                PriceDifferenceQuerie querie = mapper.Map<PriceDifferenceQuerie>(product);
+                GetAllProductsResult result = await _mediator.Send(new GetAllProductsQuerie(), cancellationToken);
 
-                PriceDifferenceResult result = await mediator.Send(querie, cancellationToken);
-
-                if (result == null) return Results.BadRequest();
-
-
-                return Results.Ok(mapper.Map<PriceDifferenceResponse>(result));
+                GetAllProductsResponse response = _mapper.Map<GetAllProductsResponse>(result);
+                return Ok(response);
             }
             catch (Exception ex)
             {
-
-                return Results.Problem(ex.Message);
+                return Problem(ex.Message);
             }
         }
 
+        [Authorize(Roles = "Employe, Manager")]
+        [HttpGet("PriceDifference{id}")]
+        public async Task<IActionResult> GetPriceDifference([FromRoute] int id, [FromQuery] PriceDifferenceRequest product, CancellationToken cancellationToken)
+        {
+            try
+            {
+                PriceDifferenceQuerie querie = _mapper.Map<PriceDifferenceQuerie>(product);
+
+                PriceDifferenceResult result = await _mediator.Send(querie, cancellationToken);
+
+                if (result == null) return BadRequest("Failed to get price difference");
+
+                var response = _mapper.Map<PriceDifferenceResponse>(result);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
 
         [Authorize(Roles = "Employe, Manager")]
         [HttpGet("{id}")]
-        private static async Task<IResult> GetProduct(int id,IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetProduct(int id, CancellationToken cancellationToken)
         {
             try
             {
-                GetProductRequest request = new GetProductRequest{Id = id };
+                GetProductRequest request = new GetProductRequest { Id = id };
 
-                GetProductQuerie querie = mapper.Map<GetProductQuerie>(request.Id);
-                GetProductResult result = await mediator.Send(querie, cancellationToken);
-                
-                if (result == null) return Results.NotFound();
+                GetProductQuerie querie = _mapper.Map<GetProductQuerie>(request.Id);
+                GetProductResult result = await _mediator.Send(querie, cancellationToken);
 
-                return Results.Ok(mapper.Map<GetProductResponse>(result));
+                if (result == null) return NotFound();
+
+                var response = _mapper.Map<GetProductResponse>(result);
+                return Ok(response);
             }
             catch (Exception ex)
             {
-
-                return Results.Problem(ex.Message);
+                return Problem(ex.Message);
             }
         }
 
         [Authorize(Roles = "Manager")]
         [HttpPost]
-        private static async Task<IResult> CreateProduct(CreateProductRequest product, IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateProduct(CreateProductRequest product, CancellationToken cancellationToken)
         {
             try
             {
-                CreateProductCommand command = mapper.Map<CreateProductCommand>(product);
+                CreateProductCommand command = _mapper.Map<CreateProductCommand>(product);
 
-                CreateProductResult result = await mediator.Send(command, cancellationToken);
+                CreateProductResult result = await _mediator.Send(command, cancellationToken);
 
-                if (result == null) return Results.BadRequest();
+                if (result == null) return BadRequest("Failed to create product");
 
-
-                return Results.Ok(mapper.Map<GetProductResponse>(result));
+                var response = _mapper.Map<GetProductResponse>(result);
+                return Created("GetProduct", new {response.id}, response);
             }
             catch (Exception ex)
             {
-
-                return Results.Problem(ex.Message);
+                return Problem(ex.Message);
             }
         }
 
         [Authorize(Roles = "Manager")]
         [HttpPut]
-        private static async Task<IResult> UpdateProduct(UpdateProductRequest product, IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateProduct(UpdateProductRequest product, CancellationToken cancellationToken)
         {
             try
             {
-                UpdateProductCommand command = mapper.Map<UpdateProductCommand>(product);
+                UpdateProductCommand command = _mapper.Map<UpdateProductCommand>(product);
 
-                UpdateProductResult? result = await mediator.Send(command, cancellationToken);
+                UpdateProductResult? result = await _mediator.Send(command, cancellationToken);
 
-                if (result == null) return Results.BadRequest();
+                if (result == null) return BadRequest("Failed to update product");
 
-                return Results.Ok(mapper.Map<UpdateProductResponse>(result));
+                var response = _mapper.Map<UpdateProductResponse>(result);
+                return Ok(response);
             }
             catch (Exception ex)
             {
-
-                return Results.Problem(ex.Message);
+                return Problem(ex.Message);
             }
         }
 
         [Authorize(Roles = "Manager")]
-        [HttpDelete]
-        private static async Task<IResult> DeleteProduct(int id, IMediator mediator, IMapper mapper, CancellationToken cancellationToken)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id, CancellationToken cancellationToken)
         {
             try
             {
-                DeleteProductRequest request = new DeleteProductRequest {Id=id};
-                DeleteProductCommand command = mapper.Map<DeleteProductCommand>(request.Id);
+                DeleteProductRequest request = new DeleteProductRequest { Id = id };
+                DeleteProductCommand command = _mapper.Map<DeleteProductCommand>(request.Id);
 
-                DeleteProductResult result = await mediator.Send(command, cancellationToken);
+                DeleteProductResult result = await _mediator.Send(command, cancellationToken);
 
                 if (result.Success)
-                    return Results.Ok("The product was successfully deleted!");
+                    return Ok("The product was successfully deleted!");
 
-                    return Results.NotFound();
+                return NotFound("Product not found");
             }
             catch (Exception ex)
             {
-
-                return Results.Problem(ex.Message);
+                return Problem(ex.Message);
             }
         }
     }
