@@ -3,7 +3,7 @@
 <h1 align="center">DockerMicroservices</h1>
 
 🛠 Tecnologias Utilizadas
-<p align="left"> <img src="https://img.shields.io/badge/.NET-8.0-blue" alt=".NET 8.0"> <img src="https://img.shields.io/badge/Swagger-3.0.0-green" alt="Swagger"> <img src="https://img.shields.io/badge/Docker-Compose-blue" alt="Docker Compose"> <img src="https://img.shields.io/badge/Entity%20Framework-6.0.0-green" alt="Entity Framework"> <img src="https://img.shields.io/badge/JWT-5.0.0-red" alt="JWT"> <img src="https://img.shields.io/badge/AutoMapper-10.0.0-yellow" alt="AutoMapper"> <img src="https://img.shields.io/badge/RabbitMQ-3.8.9-orange" alt="RabbitMQ"> <img src="https://img.shields.io/badge/MediatR-9.0.0-blue" alt="MediatR"><img src="https://img.shields.io/badge/FluentValidation-11.11.0-blue" alt="FluentValidation">
+<p align="left"> <img src="https://img.shields.io/badge/.NET-8.0-blue" alt=".NET 8.0"> <img src="https://img.shields.io/badge/Swagger-3.0.0-green" alt="Swagger"> <img src="https://img.shields.io/badge/Docker-Compose-blue" alt="Docker Compose"> <img src="https://img.shields.io/badge/Entity%20Framework-6.0.0-green" alt="Entity Framework"> <img src="https://img.shields.io/badge/JWT-5.0.0-red" alt="JWT"> <img src="https://img.shields.io/badge/AutoMapper-10.0.0-yellow" alt="AutoMapper"> <img src="https://img.shields.io/badge/RabbitMQ-3.8.9-orange" alt="RabbitMQ"> <img src="https://img.shields.io/badge/MediatR-9.0.0-blue" alt="MediatR"><img src="https://img.shields.io/badge/FluentValidation-11.11.0-blue" alt="FluentValidation"><img src="https://img.shields.io/badge/FluentAssertions-8.1.1-blue" alt="FluentAssertions"><img src="https://img.shields.io/badge/Bogus-35.6.2-blue" alt="Bogus">
 </p>
 
 <br><br>
