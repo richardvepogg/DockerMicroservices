@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UserService.Domain.Enums;
+﻿using UserService.Domain.Enums;
 using UserService.Unit.Domain.Entities.TestData;
 
 namespace UserService.Unit.Domain.Entities
