@@ -4,13 +4,12 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "cadastroproduto": "StartDebugging",
-        "apiautenticacao": "StartDebugging",
-        "apirefit": "StartDebugging",
-        "apiusuarios": "StartDebugging",
+        "apiproduct": "StartDebugging",
+        "apiauth": "StartDebugging",
+        "apiusers": "StartDebugging",
         "sqlserver": "StartWithoutDebugging",
         "rabbitmq": "StartWithoutDebugging",
-        "rpaMercadoLivre": "StartDebugging"
+        "rpamercadolivre": "StartDebugging"
       }
     }
   }

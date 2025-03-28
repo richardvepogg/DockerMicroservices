@@ -1,17 +1,17 @@
 version: '3.4'
 
 services:
-  cadastroproduto:
-    image: api-cadastroproduto
-    container_name: cadastroProduto
+  apiproduct:
+    container_name: apiproduct
+    image: api-product
     build:
       context: .
-      dockerfile: ServiceCadastroProduto\CadastroProduto\Dockerfile
+      dockerfile: ProductService\ProductService.WebApi\Dockerfile
     ports:
     - "5010:5010"
     depends_on:
     - sqlserver
     - rabbitmq
     networks:
-        rederefit:
+        redemicrosservices:
          ipv4_address: 172.18.0.5

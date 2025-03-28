@@ -43,12 +43,12 @@ services:
               redemicrosservices: 
                 ipv4_address: 172.18.0.9
 
-      apiusuarios:
-            container_name: apiUsuarios
-            image: api-usuarios
+      apiusers:
+            container_name: apiusers
+            image: api-users
             build:
               context: .
-              dockerfile: ServiceUsuarios\Usuarios\Dockerfile
+              dockerfile: UserService\UserService.WebApi\Dockerfile
             ports:
             - "5020:5020"
             depends_on:
@@ -57,27 +57,27 @@ services:
              redemicrosservices:
               ipv4_address: 172.18.0.7
 
-      apiautenticacao:
-            image: api-autenticacao
-            container_name: apiAutenticacao
+      apiauth:
+            container_name: apiauth
+            image: api-auth
             build:
               context: .
-              dockerfile: ServiceAutenticacao\Autenticacao\Dockerfile
+              dockerfile: AuthenticationService\AuthenticationService.WebApi\Dockerfile
             ports:
             - "5030:5030"
             depends_on:
-            - apiusuarios
+            - apiusers
             networks:
              redemicrosservices:
               ipv4_address: 172.18.0.8
 
 
-      consoleapp:
+      rpamercadolivre:
+            container_name: rpamercadolivre
             image: console-rpamercadolivre
-            container_name: rpaMercadoLivre
             build:
               context: .
-              dockerfile: ServiceRPAMercadoLivre\RPAMercadoLivre\Dockerfile
+              dockerfile: RPAMercadoLivreService\RPAMercadoLivre.Console\Dockerfile
             depends_on:
             - rabbitmq
             networks:
