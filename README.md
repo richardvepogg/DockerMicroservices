@@ -61,7 +61,12 @@ Serviços Configurados no Docker Compose
 
 [x] Criar Validações com FluentValidation
 
-[] Testes unitários
+[x] Adicionar exemplos de testes unitários e de integração
+
+[] Adicionar SonarQube 
+
+[] Remover Warnings
+
 </p>
 <br>
 <br>
