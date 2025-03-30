@@ -14,7 +14,7 @@ namespace UserService.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(new User(1,"admin",new Domain.ValueObjects.ContactInfo("usuario@gmail.com", "(48) 99142-2442"),"123",UserRole.Manager));
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserDbContext).Assembly);
         }
     }

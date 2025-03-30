@@ -10,8 +10,7 @@ public class ProductDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductDbContext).Assembly);
-
-        base.OnModelCreating(modelBuilder); 
     }
 }

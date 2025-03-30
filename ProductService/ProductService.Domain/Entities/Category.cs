@@ -14,10 +14,11 @@ namespace ProductService.Domain.Entities
 
         public string Name { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        public Category(string name, string description)
+        public Category(int id,string name, string description)
         {
+            Id = id;
             Name = name;
             Description = description;
         }
