@@ -16,6 +16,7 @@ namespace UserService.Domain.Entities
         public string Password { get; set; }
         public UserRole Role { get; set; }
 
+        public User() { }
         public User(int id, string name, ContactInfo contact, string password, UserRole role)
         {
             Id = id;
