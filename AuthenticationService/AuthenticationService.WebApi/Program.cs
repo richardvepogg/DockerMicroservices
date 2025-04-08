@@ -1,10 +1,11 @@
-using AuthenticationService.Controllers;
 using AuthenticationService.IoC;
+using AuthenticationService.WebApi.Features.Users.GetUser;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.RegisterDependencies();
+builder.Services.AddAutoMapper(typeof(GetUserProfile).Assembly);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

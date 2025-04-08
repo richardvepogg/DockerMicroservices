@@ -3,9 +3,9 @@ using AutoMapper;
 
 namespace AuthenticationService.Application.Users.Queries
 {
-    public class GetUserProfile : Profile
+    public class GetUserProfileHandler : Profile
     {
-        public GetUserProfile()
+        public GetUserProfileHandler()
         {
             CreateMap<GetUserQuerie, User>();
             CreateMap<User, GetUserResult>()

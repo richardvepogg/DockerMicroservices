@@ -30,11 +30,14 @@ namespace AuthenticationService.Application.Users.Queries
             User? userFound = await _userRepository.FindAsync(user, cancellationToken);
             
             if (userFound == null)
-                 throw new UserNotFoundException("User not found."); ;
+                 throw new UserNotFoundException("User not found.");
 
             string token =  _tokenService.GenerateToken(user);
 
-            return _mapper.Map<GetUserResult>(user);
+            GetUserResult result = _mapper.Map<GetUserResult>(user);
+            result.token = token;
+
+            return result;
         }
 
         public class UserNotFoundException : Exception
