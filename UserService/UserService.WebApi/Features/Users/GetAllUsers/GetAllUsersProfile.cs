@@ -7,8 +7,11 @@ namespace UserService.WebApi.Features.Users.GetAllUsers
     {
         public GetAllUsersProfile()
         {
-            CreateMap<GetAllUsersResult, GetAllUsersResponse>();
+            CreateMap<GetAllUsersResult, GetAllUsersResponse>()
+            .ForMember(dest => dest.GetAllUsersResponses, opt => opt.MapFrom(src => src.GetAllUsersResults));
 
+            CreateMap<GetAllUsersResult.GetAllUserResult, GetAllUsersResponse.GetAllUserResponse>()
+                .ForMember(dest => dest.id, opt => opt.MapFrom(src => src.id));
         }
     }
 }

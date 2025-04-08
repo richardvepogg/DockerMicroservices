@@ -3,7 +3,7 @@ namespace AuthenticationService.Domain.Enums
 {
     public enum UserRole
     {
-        Employe = 1,
-        Manager,
+        Manager = 1,
+        Employe = 2,
     }
 }

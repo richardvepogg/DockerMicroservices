@@ -10,6 +10,7 @@ using UserService.Application.Users.Queries.GetUser;
 using UserService.Controllers.Common;
 using UserService.WebApi.Features.Users.CreateUser;
 using UserService.WebApi.Features.Users.DeleteUser;
+using UserService.WebApi.Features.Users.GetAllUsers;
 using UserService.WebApi.Features.Users.GetUser;
 using UserService.WebApi.Features.Users.UpdateUser;
 
@@ -35,7 +36,11 @@ namespace UserService.Controllers
             try
             {
                 GetAllUsersResult result = await _mediator.Send(new GetAllUsersQuerie(), cancellationToken);
-                return Ok(result);
+
+                // Retorna os resultados mapeados encapsulados no GetAllUsersResult
+                GetAllUsersResponse response = _mapper.Map<GetAllUsersResponse>(result);
+
+                return Ok(response);
             }
             catch (Exception ex)
             {

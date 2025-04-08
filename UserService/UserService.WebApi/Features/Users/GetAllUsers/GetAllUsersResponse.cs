@@ -5,8 +5,8 @@ namespace UserService.WebApi.Features.Users.GetAllUsers
 {
     public class GetAllUsersResponse
     {
-        IEnumerable<GetAllUserResponse>? getAllUserResponse { get; set; }
-        private class GetAllUserResponse
+        public IEnumerable<GetAllUserResponse>? GetAllUsersResponses { get; set; }
+        public class GetAllUserResponse
         {
             public string id { get; set; }
             public string name { get; set; }

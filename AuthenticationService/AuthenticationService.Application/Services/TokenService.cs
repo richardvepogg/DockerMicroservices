@@ -27,11 +27,11 @@ namespace AuthenticationService.Application.Services
             int hoursToExpireToken = int.Parse(_configuration["JWT:HoursToExpireToken"] ?? "");
             SigningCredentials signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
-            Claim[] claims = new[]
-            {
+            Claim[] claims =
+            [
                  new Claim(ClaimTypes.Name, user.Name),
                  new Claim(ClaimTypes.Role, user.Role.ToString())
-             };
+             ];
 
 
 

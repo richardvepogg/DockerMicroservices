@@ -32,9 +32,9 @@ namespace AuthenticationService.Application.Users.Queries
             if (userFound == null)
                  throw new UserNotFoundException("User not found.");
 
-            string token =  _tokenService.GenerateToken(user);
+            string token =  _tokenService.GenerateToken(userFound);
 
-            GetUserResult result = _mapper.Map<GetUserResult>(user);
+            GetUserResult result = _mapper.Map<GetUserResult>(userFound);
             result.token = token;
 
             return result;
