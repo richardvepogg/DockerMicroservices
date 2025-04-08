@@ -8,7 +8,8 @@ namespace UserService.Application.Users.Command.UpdateUser
         public UpdateUserProfile()
         {
             CreateMap<UpdateUserCommand, User>();
-            CreateMap<User, UpdateUserResult>();
+            CreateMap<User, UpdateUserResult>()
+                 .ForMember(dest => dest.Contact, opt => opt.MapFrom(src => src.contactInfo));
         }
     }
 }

@@ -7,7 +7,8 @@ namespace UserService.Application.Users.Queries.GetUser
     {
         public GetUserProfile()
         {
-            CreateMap<User, GetUserResult>();
+            CreateMap<User, GetUserResult>()
+                .ForMember(dest => dest.Contact, opt => opt.MapFrom(src => src.contactInfo));
         }
     }
 }

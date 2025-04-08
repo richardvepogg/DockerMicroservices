@@ -8,6 +8,7 @@ using UserService.Application.Users.Command.UpdateUser;
 using UserService.Application.Users.Queries.GetAllUsers;
 using UserService.Application.Users.Queries.GetUser;
 using UserService.Controllers.Common;
+using UserService.WebApi.Common;
 using UserService.WebApi.Features.Users.CreateUser;
 using UserService.WebApi.Features.Users.DeleteUser;
 using UserService.WebApi.Features.Users.GetAllUsers;
@@ -82,8 +83,15 @@ namespace UserService.Controllers
 
                 if (result == null) return BadRequest("Failed to create user");
 
-                GetUserResponse response = _mapper.Map<GetUserResponse>(result);
-                return Created("GetUser", new { response.id }, response);
+                CreateUserResponse response = _mapper.Map<CreateUserResponse>(result);
+
+                return Created(string.Empty, new ApiResponseWithData<CreateUserResponse>
+                {
+                    Success = true,
+                    Message = "User created successfully",
+                    Data = response
+                });
+
             }
             catch (Exception ex)
             {
@@ -104,7 +112,14 @@ namespace UserService.Controllers
                 if (result == null) return BadRequest("Failed to update user");
 
                 UpdateUserResponse response = _mapper.Map<UpdateUserResponse>(result);
-                return Ok(response);
+                //return Ok(response);
+
+                return Ok(new ApiResponse
+                {
+                    Success = true,
+                    Message = "User updated successfully"
+                });
+
             }
             catch (Exception ex)
             {
@@ -122,7 +137,11 @@ namespace UserService.Controllers
                 DeleteUserCommand command = _mapper.Map<DeleteUserCommand>(request.Id);
                 await _mediator.Send(command, cancellationToken);
 
-                return Ok("The user was successfully deleted!");
+                return Ok(new ApiResponse
+                {
+                    Success = true,
+                    Message = "The user was successfully deleted!"
+                });
             }
             catch (Exception ex)
             {

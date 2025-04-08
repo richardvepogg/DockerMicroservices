@@ -7,8 +7,11 @@ namespace UserService.Application.Users.Command.CreateUser
     {
         public CreateUserProfile()
         {
-            CreateMap<CreateUserCommand, User>();
-            CreateMap<User, CreateUserResult>();
+            CreateMap<CreateUserCommand, User>()
+                .ForMember(dest => dest.contactInfo, opt => opt.MapFrom(src => src.Contact));
+            
+            CreateMap<User, CreateUserResult>()
+            .ForMember(dest => dest.Contact, opt => opt.MapFrom(src => src.contactInfo));
         }
     }
 }
