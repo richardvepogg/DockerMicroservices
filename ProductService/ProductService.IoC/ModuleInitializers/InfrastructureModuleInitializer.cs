@@ -3,6 +3,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProductService.Application.Products.Command.CreateProduct;
+using ProductService.Application.Products.Command.UpdateProduct;
+using ProductService.Application.Products.Command.UpdateProductPriceMessage;
+using ProductService.Application.Products.Queries.GetProduct;
+using ProductService.Application.Products.Queries.PriceDifference;
 using ProductService.Application.Services;
 using ProductService.Contracts.Interfaces;
 using ProductService.Domain.Interfaces;
@@ -26,7 +31,11 @@ namespace ProductService.IoC.ModuleInitializers
             builder.Services.AddTransient<IProductRepository, ProductRepository>();
             builder.Services.AddHostedService<RabbitMQCheckoutConsumer>();
             builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
-            builder.Services.AddAutoMapper(typeof(Profile));
+            builder.Services.AddAutoMapper(typeof(CreateProductProfile));
+            builder.Services.AddAutoMapper(typeof(UpdateProductProfile));
+            builder.Services.AddAutoMapper(typeof(UpdateProductMessagePriceProfile));
+            builder.Services.AddAutoMapper(typeof(GetProductProfile));
+            builder.Services.AddAutoMapper(typeof(PriceDifferenceProfile));
             builder.Services.AddScoped<IProductService, ProductServices>();
 
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.Load("ProductService.Application")));

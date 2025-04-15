@@ -4,8 +4,8 @@ namespace ProductService.WebApi.Features.Products.GetAllProducts
 {
     public class GetAllProductsResponse
     {
-        IEnumerable<GetAllProductResponse>? getAllProductResponse { get; set; }
-        private class GetAllProductResponse
+        public IEnumerable<GetAllProductResponse>? getAllProductResponse { get; set; }
+        public class GetAllProductResponse
         {
             public string name { get; set; }
 

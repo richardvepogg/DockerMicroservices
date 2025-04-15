@@ -8,7 +8,8 @@ namespace ProductService.WebApi.Features.Products.GetAllProducts
     {
         public GetAllProductsProfile()
         {
-            CreateMap<GetAllProductsResult, GetAllProductsResponse>();
+            CreateMap<GetAllProductsResult.GetAllProductResult, GetAllProductsResponse.GetAllProductResponse>()
+             .ForMember(dest => dest.name, opt => opt.MapFrom(src => src.name));
 
         }
     }

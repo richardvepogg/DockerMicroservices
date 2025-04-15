@@ -3,8 +3,8 @@ namespace ProductService.Application.Products.Queries.GetAllProducts
 {
     public class GetAllProductsResult
     {
-        IEnumerable<GetAllProductResult>? getAllProductResults { get; set; }
-        private class GetAllProductResult
+        public IEnumerable<GetAllProductResult>? getAllProductResults { get; set; }
+        public class GetAllProductResult
         {
             public string name { get; set; }
 
