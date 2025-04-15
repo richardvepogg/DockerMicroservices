@@ -18,7 +18,7 @@ namespace ProductService.Data.Mapping
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(e => e.Name).HasColumnName("description")
+            builder.Property(e => e.Description).HasColumnName("description")
             .HasMaxLength(200);
 
             builder.HasData(new Category(1,"cellphone", "A portable communication device for calls, texts, and internet. Modern smartphones offer advanced features."));

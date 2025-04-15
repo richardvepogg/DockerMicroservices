@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProductService.Application.Events;
 using ProductService.Application.Products.Command.CreateProduct;
 using ProductService.Application.Products.Command.UpdateProduct;
 using ProductService.Application.Products.Command.UpdateProductPriceMessage;
@@ -10,6 +11,7 @@ using ProductService.Application.Products.Queries.GetProduct;
 using ProductService.Application.Products.Queries.PriceDifference;
 using ProductService.Application.Services;
 using ProductService.Contracts.Interfaces;
+using ProductService.Domain.Events;
 using ProductService.Domain.Interfaces;
 using ProductService.Domain.Services;
 using ProductService.Infra.Services.MessageConsumer;
@@ -28,6 +30,7 @@ namespace ProductService.IoC.ModuleInitializers
             p => p.MigrationsHistoryTable("__Migrations")), ServiceLifetime.Scoped
             );
 
+            builder.Services.AddTransient<IEventHandler<ProductInsertedEvent>, ProductInsertedEventHandler>();
             builder.Services.AddTransient<IProductRepository, ProductRepository>();
             builder.Services.AddHostedService<RabbitMQCheckoutConsumer>();
             builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();

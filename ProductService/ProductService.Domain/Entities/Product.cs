@@ -23,6 +23,8 @@ namespace ProductService.Domain.Entities
 
         public Category Category { get; set; }
 
+        public Product()
+        { }
 
         public Product(string name, Price productPrice, Category category)
         {
