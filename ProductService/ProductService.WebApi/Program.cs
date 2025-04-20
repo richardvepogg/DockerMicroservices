@@ -10,7 +10,7 @@ using ProductService.WebApi.Features.Products.UpdateProduct;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.RegisterDependencies();
-builder.Services.AddAutoMapper(typeof(GetAllProductsProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(GetAllProductsProfileWeb).Assembly);
 builder.Services.AddAutoMapper(typeof(CreateProductProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(DeleteProductProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(PriceDifferenceProfile).Assembly);

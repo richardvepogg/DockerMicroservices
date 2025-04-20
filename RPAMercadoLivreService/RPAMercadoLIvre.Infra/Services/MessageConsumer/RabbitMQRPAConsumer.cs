@@ -30,7 +30,7 @@ namespace RPAMercadoLIvre.Infra.Services.MessageConsumer
             _messageSender = messageSender;
             var factory = new ConnectionFactory
             {
-                HostName = "172.18.0.9",
+                HostName = "rabbitmq",
                 UserName = "adm",
                 Password = "123"
             };

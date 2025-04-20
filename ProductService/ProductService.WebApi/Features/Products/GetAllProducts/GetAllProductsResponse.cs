@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ProductService.Domain.ValueObjects;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProductService.WebApi.Features.Products.GetAllProducts
 {
@@ -7,11 +8,17 @@ namespace ProductService.WebApi.Features.Products.GetAllProducts
         public IEnumerable<GetAllProductResponse>? getAllProductResponse { get; set; }
         public class GetAllProductResponse
         {
-            public string name { get; set; }
+            public int Id { get; set; }
 
-            public decimal price { get; set; }
+            public string Name { get; set; }
 
-            public decimal? priceMercadoLivre { get; set; }
+            public Price ProductPrice { get; set; }
+
+            public Price? PriceMercadoLivre { get; set; }
+
+            public int CategoryId { get; set; }
+
+            public string CategoryName { get; set; }
         }
     }
 }

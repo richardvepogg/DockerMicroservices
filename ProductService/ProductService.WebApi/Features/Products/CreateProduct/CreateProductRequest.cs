@@ -1,4 +1,7 @@
-﻿namespace ProductService.WebApi.Features.Products.CreateProduct
+﻿using ProductService.Domain.Entities;
+using ProductService.Domain.Enums;
+
+namespace ProductService.WebApi.Features.Products.CreateProduct
 {
     public class CreateProductRequest
     {
@@ -8,6 +11,8 @@
 
         public decimal price { get; set; }
 
-        public decimal? priceMercadoLivre { get; set; }
+        public Currency Currency { get; set; }
+
+        public int IdCategory { get; set; }
     }
 }

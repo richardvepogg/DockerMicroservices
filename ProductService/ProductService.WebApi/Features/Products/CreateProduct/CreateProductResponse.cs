@@ -1,13 +1,21 @@
-﻿namespace ProductService.WebApi.Features.Products.CreateProduct
+﻿using ProductService.Domain.Entities;
+using ProductService.Domain.ValueObjects;
+
+namespace ProductService.WebApi.Features.Products.CreateProduct
 {
     public class CreateProductResponse
     {
-            public int id { get; set; }
 
-            public string name { get; set; }
+        public int Id { get; set; }
 
-            public decimal price { get; set; }
+        public string Name { get; set; }
 
-            public decimal? priceMercadoLivre { get; set; }
+        public Price ProductPrice { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public string CategoryName { get; set; }
+
+        public Category Category { get; set; }
     }
 }

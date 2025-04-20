@@ -7,10 +7,12 @@ using ProductService.Application.Events;
 using ProductService.Application.Products.Command.CreateProduct;
 using ProductService.Application.Products.Command.UpdateProduct;
 using ProductService.Application.Products.Command.UpdateProductPriceMessage;
+using ProductService.Application.Products.Queries.GetAllProducts;
 using ProductService.Application.Products.Queries.GetProduct;
 using ProductService.Application.Products.Queries.PriceDifference;
 using ProductService.Application.Services;
 using ProductService.Contracts.Interfaces;
+using ProductService.Data.Repositories;
 using ProductService.Domain.Events;
 using ProductService.Domain.Interfaces;
 using ProductService.Domain.Services;
@@ -32,6 +34,8 @@ namespace ProductService.IoC.ModuleInitializers
 
             builder.Services.AddTransient<IEventHandler<ProductInsertedEvent>, ProductInsertedEventHandler>();
             builder.Services.AddTransient<IProductRepository, ProductRepository>();
+            builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+
             builder.Services.AddHostedService<RabbitMQCheckoutConsumer>();
             builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
             builder.Services.AddAutoMapper(typeof(CreateProductProfile));
@@ -39,6 +43,9 @@ namespace ProductService.IoC.ModuleInitializers
             builder.Services.AddAutoMapper(typeof(UpdateProductMessagePriceProfile));
             builder.Services.AddAutoMapper(typeof(GetProductProfile));
             builder.Services.AddAutoMapper(typeof(PriceDifferenceProfile));
+            builder.Services.AddAutoMapper(typeof(GetAllProductsProfile));
+
+            
             builder.Services.AddScoped<IProductService, ProductServices>();
 
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.Load("ProductService.Application")));

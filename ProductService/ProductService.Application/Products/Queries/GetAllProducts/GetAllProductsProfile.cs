@@ -7,7 +7,7 @@ namespace ProductService.Application.Products.Queries.GetAllProducts
     {
         public GetAllProductsProfile()
         {
-            CreateMap<Product, GetAllProducts.GetAllProductsResult>();
+            CreateMap<Product, GetAllProductsResult.GetAllProductResult>();
         }
     }
 }

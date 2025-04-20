@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ProductService.Contracts.Models.Messages;
 using ProductService.Domain.Entities;
+using ProductService.Domain.ValueObjects;
 
 namespace ProductService.Application.Products.Command.CreateProduct
 {
@@ -8,9 +9,13 @@ namespace ProductService.Application.Products.Command.CreateProduct
     {
         public CreateProductProfile()
         {
-            CreateMap<CreateProductCommand, Product>();
+            CreateMap<CreateProductCommand, Product>()
+           .ForMember(dest => dest.ProductPrice, opt => opt.MapFrom(src => new Price(src.price, src.Currency)))
+           .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.IdCategory));
+
             CreateMap<Product, CreateProductResult>();
-            CreateMap<CreateProductResult, ProductMessage>();
+            CreateMap<Product, ProductMessage>();
+            CreateMap<Product, CreateProductResult>();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace ProductService.Application.Events
 
         public void Handle(ProductInsertedEvent productInsertedEvent)
         {
-            var productMessage = _mapper.Map<ProductMessage>(productInsertedEvent.Product);
+            ProductMessage productMessage = _mapper.Map<ProductMessage>(productInsertedEvent.Product);
             _messageService.SendMessage(productMessage);
         }
     }

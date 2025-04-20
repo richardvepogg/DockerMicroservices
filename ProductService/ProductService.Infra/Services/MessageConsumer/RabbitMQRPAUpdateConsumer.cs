@@ -24,7 +24,7 @@ namespace ProductService.Infra.Services.MessageConsumer
             _mediator = mediator;
             var factory = new ConnectionFactory
             {
-                HostName = "172.18.0.9",
+                HostName = "rabbitmq",
                 UserName = "adm",
                 Password = "123"
             };

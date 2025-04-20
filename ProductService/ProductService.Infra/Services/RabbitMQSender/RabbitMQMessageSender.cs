@@ -19,7 +19,7 @@ namespace ProductService.Infra.Services.RabbitMQSender
 
         public RabbitMQMessageSender()
         {
-            _hostName = "172.18.0.9";
+            _hostName = "rabbitmq";
             _password = "123";
             _userName = "adm";
         }

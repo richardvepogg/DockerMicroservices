@@ -4,13 +4,11 @@ using ProductService.Application.Products.Queries.GetAllProducts;
 
 namespace ProductService.WebApi.Features.Products.GetAllProducts
 {
-    public class GetAllProductsProfile : Profile
+    public class GetAllProductsProfileWeb : Profile
     {
-        public GetAllProductsProfile()
+        public GetAllProductsProfileWeb()
         {
-            CreateMap<GetAllProductsResult.GetAllProductResult, GetAllProductsResponse.GetAllProductResponse>()
-             .ForMember(dest => dest.name, opt => opt.MapFrom(src => src.name));
-
+            CreateMap<GetAllProductsResult.GetAllProductResult, GetAllProductsResponse.GetAllProductResponse>();
         }
     }
 }

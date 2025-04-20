@@ -28,7 +28,7 @@ namespace ProductService.Application.Products.Queries.GetAllProducts
   
             return new GetAllProductsResult
             {
-                getAllProductResults = _mapper.Map<IEnumerable<GetAllProductsResult.GetAllProductResult>>(products)
+                getAllProductResults = _mapper.Map<List<GetAllProductsResult.GetAllProductResult>>(products)
             };
         }
     }

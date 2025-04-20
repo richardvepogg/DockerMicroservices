@@ -15,6 +15,7 @@ using ProductService.WebApi.Features.Products.GetPriceDifference;
 using ProductService.Application.Products.Queries.PriceDifference;
 using ProductService.Controllers.Common;
 using ProductService.WebApi.Features.Products.DeleteProduct;
+using ProductService.WebApi.Common;
 
 namespace ProductService.Controllers
 {
@@ -104,8 +105,14 @@ namespace ProductService.Controllers
 
                 if (result == null) return BadRequest("Failed to create product");
 
-                var response = _mapper.Map<GetProductResponse>(result);
-                return Created("GetProduct", new {response.id}, response);
+                CreateProductResponse response = _mapper.Map<CreateProductResponse>(result);
+
+                return Created(string.Empty, new ApiResponseWithData<CreateProductResponse>
+                {
+                    Success = true,
+                    Message = "Product created successfully",
+                    Data = response
+                });
             }
             catch (Exception ex)
             {
