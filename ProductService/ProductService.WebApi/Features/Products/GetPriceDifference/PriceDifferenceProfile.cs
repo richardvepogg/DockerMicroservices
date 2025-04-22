@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
+using ProductService.Application.Products.Queries.PriceDifference;
+using ProductService.WebApi.Features.Products.GetPriceDifference;
 
-namespace ProductService.WebApi.Features.Products.GetPriceDifference
+public class PriceDifferenceProfile : Profile
 {
-    public class PriceDifferenceProfile : Profile
+    public PriceDifferenceProfile()
     {
-        public PriceDifferenceProfile()
-        {
-            CreateMap<int, ProductService.Application.Products.Queries.PriceDifference.PriceDifferenceQuerie>()
-     .ConstructUsing(id => new ProductService.Application.Products.Queries.PriceDifference.PriceDifferenceQuerie(id));
-        }
+        // Mapeamento para construir a Querie
+        CreateMap<PriceDifferenceRequest, PriceDifferenceQuerie>()
+            .ConstructUsing(req => new PriceDifferenceQuerie(req.Id));
+
+        // Mapeamento do resultado para a resposta
+        CreateMap<PriceDifferenceResult, PriceDifferenceResponse>();
     }
 }

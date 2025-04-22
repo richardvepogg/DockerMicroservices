@@ -21,7 +21,7 @@ namespace ProductService.Domain.Services
                 throw new InvalidOperationException("Mercado Livre price is not available.");
             }
 
-            return product.PriceMercadoLivre.Value - product.ProductPrice.Value;
+            return Math.Abs(product.PriceMercadoLivre.Value - product.ProductPrice.Value);
         }
 
 

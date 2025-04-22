@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ProductService.Application.Products.Queries.GetProduct;
 
 namespace ProductService.WebApi.Features.Products.GetProduct
 {
@@ -8,6 +9,8 @@ namespace ProductService.WebApi.Features.Products.GetProduct
         {
             CreateMap<int, ProductService.Application.Products.Queries.GetProduct.GetProductQuerie>()
      .ConstructUsing(id => new ProductService.Application.Products.Queries.GetProduct.GetProductQuerie(id));
+
+            CreateMap<GetProductResult, GetProductResponse>();
         }
     }
 }

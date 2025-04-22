@@ -1,13 +1,19 @@
-﻿namespace ProductService.WebApi.Features.Products.GetPriceDifference
+﻿using ProductService.Domain.ValueObjects;
+
+namespace ProductService.WebApi.Features.Products.GetPriceDifference
 {
     public class PriceDifferenceResponse
     {
 
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public Price ProductPrice { get; set; }
+
+        public Price? PriceMercadoLivre { get; set; }
+
         public decimal priceDifference { get; set; }
-
-        public decimal price { get; set; }
-
-        public decimal? priceMercadoLivre { get; set; }
 
     }
 }

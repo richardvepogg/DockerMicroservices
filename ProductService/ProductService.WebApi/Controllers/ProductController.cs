@@ -52,11 +52,13 @@ namespace ProductService.Controllers
 
         [Authorize(Roles = "Employe, Manager")]
         [HttpGet("PriceDifference{id}")]
-        public async Task<IActionResult> GetPriceDifference([FromRoute] int id, [FromQuery] PriceDifferenceRequest product, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetPriceDifference(int id, CancellationToken cancellationToken)
         {
             try
             {
-                PriceDifferenceQuerie querie = _mapper.Map<PriceDifferenceQuerie>(product);
+                PriceDifferenceRequest request = new PriceDifferenceRequest {Id = id };
+                     
+                PriceDifferenceQuerie querie = _mapper.Map<PriceDifferenceQuerie>(request);
 
                 PriceDifferenceResult result = await _mediator.Send(querie, cancellationToken);
 

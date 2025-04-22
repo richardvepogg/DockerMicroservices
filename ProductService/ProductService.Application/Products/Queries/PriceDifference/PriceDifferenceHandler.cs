@@ -31,7 +31,7 @@ namespace ProductService.Application.Products.Queries.PriceDifference
 
             priceDifference.priceDifference = _productService.GetPriceDifference(product);
 
-            return _mapper.Map<PriceDifferenceResult>(product);
+            return _mapper.Map<PriceDifferenceResult>(priceDifference);
         }
     }
 }
