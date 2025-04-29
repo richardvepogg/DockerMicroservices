@@ -35,6 +35,8 @@ namespace ProductService.IoC.ModuleInitializers
             builder.Services.AddTransient<IEventHandler<ProductInsertedEvent>, ProductInsertedEventHandler>();
             builder.Services.AddTransient<IProductRepository, ProductRepository>();
             builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IProductUpdateHandler, ProductUpdateHandler>();
+
 
             builder.Services.AddHostedService<RabbitMQCheckoutConsumer>();
             builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();

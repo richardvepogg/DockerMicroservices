@@ -14,6 +14,6 @@ namespace ProductService.Application.Products.Command.UpdateProductPriceMessage
     {
             public int Id { get; set; }
             public Price Price { get; set; }
-            public ERPAMarketPlace RPAMarketPlace { get; set; }
+            public ERPAMarketPlace RPAMarketPlace { get; set; } = ERPAMarketPlace.MercadoLivre;
     }
 }

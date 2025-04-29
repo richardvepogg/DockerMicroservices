@@ -12,6 +12,8 @@ namespace ProductService.Unit.Application
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
+        private readonly ICategoryRepository _categoryRepository;
+
         private readonly CreateProductHandler _handlerProductHandler;
         private readonly IEventHandler<ProductInsertedEvent> _eventHandler;
 
@@ -21,7 +23,8 @@ namespace ProductService.Unit.Application
             _productRepository = Substitute.For<IProductRepository>();
             _mapper = Substitute.For<IMapper>();
             _eventHandler = Substitute.For<IEventHandler<ProductInsertedEvent>>();
-            _handlerProductHandler = new CreateProductHandler(_productRepository, _mapper, _eventHandler);
+            _categoryRepository = Substitute.For<ICategoryRepository>();
+            _handlerProductHandler = new CreateProductHandler(_productRepository, _categoryRepository, _mapper, _eventHandler);
         }
 
         [Fact]

@@ -7,13 +7,13 @@ namespace ProductService.Contracts.Models.Messages
     {
         public ProductMessageUpdate()
         {
-
+            RPAPlataform = ERPAMarketPlace.MercadoLivre;
         }
         public int id { get; set; }
 
-        public decimal? price { get; set; }
+        public decimal? value { get; set; }
 
-        public ERPAMarketPlace RPAMarketPlace { get; set; }
+        public ERPAMarketPlace RPAPlataform { get; }
     }
 
 }

@@ -3,6 +3,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RPAMercadoLivre.Contracts.Models.Messages;
 using RPAMercadoLivre.Domain.Interfaces;
+using RPAMercadoLivre.Infra.Helpers;
 using RPAMercadoLIvre.Infra.Services.RabbitMQSender;
 using System.Text;
 using System.Text.Json;
@@ -67,14 +68,11 @@ namespace RPAMercadoLIvre.Infra.Services.MessageConsumer
 
             foreach (Match match in matchCollection)
             {
-                Decimal valor = new Decimal();
 
-                if (Decimal.TryParse(match.Groups["valorAVista"].Value, out valor))
+                if (Decimal.TryParse(match.Groups["valorAVista"].Value, out _))
                 {
-                    if (valorFinal == 0)
-                        valorFinal = valor;
-
-                    valorFinal = valor < valorFinal ? valor : valorFinal;
+                        valorFinal = CurrencyConverter.ConvertToDecimal(match.Groups["valorAVista"].Value);
+                        break;
                 }
             }
 

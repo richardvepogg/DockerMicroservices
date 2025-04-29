@@ -15,3 +15,4 @@ services:
     networks:
         redemicrosservices:
          ipv4_address: 172.18.0.5
+    entrypoint: ["sh", "-c", "until nc -z rabbitmq 5672; do echo 'Aguardando RabbitMQ...'; sleep 5; done; dotnet ProductService.WebApi.dll"]

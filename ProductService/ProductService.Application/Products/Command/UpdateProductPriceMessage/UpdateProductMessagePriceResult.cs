@@ -8,6 +8,11 @@ namespace ProductService.Application.Products.Command.UpdateProductPriceMessage
 {
     public class UpdateProductMessagePriceResult
     {
-        public bool Success { get; set; }
+        public UpdateProductMessagePriceResult(bool success)
+        {
+            Success = success;
+        }
+
+        public bool Success { get; set; } 
     }
 }

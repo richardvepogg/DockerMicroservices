@@ -98,6 +98,7 @@ D:\MeusProjetos\DockerMicroservices\bin\Debug\Swashbuckle.AspNetCore.Swagger.dll
 D:\MeusProjetos\DockerMicroservices\bin\Debug\MediatR.Contracts.dll
 D:\MeusProjetos\DockerMicroservices\bin\Debug\Microsoft.Extensions.Configuration.UserSecrets.dll
 D:\MeusProjetos\DockerMicroservices\bin\Debug\ProductService.Application.dll
+D:\MeusProjetos\DockerMicroservices\bin\Debug\ProductService.Domain.dll
 D:\MeusProjetos\DockerMicroservices\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
 D:\MeusProjetos\DockerMicroservices\bin\Debug\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\MeusProjetos\DockerMicroservices\bin\Debug\ProductService.IoC.dll
@@ -121,7 +122,6 @@ D:\MeusProjetos\DockerMicroservices\bin\Debug\Microsoft.EntityFrameworkCore.dll
 D:\MeusProjetos\DockerMicroservices\bin\Debug\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\MeusProjetos\DockerMicroservices\bin\Debug\AuthenticationService.Data.dll
 D:\MeusProjetos\DockerMicroservices\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
-D:\MeusProjetos\DockerMicroservices\bin\Debug\ProductService.Domain.dll
 D:\MeusProjetos\DockerMicroservices\bin\Debug\ProductService.Contracts.dll
 D:\MeusProjetos\DockerMicroservices\bin\Debug\System.Text.Encodings.Web.dll
 D:\MeusProjetos\DockerMicroservices\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
@@ -168,13 +168,13 @@ D:\MeusProjetos\DockerMicroservices\bin\Debug\AuthenticationService.Domain.pdb
 D:\MeusProjetos\DockerMicroservices\bin\Debug\AuthenticationService.Application.pdb
 D:\MeusProjetos\DockerMicroservices\bin\Debug\AuthenticationService.IoC.pdb
 D:\MeusProjetos\DockerMicroservices\bin\Debug\ProductService.Application.pdb
+D:\MeusProjetos\DockerMicroservices\bin\Debug\ProductService.Domain.pdb
 D:\MeusProjetos\DockerMicroservices\bin\Debug\ProductService.IoC.pdb
 D:\MeusProjetos\DockerMicroservices\bin\Debug\UserService.Application.pdb
 D:\MeusProjetos\DockerMicroservices\bin\Debug\UserService.Domain.pdb
 D:\MeusProjetos\DockerMicroservices\bin\Debug\UserService.IoC.pdb
 D:\MeusProjetos\DockerMicroservices\bin\Debug\RPAMercadoLivre.IoC.pdb
 D:\MeusProjetos\DockerMicroservices\bin\Debug\AuthenticationService.Data.pdb
-D:\MeusProjetos\DockerMicroservices\bin\Debug\ProductService.Domain.pdb
 D:\MeusProjetos\DockerMicroservices\bin\Debug\ProductService.Contracts.pdb
 D:\MeusProjetos\DockerMicroservices\bin\Debug\ProductService.Data.pdb
 D:\MeusProjetos\DockerMicroservices\bin\Debug\ProductService.Infra.pdb

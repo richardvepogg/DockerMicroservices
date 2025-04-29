@@ -4,8 +4,8 @@ using System.Text;
 using Microsoft.Extensions.Hosting;
 using System.Text.Json;
 using ProductService.Contracts.Models.Messages;
-using MediatR;
 using ProductService.Contracts.Interfaces;
+using ProductService.Domain.Entities;
 
 namespace ProductService.Infra.Services.MessageConsumer
 {
@@ -14,14 +14,12 @@ namespace ProductService.Infra.Services.MessageConsumer
         private IConnection _connection;
         private IModel _channel;
         private IRabbitMQMessageSender _rabbitMQMessageSender;
-        private IMediator _mediator;
+        private readonly IProductUpdateHandler _productUpdateHandler;
 
 
-        public RabbitMQCheckoutConsumer(IMediator mediator,
-            IRabbitMQMessageSender rabbitMQMessageSender)
+        public RabbitMQCheckoutConsumer(IRabbitMQMessageSender rabbitMQMessageSender, IProductUpdateHandler productUpdateHandler)
         {
             _rabbitMQMessageSender = rabbitMQMessageSender;
-            _mediator = mediator;
             var factory = new ConnectionFactory
             {
                 HostName = "rabbitmq",
@@ -31,6 +29,7 @@ namespace ProductService.Infra.Services.MessageConsumer
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
             _channel.QueueDeclare(queue: "updateProdutoRPAqueue", false, false, false, arguments: null);
+            _productUpdateHandler = productUpdateHandler;
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -50,7 +49,7 @@ namespace ProductService.Infra.Services.MessageConsumer
 
         private void AtualizarProduto(ProductMessageUpdate produtoMessageUpdate)
         {
-               _mediator.Send(produtoMessageUpdate);
+            _productUpdateHandler.HandleAsync(produtoMessageUpdate);
         }
     }
 }

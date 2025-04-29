@@ -18,21 +18,13 @@ namespace ProductService.Application.Products.Command.UpdateProductPriceMessage
             _mapper = mapper;
         }
 
+
         public async Task<UpdateProductMessagePriceResult> Handle(UpdateProductMessagePriceCommand command, CancellationToken cancellationToken)
-        {
-            Product product = _mapper.Map<Product>(command);
-
-            Product updateProduct = await _productRepository.UpdateAsync(product);
-            UpdateProductMessagePriceResult result = _mapper.Map<UpdateProductMessagePriceResult>(updateProduct);
-            return result;
-        }
-
-        public async Task Handle(UpdateProductMessagePriceCommand command)
         {
             Product? product = await _productRepository.FindAsyncById(command.Id);
 
             if (product == null)
-                return;
+                return new UpdateProductMessagePriceResult(false);
 
             switch (command.RPAMarketPlace)
             {
@@ -41,7 +33,8 @@ namespace ProductService.Application.Products.Command.UpdateProductPriceMessage
                     break;
             }
 
-            await _productRepository.UpdateAsync(product);
+            Product updateProduct = await _productRepository.UpdateAsync(product);
+            return new UpdateProductMessagePriceResult(true); 
         }
 
 
