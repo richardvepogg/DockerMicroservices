@@ -23,7 +23,7 @@ namespace ProductService.Application.Products.Command.UpdateProductPriceMessage
         {
             Product? product = await _productRepository.FindAsyncById(command.Id);
 
-            if (product == null)
+            if (product == null || command.Price == null)
                 return new UpdateProductMessagePriceResult(false);
 
             switch (command.RPAMarketPlace)

@@ -27,7 +27,7 @@ namespace ProductService.Application.Products.Command.UpdateProduct
 
         public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
         {
-            Category category = await _categoryRepository.FindAsyncById(command.CategoryId, cancellationToken);
+            Category? category = await _categoryRepository.FindAsyncById(command.CategoryId, cancellationToken);
 
             if (category == null)
                 throw new KeyNotFoundException($"Category with ID {command.CategoryId} not found");

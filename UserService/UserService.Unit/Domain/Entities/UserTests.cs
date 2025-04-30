@@ -16,8 +16,8 @@ namespace UserService.Unit.Domain.Entities
             Assert.NotNull(user.Name);
             Assert.NotNull(user.Password);
             Assert.NotNull(user.contactInfo.Phone);
-            Assert.True(user.Password.StartsWith("Test@"));
-            Assert.True(user.contactInfo.Phone.StartsWith("+55"));
+            Assert.StartsWith("Test@", user.Password);
+            Assert.StartsWith("+55", user.contactInfo.Phone);
             Assert.True(user.contactInfo.Phone.Length == 15);
             Assert.True(user.Role == UserRole.Manager || user.Role == UserRole.Employe);
         }
@@ -30,7 +30,7 @@ namespace UserService.Unit.Domain.Entities
 
             // Assert
             Assert.NotNull(password);
-            Assert.True(password.StartsWith("Test@"));
+            Assert.StartsWith("Test@", password);
             Assert.True(password.Length >= 7); // "Test@" + 3 digits
         }
 
@@ -42,7 +42,7 @@ namespace UserService.Unit.Domain.Entities
 
             // Assert
             Assert.NotNull(phone);
-            Assert.True(phone.StartsWith("+55"));
+            Assert.StartsWith("+55", phone);
             Assert.True(phone.Length == 15);
         }
 

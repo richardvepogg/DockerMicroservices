@@ -12,7 +12,7 @@ namespace RPAMercadoLivre.Infraestrutura.Services.RabbitMQSender
         private readonly string _hostName;
         private readonly string _password;
         private readonly string _userName;
-        private IConnection _connection;
+        private IConnection? _connection;
 
         public RabbitMQMessageSender()
         {
@@ -25,6 +25,9 @@ namespace RPAMercadoLivre.Infraestrutura.Services.RabbitMQSender
         {
             if (ConnectionExists())
             {
+                if (_connection == null)
+                    return;
+
                 using var channel = _connection.CreateModel();
                 channel.QueueDeclare(queue: queueName, false, false, false, arguments: null);
                 byte[] body = GetMessageAsByteArray(message);

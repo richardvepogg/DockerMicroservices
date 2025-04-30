@@ -39,9 +39,13 @@ namespace ProductService.Infra.Services.MessageConsumer
             consumer.Received += (chanel, evt) =>
             {
                 var content = Encoding.UTF8.GetString(evt.Body.ToArray());
-                ProductMessageUpdate produtoMessageUpdate = JsonSerializer.Deserialize<ProductMessageUpdate>(content);
-                AtualizarProduto(produtoMessageUpdate);
-                _channel.BasicAck(evt.DeliveryTag, false);
+                ProductMessageUpdate? produtoMessageUpdate = JsonSerializer.Deserialize<ProductMessageUpdate>(content);
+
+                if (produtoMessageUpdate != null)
+                {
+                    AtualizarProduto(produtoMessageUpdate);
+                    _channel.BasicAck(evt.DeliveryTag, false);
+                }
             };
             _channel.BasicConsume("updateProdutoRPAqueue", false, consumer);
             return Task.CompletedTask;

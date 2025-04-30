@@ -24,7 +24,7 @@ namespace RPAMercadoLivreProjeto.Application.Services
             catch (HttpRequestException e)
             {
                 Console.WriteLine($"Request error: {e.Message}");
-                return null;
+                return "";
             }
         }
 

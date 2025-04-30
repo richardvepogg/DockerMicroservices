@@ -7,7 +7,7 @@ namespace ProductService.WebApi.Features.Products.CreateProduct
     {
         public int id { get; set; }
 
-        public string name { get; set; }
+        public string name { get; set; } = string.Empty;
 
         public decimal price { get; set; }
 

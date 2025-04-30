@@ -50,9 +50,12 @@ namespace RPAMercadoLIvre.Infra.Services.MessageConsumer
             consumer.Received += (chanel, evt) =>
             {
                 var content = Encoding.UTF8.GetString(evt.Body.ToArray());
-                ProductMessage produtoMessage = JsonSerializer.Deserialize<ProductMessage>(content);
-                BuscarProduto(produtoMessage).GetAwaiter().GetResult();
-                _channel.BasicAck(evt.DeliveryTag, false);
+                ProductMessage? produtoMessage = JsonSerializer.Deserialize<ProductMessage>(content);
+                if (produtoMessage != null)
+                {
+                    BuscarProduto(produtoMessage).GetAwaiter().GetResult();
+                    _channel.BasicAck(evt.DeliveryTag, false);
+                }
             };
             _channel.BasicConsume(ProdutoMercadoLivreUpdateQueueName, false, consumer);
             return Task.CompletedTask;

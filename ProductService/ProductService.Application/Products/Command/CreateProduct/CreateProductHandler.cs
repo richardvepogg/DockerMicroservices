@@ -23,7 +23,7 @@ namespace ProductService.Application.Products.Command.CreateProduct
 
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
-            Category category  = await _categoryRepository.FindAsyncById(command.IdCategory, cancellationToken);
+            Category? category  = await _categoryRepository.FindAsyncById(command.IdCategory, cancellationToken);
 
             if (category == null)
                 throw new KeyNotFoundException($"Category with ID {command.IdCategory} not found");

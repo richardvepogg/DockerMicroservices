@@ -7,13 +7,13 @@ namespace AuthenticationService.WebApi.Features.Users.GetUser
     {
         public int id { get; set; }
 
-        public string name { get; set; }
+        public string name { get; set; } = string.Empty;
 
-        public string password { get; set; }
-        public ContactInfo ContactInfo { get; set; }
+        public string password { get; set; } = string.Empty;
+        public ContactInfo? ContactInfo { get; set; }
 
         public UserRole role { get; set; }
         
-        public string token { get; set; }
+        public string token { get; set; } = string.Empty;
     }
 }

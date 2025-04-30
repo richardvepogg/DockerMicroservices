@@ -7,13 +7,14 @@ using UserService.Domain.ValueObjects;
 
 namespace UserService.Domain.Entities
 {
+    #pragma warning disable CS8618 // Suppressed: EF Core uses the parameterless constructor and sets properties via reflection
     public class User
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         public ContactInfo contactInfo { get; private set; }
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
         public UserRole Role { get; set; }
 
         public User() { }
@@ -42,5 +43,6 @@ namespace UserService.Domain.Entities
             };
         }
     }
+    #pragma warning restore CS8618
 
 }

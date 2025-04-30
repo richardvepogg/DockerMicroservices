@@ -12,7 +12,7 @@ namespace ProductService.Infra.Services.RabbitMQSender
         private readonly string _hostName;
         private readonly string _password;
         private readonly string _userName;
-        private IConnection _connection;
+        private IConnection? _connection;
         private const string ExchangeName = "DirectProdutoUpdateExchange";
         private const string ProdutoMercadoLivreUpdateQueueName = "ProdutoMercadoLivreUpdateQueueName";
         private const string ProdutoAmazonUpdateQueueName = "ProdutoAmazonUpdateQueueName";
@@ -28,6 +28,9 @@ namespace ProductService.Infra.Services.RabbitMQSender
         {
             if (ConnectionExists())
             {
+                if (_connection == null)
+                    return;
+
                 using IModel channel = _connection.CreateModel();
                 channel.ExchangeDeclare(ExchangeName, ExchangeType.Direct, durable: false);
                 channel.QueueDeclare(ProdutoMercadoLivreUpdateQueueName, false, false, false, null);
