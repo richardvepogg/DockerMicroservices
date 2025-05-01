@@ -2,14 +2,14 @@
 
 <h1 align="center">DockerMicroservices</h1>
 
-🛠 Tecnologias Utilizadas
+## 🛠 Tecnologias Utilizadas
 <p align="left"> <img src="https://img.shields.io/badge/.NET-8.0-blue" alt=".NET 8.0"> <img src="https://img.shields.io/badge/Swagger-3.0.0-green" alt="Swagger"> <img src="https://img.shields.io/badge/Docker-Compose-blue" alt="Docker Compose"> <img src="https://img.shields.io/badge/Entity%20Framework-6.0.0-green" alt="Entity Framework"> <img src="https://img.shields.io/badge/JWT-5.0.0-red" alt="JWT"> <img src="https://img.shields.io/badge/AutoMapper-10.0.0-yellow" alt="AutoMapper"> <img src="https://img.shields.io/badge/RabbitMQ-3.8.9-orange" alt="RabbitMQ"> <img src="https://img.shields.io/badge/MediatR-9.0.0-blue" alt="MediatR"><img src="https://img.shields.io/badge/FluentValidation-11.11.0-blue" alt="FluentValidation"><img src="https://img.shields.io/badge/FluentAssertions-8.1.1-blue" alt="FluentAssertions"><img src="https://img.shields.io/badge/Bogus-35.6.2-blue" alt="Bogus"><img src="https://img.shields.io/badge/NSubstitute-5.3.0-blue" alt="NSubstitute"> <img src="https://img.shields.io/badge/SonarQube-25.3.0.104237-brightgreen" alt="SonarQube">
 
 </p>
 
 <br><br>
 
-📚 Sobre o Projeto
+## 📚 Sobre o Projeto
 <p>Este projeto foi desenvolvido com o objetivo de aprender e aperfeiçoar meus conhecimentos na implementação de microsserviços utilizando Docker e Docker Compose, com a tecnologia .NET 8. Integra diversas bibliotecas como Entity Framework (ORM), AutoMapper, RabbitMQ para mensageria e MediatR para implementação do padrão CQRS.
 
 Além disso, o projeto tem como propósito aplicar e demonstrar conceitos sólidos de arquitetura de software como CQRS, Clean Architecture e Domain-Driven Design (DDD).
@@ -27,40 +27,46 @@ Nos testes unitários, empreguei as bibliotecas Bogus e FluentAssertions, facili
 
 <br><br>
 
-🚀 Funcionalidades
+## 🚀 Funcionalidades
 <p> <b>CRUD de Produtos</b>: API para cadastro e gerenciamento de produtos.<br> <b>Mensageria</b>: Orquestração de mensagens entre microsserviços utilizando RabbitMQ.<br> <b>Autenticação JWT</b>: API para autenticação de usuários utilizando JWT.<br> <b>Gerenciamento de Usuários</b>: API para gerenciamento de usuários.<br> <b>Comparativo de Preços</b>: RPA para pesquisar produtos no Mercado Livre, gravando o preço na tabela de products. </p>
 <br>
 
 ## 📊 Análise de Qualidade com SonarQube
 
-Este projeto foi analisado com a ferramenta [SonarQube](https://www.sonarqube.org/), que identificou e ajudou na correção de bugs, code smells, vulnerabilidades e hotspots de segurança.
+Este projeto foi analisado com a ferramenta **SonarQube**, que ajudou na identificação de bugs, code smells, vulnerabilidades e pontos de melhoria no código.
 
-> ✔️ Status: **Aprovado no Quality Gate**
-> 
-> 📈 Métricas de exemplo:
-> - Cobertura de testes: `0.0%` (em evolução)
-> - Duplicações: `3.9%`
-> - Bugs: `4`
-> - Vulnerabilidades: `3`
-> - Code Smells: `72`
+✔️ **Status:** Aprovado no Quality Gate
 
-📷 Abaixo, um exemplo do resultado visual da análise:
+📊 **Métricas de exemplo:**
+- Cobertura de testes: `0.0%` (em evolução)
+- Duplicações: `3.9%`
+- Bugs: `4`
+- Vulnerabilidades: `3`
+- Code Smells: `72`
 
-![Resultado SonarQube](docs/sonarqube-analysis.png)
+📷 *Exemplo do resultado da análise visual:*
+
+<img src="./docs/sonarqube-analysis.png" alt="Resultado SonarQube" width="800"/>
+
+
+<br><br>
+
+## 🗂️ Estrutura do Projeto
+
+Serviços configurados no Docker Compose:
+
+- **SQL Server**: Sistema gerenciador de banco de dados relacional. O banco será criado automaticamente via migrations para persistência de dados.
+- **Volumes**: Cria um volume em `./DockerMicroservices/volumes` para garantir que os dados do banco não sejam perdidos entre execuções.
+- **API AuthenticationService**: Responsável por autenticação de usuários utilizando JWT.
+- **API UserService**: Responsável pelo gerenciamento de usuários.
+- **API ProductService**: Responsável por persistência e consulta de produtos no banco de dados.
+- **RabbitMQ**: Responsável pela orquestração de mensagens entre os microsserviços via filas.
+- **RPAMercadoLivreService**: RPA que pesquisa produtos no site do Mercado Livre e grava o menor preço encontrado na base de dados (útil para comparativo de preços).
 
 <br>
-🗂️ Estrutura do Projeto
-Serviços Configurados no Docker Compose
-<p> <b>SQL Server</b>: Sistema gerenciador de banco de dados relacional. O banco de dados será criado para persistência de dados.<br> <b>Volumes</b>: Cria um volume na pasta <code>./DockerMicroservices/volumes</code> para garantir que os dados do banco não sejam perdidos. </p>
-<p> <b>API AuthenticationService</b>: API para fazer login com usuário para fazer autenticação JWT</p>
-<p> <b>API UserService</b>: API para fazer gerencimento de usuários</p>
-<p> <b>API ProductService</b>: API responsável por persistir e obter dados salvos no banco de dados. </p>
-<p> <b>RabbitMQ</b>: Container configurado com RabbitMQ para orquestração de mensagens entre os microsserviços. </p>
-<p> <b>RPAMercadoLivreService</b>: RPA responsável por pesquisar produto no site do Mercado Livre e gravar o menos preço na tabela de products, usada para fazer comparativo de preço</p>
-<br>
 <br>
 
-📈 Status do Projeto
+## 📈 Status do Projeto
 <p>
 
 [x] Organizar solução separando projetos e itens por pastas<br>
@@ -96,23 +102,23 @@ Serviços Configurados no Docker Compose
 <br>
 
 
-📥 Clone o Repositório
+## 📥 Clone o Repositório
 ```
 $ git clone https://github.com/richardvepogg/DockerMicroservices.git
 ```
 <br>
-<br>
-<br>
-🛠 Pré-Requisitos
+<br><br>
+
+## 🛠 Pré-Requisitos
 <p>
 
 Instalar Docker Desktop: ao instalar marque a caixa "Install required Windows components for WSL2".<br>
 
 Acessar a solução com Visual Studio. </p>
 
-<br>
-<br>
-💻 Passos para a Criação dos Containers
+<br><br>
+
+## 💻 Passos para a Criação dos Containers
 <p>
 
 Executar Docker Desktop.<br>
@@ -121,10 +127,9 @@ No Visual Studio, selecione o Docker Compose no depurador e execute.<br>
 
 O banco de dados "products" será criado pelo Migrations. </p>
 
-<br>
-<br>
-<p><b>🗂️ Estrutura dos Containers</b></p>
-<br>
+<br><br>
+
+## 🗂️ Estrutura dos Containers
 <b>Redes:<b>
 <br>
 <p> <b>redemicrosservices</b>: Rede bridge com a sub-rede <code>172.18.0.0/16</code>. </p>
@@ -154,5 +159,5 @@ O banco de dados "products" será criado pelo Migrations. </p>
 <br><br>
 
 
-🌐 Endpoints
+## 🌐  Endpoints
 <p><b>(SQL Server)</b> iniciará na porta: <code>1433</code><br><b>(RabbitMQ)</b> iniciará nas portas: <code>5672</code> e <code>15672</code><br><b>(UserService)</b> iniciará na porta: <code>5020</code> - <code>http://localhost:5020/swagger</code><br><b>(AuthenticationService)</b> iniciará na porta: <code>5030</code> - <code>http://localhost:5030/swagger</code> <br><b>(ProductService)</b> iniciará na porta: <code>5010</code> - <code>http://localhost:5010/swagger</code><br><b>(RPAMercadoLivreService)</b> não possui porta exposta, apenas vai receber mensagens e enviar através do rabbitmq<br></p>
