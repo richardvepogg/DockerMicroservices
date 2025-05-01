@@ -27,9 +27,39 @@ Nos testes unitários, empreguei as bibliotecas Bogus e FluentAssertions, facili
 
 <br><br>
 
-## 🚀 Funcionalidades
-<p> <b>CRUD de Produtos</b>: API para cadastro e gerenciamento de produtos.<br> <b>Mensageria</b>: Orquestração de mensagens entre microsserviços utilizando RabbitMQ.<br> <b>Autenticação JWT</b>: API para autenticação de usuários utilizando JWT.<br> <b>Gerenciamento de Usuários</b>: API para gerenciamento de usuários.<br> <b>Comparativo de Preços</b>: RPA para pesquisar produtos no Mercado Livre, gravando o preço na tabela de products. </p>
-<br>
+## ⚙️ O que o Projeto Faz
+
+Este projeto é composto por microsserviços que se comunicam entre si por meio de mensagens assíncronas (RabbitMQ) e seguem princípios de arquitetura limpa (Clean Architecture), DDD e CQRS.
+
+- **AuthenticationService** (`172.18.0.8`): realiza login de usuários e gera tokens JWT.
+- **UserService** (`172.18.0.7`): gerenciamento de usuários (CRUD).
+- **ProductService** (`172.18.0.5`): cadastro e consulta de produtos; publica e consome mensagens do RabbitMQ.
+- **RabbitMQ** (`172.18.0.9`): orquestra as mensagens entre os microsserviços.
+- **RPAMercadoLivreService** (`172.18.0.10`): realiza scraping no site do Mercado Livre e envia o preço encontrado de volta via RabbitMQ.
+
+📌 Todos os serviços estão configurados no Docker Compose com IPs fixos na rede `redemicrosservices`.
+
+
+<br><br>
+
+
+## 🔁 Fluxo de Interação entre os Microsserviços
+
+O diagrama abaixo representa o fluxo de comunicação entre os microsserviços da aplicação, utilizando autenticação, orquestração via RabbitMQ e scraping externo:
+
+- O usuário inicia o processo autenticando-se via **AuthenticationService** para obter o token JWT.
+- Após autenticado, é possível acessar os endpoints de **UserService** (gerenciamento de usuários) e **ProductService** (cadastro e consulta de produtos).
+- Ao cadastrar um produto, o **ProductService** envia uma mensagem para o **RabbitMQ**, solicitando que o **RPAMercadoLivre** faça o scraping no site do Mercado Livre.
+- O **RPAMercadoLivre**, ao obter o valor do produto no site, envia uma nova mensagem para o **RabbitMQ**, que é consumida pelo **ProductService** para atualizar a base de dados.
+
+📌 Essa abordagem assíncrona garante desacoplamento entre os serviços e melhora a escalabilidade.
+
+![Fluxo dos Microsserviços](./docs/ImagemDockerMicrosservicos.drawio.png)
+
+<br><br>
+
+
+
 
 ## 📊 Análise de Qualidade com SonarQube
 
@@ -50,18 +80,6 @@ Este projeto foi analisado com a ferramenta **SonarQube**, que ajudou na identif
 
 
 <br><br>
-
-## 🗂️ Estrutura do Projeto
-
-Serviços configurados no Docker Compose:
-
-- **SQL Server**: Sistema gerenciador de banco de dados relacional. O banco será criado automaticamente via migrations para persistência de dados.
-- **Volumes**: Cria um volume em `./DockerMicroservices/volumes` para garantir que os dados do banco não sejam perdidos entre execuções.
-- **API AuthenticationService**: Responsável por autenticação de usuários utilizando JWT.
-- **API UserService**: Responsável pelo gerenciamento de usuários.
-- **API ProductService**: Responsável por persistência e consulta de produtos no banco de dados.
-- **RabbitMQ**: Responsável pela orquestração de mensagens entre os microsserviços via filas.
-- **RPAMercadoLivreService**: RPA que pesquisa produtos no site do Mercado Livre e grava o menor preço encontrado na base de dados (útil para comparativo de preços).
 
 <br>
 <br>
@@ -118,6 +136,62 @@ Acessar a solução com Visual Studio. </p>
 
 <br><br>
 
+## 🛠️ Criação e Configuração do Banco de Dados
+### Etapas para rodar as migrations e popular o banco:
+
+1. **Suba o container do SQL Server**, caso ainda não esteja executando:
+   ```
+   docker start sqlserver
+   ```
+
+2. **Pare a execução em modo debug no Visual Studio**, se estiver ativa.
+
+3. **Atualize temporariamente a string de conexão** no `appsettings.Development.json` para utilizar `localhost`:
+   ```json
+   "ConnectionStrings": {
+     "Default": "Server=localhost,1433;Database=Users;User Id=sa;Password=microservicos123!;TrustServerCertificate=true"
+   }
+   ```
+
+4. No **Visual Studio**:
+   - Defina o projeto principal (por exemplo, `UserService.WebApi`) como *Startup Project*.
+   - Abra a janela **Package Manager Console**.
+   - Selecione o projeto `*.Data` como *Default Project*.
+
+5. **Execute o comando abaixo** no Package Manager Console:
+   ```
+   Update-Database
+   ```
+
+6. Após aplicar a migration, **atualize novamente a string de conexão** para usar o hostname configurado no `docker-compose.yml`:
+   ```json
+   "ConnectionStrings": {
+     "Default": "Server=hostsqlserver;Database=Users;User Id=sa;Password=microservicos123!;TrustServerCertificate=true"
+   }
+   ```
+
+---
+Necessário realizar os passos acima para ProductService e UserService
+
+### 👤 Inserir um usuário administrador no banco:
+
+Após o banco User ser criado, execute o script abaixo diretamente no seu SQL Server (via SSMS, Azure Data Studio ou DBeaver):
+
+```sql
+INSERT INTO Users (id, name, email, phone, password, role)
+VALUES (
+  1,
+  'adm',
+  'adm@vepoit@gmail.com',
+  '(48) 99142-2442',
+  'SenhaForte123#',
+  '2' 
+);
+```
+
+<br><br>
+
+
 ## 💻 Passos para a Criação dos Containers
 <p>
 
@@ -125,9 +199,9 @@ Executar Docker Desktop.<br>
 
 No Visual Studio, selecione o Docker Compose no depurador e execute.<br>
 
-O banco de dados "products" será criado pelo Migrations. </p>
-
 <br><br>
+
+
 
 ## 🗂️ Estrutura dos Containers
 <b>Redes:<b>
