@@ -78,11 +78,37 @@ Este projeto foi analisado com a ferramenta **SonarQube**, que ajudou na identif
 
 <img src="./docs/sonarqube-analysis.png" alt="Resultado SonarQube" width="800"/>
 
+<br><br>
+
+## 📦 Como Executar a Análise com SonarQube
+
+A análise estática do código com o **SonarQube** deve ser feita a partir da pasta raiz da solução (`DockerMicroservices`). Os comandos abaixo analisam **toda a solução** e enviam os dados para o servidor do SonarQube configurado localmente.
+
+> 🔧 Certifique-se de que o SonarQube esteja rodando em `http://localhost:9000` e que o [SonarScanner for .NET](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarscanner-for-msbuild/) esteja instalado.
+
+### 📜 Comandos
+
+```bash
+dotnet sonarscanner begin /k:"DockerMicroservices" ^
+  /d:sonar.host.url="http://localhost:9000" ^
+  /d:sonar.token="TOKEN" ^
+  /d:sonar.scanner.scanAll=false
+
+dotnet build DockerMicroservices.sln
+
+dotnet sonarscanner end /d:sonar.token="TOKEN"
+```
+
+### 📝 Observações
+
+- O parâmetro `/k` define o nome do projeto dentro do SonarQube.
+- O comando `dotnet build DockerMicroservices.sln` compila **toda a solução** e é essencial para que os dados sejam analisados.
+- Substitua `"TOKEN"` pelo seu token pessoal gerado na interface do SonarQube.
+
 
 <br><br>
 
-<br>
-<br>
+
 
 ## 📈 Status do Projeto
 <p>
