@@ -3,14 +3,20 @@
 <h1 align="center">DockerMicroservices</h1>
 
 🛠 Tecnologias Utilizadas
-<p align="left"> <img src="https://img.shields.io/badge/.NET-8.0-blue" alt=".NET 8.0"> <img src="https://img.shields.io/badge/Swagger-3.0.0-green" alt="Swagger"> <img src="https://img.shields.io/badge/Docker-Compose-blue" alt="Docker Compose"> <img src="https://img.shields.io/badge/Entity%20Framework-6.0.0-green" alt="Entity Framework"> <img src="https://img.shields.io/badge/JWT-5.0.0-red" alt="JWT"> <img src="https://img.shields.io/badge/AutoMapper-10.0.0-yellow" alt="AutoMapper"> <img src="https://img.shields.io/badge/RabbitMQ-3.8.9-orange" alt="RabbitMQ"> <img src="https://img.shields.io/badge/MediatR-9.0.0-blue" alt="MediatR"><img src="https://img.shields.io/badge/FluentValidation-11.11.0-blue" alt="FluentValidation"><img src="https://img.shields.io/badge/FluentAssertions-8.1.1-blue" alt="FluentAssertions"><img src="https://img.shields.io/badge/Bogus-35.6.2-blue" alt="Bogus"><img src="https://img.shields.io/badge/NSubstitute-5.3.0-blue" alt="NSubstitute">
+<p align="left"> <img src="https://img.shields.io/badge/.NET-8.0-blue" alt=".NET 8.0"> <img src="https://img.shields.io/badge/Swagger-3.0.0-green" alt="Swagger"> <img src="https://img.shields.io/badge/Docker-Compose-blue" alt="Docker Compose"> <img src="https://img.shields.io/badge/Entity%20Framework-6.0.0-green" alt="Entity Framework"> <img src="https://img.shields.io/badge/JWT-5.0.0-red" alt="JWT"> <img src="https://img.shields.io/badge/AutoMapper-10.0.0-yellow" alt="AutoMapper"> <img src="https://img.shields.io/badge/RabbitMQ-3.8.9-orange" alt="RabbitMQ"> <img src="https://img.shields.io/badge/MediatR-9.0.0-blue" alt="MediatR"><img src="https://img.shields.io/badge/FluentValidation-11.11.0-blue" alt="FluentValidation"><img src="https://img.shields.io/badge/FluentAssertions-8.1.1-blue" alt="FluentAssertions"><img src="https://img.shields.io/badge/Bogus-35.6.2-blue" alt="Bogus"><img src="https://img.shields.io/badge/NSubstitute-5.3.0-blue" alt="NSubstitute"> <img src="https://img.shields.io/badge/SonarQube-25.3.0.104237-brightgreen" alt="SonarQube">
 
 </p>
 
 <br><br>
 
 📚 Sobre o Projeto
-<p>Este projeto foi desenvolvido com o objetivo de aprender a construção e aperfeiçoar meu conhecimento na implementação de microsserviços utilizando Docker e Docker Compose, com a tecnologia .NET 8. O projeto integra diversas bibliotecas como Entity Framework (ORM), AutoMapper, RabbitMQ para mensageria e MediatR (CQRS). Além disso, o projeto também foi criado para compreender melhor e demonstrar conceitos como CQRS, Clean Architecture e Domain-Driven Design (DDD).Para garantir a qualidade e confiabilidade do código, utilizei as bibliotecas Bogus e Fluent Assertions nos testes unitários, facilitando a criação de dados de teste realistas e a escrita de asserções claras e concisas. Para auxiliar na criação de mocks nos testes unitários, também utilizei a biblioteca NSubstitute.</p>
+<p>Este projeto foi desenvolvido com o objetivo de aprender e aperfeiçoar meus conhecimentos na implementação de microsserviços utilizando Docker e Docker Compose, com a tecnologia .NET 8. Integra diversas bibliotecas como Entity Framework (ORM), AutoMapper, RabbitMQ para mensageria e MediatR para implementação do padrão CQRS.
+
+Além disso, o projeto tem como propósito aplicar e demonstrar conceitos sólidos de arquitetura de software como CQRS, Clean Architecture e Domain-Driven Design (DDD).
+
+Para garantir a qualidade e confiabilidade do código, utilizei SonarQube como ferramenta de análise estática para identificar bugs, code smells, vulnerabilidades e pontos de melhoria no projeto. A análise contínua com SonarQube contribui diretamente para a manutenção de um código limpo e sustentável.
+
+Nos testes unitários, empreguei as bibliotecas Bogus e FluentAssertions, facilitando a criação de dados realistas e a escrita de asserções claras e concisas. Para a criação de mocks e simulações de dependências, utilizei a biblioteca NSubstitute.</p>
 
 <ul>
   <li><strong>CQRS (Command Query Responsibility Segregation)</strong>: Esta é uma abordagem de design de software que separa a lógica de leitura da lógica de escrita, permitindo que as consultas sejam otimizadas para leitura e os comandos para escrita. Isso pode melhorar a escalabilidade e a performance do sistema.</li>
@@ -22,9 +28,27 @@
 <br><br>
 
 🚀 Funcionalidades
-<p> <b>CRUD de Produtos</b>: API para cadastro e gerenciamento de produtos.<br> <b>Mensageria</b>: Orquestração de mensagens entre microsserviços utilizando RabbitMQ.<br> <b>Autenticação JWT</b>: API para autenticação de usuários utilizando JWT.<br> <b>Gerenciamento de Usuários</b>: API para gerenciamento de usuários.<br> <b>Comparativo de Preços</b>: RPA para pesquisar produtos no Mercado Livre, gravando o menor preço na tabela de products. </p>
-<br><br>
+<p> <b>CRUD de Produtos</b>: API para cadastro e gerenciamento de produtos.<br> <b>Mensageria</b>: Orquestração de mensagens entre microsserviços utilizando RabbitMQ.<br> <b>Autenticação JWT</b>: API para autenticação de usuários utilizando JWT.<br> <b>Gerenciamento de Usuários</b>: API para gerenciamento de usuários.<br> <b>Comparativo de Preços</b>: RPA para pesquisar produtos no Mercado Livre, gravando o preço na tabela de products. </p>
+<br>
 
+## 📊 Análise de Qualidade com SonarQube
+
+Este projeto foi analisado com a ferramenta [SonarQube](https://www.sonarqube.org/), que identificou e ajudou na correção de bugs, code smells, vulnerabilidades e hotspots de segurança.
+
+> ✔️ Status: **Aprovado no Quality Gate**
+> 
+> 📈 Métricas de exemplo:
+> - Cobertura de testes: `0.0%` (em evolução)
+> - Duplicações: `3.9%`
+> - Bugs: `4`
+> - Vulnerabilidades: `3`
+> - Code Smells: `72`
+
+📷 Abaixo, um exemplo do resultado visual da análise:
+
+![Resultado SonarQube](docs/sonarqube-analysis.png)
+
+<br>
 🗂️ Estrutura do Projeto
 Serviços Configurados no Docker Compose
 <p> <b>SQL Server</b>: Sistema gerenciador de banco de dados relacional. O banco de dados será criado para persistência de dados.<br> <b>Volumes</b>: Cria um volume na pasta <code>./DockerMicroservices/volumes</code> para garantir que os dados do banco não sejam perdidos. </p>
@@ -63,9 +87,9 @@ Serviços Configurados no Docker Compose
 
 [x] Adicionar exemplos de testes unitários e de integração
 
-[] Adicionar SonarQube 
+[x] Adicionar SonarQube 
 
-[] Remover Warnings
+[x] Remover Warnings
 
 </p>
 <br>
@@ -131,4 +155,4 @@ O banco de dados "products" será criado pelo Migrations. </p>
 
 
 🌐 Endpoints
-<p><b>(SQL Server)</b> iniciará na porta: <code>1433</code><br><b>(RabbitMQ)</b> iniciará nas portas: <code>5672</code> e <code>15672</code><br><b>(UserService)</b> iniciará na porta: <code>5020</code> - <code>http://localhost:5020/swagger</code><br><b>(AuthenticationService)</b> iniciará na porta: <code>5030</code> - <code>http://localhost:5030/swagger</code> <br><b>(ProductService)</b> iniciará na porta: <code>5010</code> - <code>http://localhost:5010/swagger</code><br><b>(RPAMercadoLivreService)</b> não possui porta exposta<br></p>
+<p><b>(SQL Server)</b> iniciará na porta: <code>1433</code><br><b>(RabbitMQ)</b> iniciará nas portas: <code>5672</code> e <code>15672</code><br><b>(UserService)</b> iniciará na porta: <code>5020</code> - <code>http://localhost:5020/swagger</code><br><b>(AuthenticationService)</b> iniciará na porta: <code>5030</code> - <code>http://localhost:5030/swagger</code> <br><b>(ProductService)</b> iniciará na porta: <code>5010</code> - <code>http://localhost:5010/swagger</code><br><b>(RPAMercadoLivreService)</b> não possui porta exposta, apenas vai receber mensagens e enviar através do rabbitmq<br></p>
