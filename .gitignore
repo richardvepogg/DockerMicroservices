@@ -426,3 +426,9 @@ FodyWeavers.xsd
 /ServiceAutenticacao/Autenticacao/appsettings.Development.json
 .vs/DockerMicroservices/v17/.suo
 /.vs
+
+# Pasta temporária do SonarScanner
+.sonarqube/
+
+obj/**/*.FileListAbsolute.txt
+obj/Debug/docker-compose.dcproj.FileListAbsolute.txt
