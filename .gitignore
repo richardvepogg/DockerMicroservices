@@ -430,5 +430,6 @@ FodyWeavers.xsd
 # Pasta temporária do SonarScanner
 .sonarqube/
 
+# Arquivos de compilação
 obj/**/*.FileListAbsolute.txt
 obj/Debug/docker-compose.dcproj.FileListAbsolute.txt
